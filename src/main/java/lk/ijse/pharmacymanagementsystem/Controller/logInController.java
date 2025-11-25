@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.Controllers;
+package lk.ijse.pharmacymanagementsystem.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -15,12 +15,12 @@ public class logInController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        comboBOX.setItems(FXCollections.observableArrayList("Admin", "Assistant"));
+
     }
 
     @FXML
     void logInOnAction(ActionEvent event) {
-        
+
     }
 
     @FXML
