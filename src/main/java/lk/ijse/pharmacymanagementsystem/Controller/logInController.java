@@ -1,13 +1,14 @@
 package lk.ijse.pharmacymanagementsystem.Controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import lk.ijse.pharmacymanagementsystem.Launcher;
+import lk.ijse.pharmacymanagementsystem.Model.EmployeeModel;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,12 +33,33 @@ public class logInController {
 
     @FXML
     void Exit(ActionEvent event) {
-
+        Platform.exit();
     }
+
+    private final EmployeeModel employeeModel = new EmployeeModel();
 
     @FXML
     void logInOnAction(ActionEvent event) {
+        String userName = nameField.getText();
+        String password = passwordField.getText();
 
+        if (userName.equals("") || password.equals("")) {
+            new Alert(Alert.AlertType.ERROR, "Please fill the fields", ButtonType.OK).show();
+            cleanFields();
+
+        }else {
+            try {
+                boolean isValid = employeeModel.checkValidation(userName, password);
+                if (isValid) {
+                    System.out.println("login");
+                }else{
+                    System.out.println("UnAuthorized access");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML

@@ -7,12 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import lk.ijse.pharmacymanagementsystem.Dto.EmployeeDTO;
 import lk.ijse.pharmacymanagementsystem.Launcher;
-import lk.ijse.pharmacymanagementsystem.Model.ROLE;
-import lk.ijse.pharmacymanagementsystem.Model.SignUpModel;
+import lk.ijse.pharmacymanagementsystem.Model.EmployeeModel;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable {
@@ -38,7 +36,7 @@ public class SignUpController implements Initializable {
     @FXML
     private TextField userName_Col;
 
-    private final SignUpModel  signUpModel = new SignUpModel();
+    private final EmployeeModel signUpModel = new EmployeeModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
