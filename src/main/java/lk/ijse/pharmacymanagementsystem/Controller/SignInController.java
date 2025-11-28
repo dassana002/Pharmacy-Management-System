@@ -1,26 +1,15 @@
 package lk.ijse.pharmacymanagementsystem.Controller;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import lk.ijse.pharmacymanagementsystem.Launcher;
 import lk.ijse.pharmacymanagementsystem.Model.EmployeeModel;
-import org.mindrot.jbcrypt.BCrypt;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class logInController {
+public class SignInController {
 
     @FXML
-    private Button exit_btn;
-
-    @FXML
-    private Button logIn_btn;
+    private Button submit_btn;
 
     @FXML
     private TextField nameField;
@@ -28,23 +17,15 @@ public class logInController {
     @FXML
     private TextField passwordField;
 
-    @FXML
-    private Button reset_btn;
-
-    @FXML
-    void Exit(ActionEvent event) {
-        Platform.exit();
-    }
-
     private final EmployeeModel employeeModel = new EmployeeModel();
 
     @FXML
-    void logInOnAction(ActionEvent event) {
+    void btnSubmitOnAction(ActionEvent event) {
         String userName = nameField.getText();
         String password = passwordField.getText();
 
         if (userName.equals("") || password.equals("")) {
-            new Alert(Alert.AlertType.ERROR, "Please fill the fields", ButtonType.OK).show();
+            new Alert(Alert.AlertType.WARNING, "Please fill the fields", ButtonType.OK).show();
             cleanFields();
 
         }else {
