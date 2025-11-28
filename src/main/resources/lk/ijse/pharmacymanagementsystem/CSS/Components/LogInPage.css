@@ -129,6 +129,13 @@
     -fx-background-color: #ecfdf5;
 }
 
+.custom-text-field,
+.custom-password-field,
+.submit-button {
+    -fx-max-width: Infinity;
+}
+
+
 /* Field Icons */
 .field-icon {
     -fx-text-fill: #10b981;
