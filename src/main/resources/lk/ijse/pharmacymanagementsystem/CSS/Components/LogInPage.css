@@ -29,7 +29,8 @@
 .main-container {
     -fx-background-color: #ffffff;
     -fx-background-radius: 24px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 40, 0.15, 0, 10);
+    -fx-border-radius: 24px;
+
 }
 
 /* ==========================================
@@ -38,7 +39,14 @@
 
 .left-panel {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #10b981 0%, #059669 100%);
+
+    /* Rounded corners (LEFT side) */
     -fx-background-radius: 24px 0 0 24px;
+    -fx-border-radius: 24px 0 0 24px;
+
+    /* Border */
+    -fx-border-color: rgba(255, 255, 255, 0.35);
+    -fx-border-width: 0 1.5px 0 0;  /* only RIGHT border */
 }
 
 /* Logo Container */
@@ -84,7 +92,14 @@
 
 .right-panel {
     -fx-background-color: #ffffff;
+
+    /* Rounded corners (RIGHT side) */
     -fx-background-radius: 0 24px 24px 0;
+    -fx-border-radius: 0 24px 24px 0;
+
+    /* Border */
+    -fx-border-color: #d1fae5;
+    -fx-border-width: 1.5px;
 }
 
 /* Login Title and Subtitle */
@@ -134,7 +149,6 @@
 .submit-button {
     -fx-max-width: Infinity;
 }
-
 
 /* Field Icons */
 .field-icon {
