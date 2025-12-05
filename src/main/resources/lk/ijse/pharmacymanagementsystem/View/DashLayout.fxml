@@ -83,7 +83,7 @@
                     </font>
                 </Button>
             </HBox>
-            <AnchorPane prefHeight="846.0" prefWidth="1220.0" />
+            <AnchorPane fx:id="mainContent" prefHeight="846.0" prefWidth="1220.0" />
         </VBox>
     </StackPane>
 </AnchorPane>

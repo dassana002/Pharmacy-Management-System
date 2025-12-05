@@ -16,7 +16,13 @@ public class DashLayoutController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        Parent dashLayout = null;
+        try {
+            dashLayout = Launcher.loadFXML("DashBoard");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        mainContent.getChildren().setAll(dashLayout);
     }
 
     @FXML
