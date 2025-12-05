@@ -1,6 +1,5 @@
-package lk.ijse.pharmacymanagementsystem.Controller;
+package lk.ijse.pharmacymanagementsystem.Controller.Page;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
