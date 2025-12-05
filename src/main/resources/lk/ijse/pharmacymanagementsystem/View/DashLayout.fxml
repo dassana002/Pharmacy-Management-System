@@ -36,9 +36,9 @@
                         <font>
                             <Font name="System Bold" size="48.0" />
                         </font>
-                  <StackPane.margin>
-                     <Insets />
-                  </StackPane.margin>
+                        <StackPane.margin>
+                            <Insets />
+                        </StackPane.margin>
                     </Label>
                 </StackPane>
 
@@ -47,17 +47,17 @@
                         <font>
                             <Font name="System Bold" size="40.0" />
                         </font>
-                  <VBox.margin>
-                     <Insets top="5.0" />
-                  </VBox.margin>
+                        <VBox.margin>
+                            <Insets top="5.0" />
+                        </VBox.margin>
                     </Label>
                     <Label styleClass="dashboard-subtitle" text="Nagoda Junction. Nagoda">
                         <font>
                             <Font size="18.0" />
                         </font>
-                  <VBox.margin>
-                     <Insets bottom="5.0" top="-7.0" />
-                  </VBox.margin>
+                        <VBox.margin>
+                            <Insets bottom="5.0" top="-7.0" />
+                        </VBox.margin>
                     </Label>
                 </VBox>
 
@@ -82,13 +82,8 @@
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Button>
-             </HBox>
-
-             <!-- Divider -->
-             <Region minHeight="2.0" styleClass="divider" />
-
-             <!-- Content Section - Placeholder for future content -->
-             <AnchorPane prefHeight="846.0" prefWidth="1220.0" VBox.vgrow="ALWAYS" />
-         </VBox>
-     </StackPane>
- </AnchorPane>
+            </HBox>
+            <AnchorPane prefHeight="846.0" prefWidth="1220.0" />
+        </VBox>
+    </StackPane>
+</AnchorPane>
