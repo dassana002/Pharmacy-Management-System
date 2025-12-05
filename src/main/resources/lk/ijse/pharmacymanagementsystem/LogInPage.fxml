@@ -44,6 +44,9 @@
                         <font>
                             <Font name="System Bold" size="86.0" />
                         </font>
+                  <StackPane.margin>
+                     <Insets top="-7.0" />
+                  </StackPane.margin>
                     </Label>
                 </StackPane>
 

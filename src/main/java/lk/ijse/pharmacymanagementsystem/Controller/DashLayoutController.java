@@ -1,5 +1,5 @@
 package lk.ijse.pharmacymanagementsystem.Controller;
 
-public class DashBoardController {
+public class DashLayoutController {
 
 }
