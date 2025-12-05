@@ -1,5 +1,10 @@
-package lk.ijse.pharmacymanagementsystem.Controller.Layout;
+package lk.ijse.pharmacymanagementsystem.Controller;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 public class DashLayoutController {
 
 }
+

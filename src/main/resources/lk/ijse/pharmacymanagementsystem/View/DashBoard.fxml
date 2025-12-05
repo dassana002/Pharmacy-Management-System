@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="846.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.Controller.DashBoardController">
+<AnchorPane prefHeight="846.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../CSS/DashBoard.css" fx:controller="lk.ijse.pharmacymanagementsystem.Controller.DashBoardController">
     <children>
         <BorderPane layoutY="-1.0" prefHeight="846.0" prefWidth="1220.0">
             <left>

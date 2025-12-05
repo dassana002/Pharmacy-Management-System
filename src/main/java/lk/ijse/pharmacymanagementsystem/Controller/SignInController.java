@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.Controller.Page;
+package lk.ijse.pharmacymanagementsystem.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

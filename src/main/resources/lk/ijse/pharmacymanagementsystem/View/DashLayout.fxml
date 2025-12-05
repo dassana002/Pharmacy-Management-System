@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="600.0" minWidth="900.0" prefHeight="1024.0" prefWidth="1280.0" styleClass="root" stylesheets="@CSS/Components/OrderLayout.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.Controller.DashLayoutController">
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="600.0" minWidth="900.0" prefHeight="1024.0" prefWidth="1280.0" styleClass="root" stylesheets="@../CSS/OrderLayout.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.Controller.DashLayoutController">
 
     <!-- Animated Background Circles -->
     <Circle fx:id="bgCircle1" layoutX="120.0" layoutY="80.0" radius="120.0" styleClass="bg-circle-1" />
@@ -82,8 +82,13 @@
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Button>
-            </HBox>
-         <AnchorPane prefHeight="846.0" prefWidth="1220.0" />
-        </VBox>
-    </StackPane>
-</AnchorPane>
+             </HBox>
+
+             <!-- Divider -->
+             <Region minHeight="2.0" styleClass="divider" />
+
+             <!-- Content Section - Placeholder for future content -->
+             <AnchorPane prefHeight="846.0" prefWidth="1220.0" VBox.vgrow="ALWAYS" />
+         </VBox>
+     </StackPane>
+ </AnchorPane>

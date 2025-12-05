@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.Controller.Layout;
+package lk.ijse.pharmacymanagementsystem.Controller;
 
 public class DashBoardController {
 }
