@@ -14,25 +14,12 @@
     <children>
         <BorderPane layoutY="-4.0" prefHeight="852.0" prefWidth="1220.0">
             <left>
-                <VBox prefHeight="852.0" prefWidth="280.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+                <VBox prefHeight="747.0" prefWidth="280.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                     <children>
-                        <VBox alignment="CENTER" prefHeight="101.0" prefWidth="280.0" styleClass="sidebar-header">
-                            <VBox.margin>
-                                <Insets bottom="20.0" />
-                            </VBox.margin>
-                        </VBox>
 
-                        <Separator styleClass="sidebar-separator" />
-
-                        <Label styleClass="menu-label" text="MAIN MENU">
+                              <Button fx:id="orderBtn" mnemonicParsing="false" prefHeight="55.0" prefWidth="240.0" styleClass="nav-button,order-btn" text="📦  Order Management">
                             <VBox.margin>
-                                <Insets bottom="10.0" left="20.0" top="20.0" />
-                            </VBox.margin>
-                        </Label>
-
-                        <Button fx:id="orderBtn" mnemonicParsing="false" prefHeight="55.0" prefWidth="240.0" styleClass="nav-button,order-btn" text="📦  Order Management">
-                            <VBox.margin>
-                                <Insets bottom="12.0" left="20.0" right="20.0" top="5.0" />
+                                <Insets bottom="12.0" left="20.0" right="20.0" top="60.0" />
                             </VBox.margin>
                             <font>
                                 <Font name="System" size="13.0" />
@@ -65,11 +52,11 @@
             </left>
 
             <top>
-                <HBox prefHeight="70.0" prefWidth="1000.0" styleClass="top-bar" BorderPane.alignment="CENTER">
+                <HBox prefHeight="84.0" prefWidth="1220.0" styleClass="top-bar" BorderPane.alignment="CENTER">
                     <children>
                         <Label styleClass="top-bar-title" text="Welcome to Pharmacy Dashboard">
                             <font>
-                                <Font name="System Bold" size="18.0" />
+                                <Font name="System Bold" size="15.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="40.0" top="20.0" />
@@ -89,7 +76,7 @@
             </top>
 
             <center>
-                <AnchorPane prefHeight="794.0" prefWidth="940.0" styleClass="center-pane" BorderPane.alignment="CENTER" />
+                <AnchorPane prefHeight="774.0" prefWidth="940.0" styleClass="center-pane" BorderPane.alignment="CENTER" />
             </center>
         </BorderPane>
     </children>

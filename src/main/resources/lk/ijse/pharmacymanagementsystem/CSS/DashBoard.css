@@ -1,0 +1,129 @@
+/* Pharmacy Dashboard CSS */
+
+/* Root styling */
+.root {
+    -fx-font-family: "Segoe UI", "System";
+    -fx-font-size: 12px;
+}
+
+/* Sidebar styling */
+.sidebar {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 0;
+}
+
+.sidebar-header {
+    -fx-background-color: #34495e;
+    -fx-padding: 20px;
+    -fx-text-fill: #ffffff;
+}
+
+.sidebar-separator {
+    -fx-padding: 10px 0;
+}
+
+.menu-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #95a5a6;
+    -fx-padding: 10px 20px;
+}
+
+/* Navigation buttons */
+.nav-button {
+    -fx-padding: 12px 20px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #ecf0f1;
+    -fx-background-color: transparent;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    -fx-background-color: #34495e;
+    -fx-text-fill: #3498db;
+}
+
+.nav-button:pressed {
+    -fx-background-color: #11AD36;
+    -fx-text-fill: #2980b9;
+}
+
+.order-btn {
+    -fx-text-fill: #ffff;
+}
+
+.order-btn:hover {
+    -fx-text-fill: #ffff;
+}
+
+.medicine-btn {
+    -fx-text-fill: #ffff;
+}
+
+.medicine-btn:hover {
+    -fx-text-fill: #229954;
+}
+
+.employee-btn {
+    -fx-text-fill: #ffff;
+    -fx-font-size: 23px;
+}
+
+.employee-btn:hover {
+    -fx-text-fill: #e67e22;
+}
+
+/* Top bar styling */
+.top-bar {
+    -fx-background-color: #ecf0f1;
+    -fx-padding: 15px 40px;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 0 0 2 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+}
+
+.top-bar-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.top-bar-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+/* Center pane styling */
+.center-pane {
+    -fx-background-color: #f5f6fa;
+    -fx-padding: 20px;
+}
+
+/* General button styling */
+.button {
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 4;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-opacity: 0.85;
+}
+
+/* Label styling */
+.label {
+    -fx-text-fill: #2c3e50;
+}
+
+/* Separator styling */
+.separator {
+    -fx-padding: 5px 0;
+}
+
+/* HBox and VBox */
+.hbox, .vbox {
+    -fx-spacing: 10px;
+}
