@@ -9,6 +9,7 @@ import lk.ijse.pharmacymanagementsystem.Launcher;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DashLayoutController implements Initializable {
@@ -18,20 +19,31 @@ public class DashLayoutController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadDashBoard();
+    }
+
+    public void loadDashBoard() {
         try {
-            loadDashBoard();
-        } catch (IOException e) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource( "/lk/ijse/pharmacymanagementsystem/View/DashBoard.fxml"));
+            Parent uI = loader.load();
+
+            DashBoardController controller = loader.getController();
+            controller.setParentController(this);
+
+            mainContent.getChildren().setAll(uI);
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void loadDashBoard() throws IOException {
-        Parent dashboardUI = Launcher.loadFXML("DashBoard");
-        mainContent.getChildren().setAll(dashboardUI);
-    }
-
     // Load Order Page
     public void loadOrderPage() {
-
+        try {
+            Parent ui = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/lk/ijse/pharmacymanagementsystem/View/OrderLayout.fxml")));
+            mainContent.getChildren().setAll(ui);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
