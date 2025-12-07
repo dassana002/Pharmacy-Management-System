@@ -1,15 +1,18 @@
 package lk.ijse.pharmacymanagementsystem.Controller;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
-import javafx.fxml.Initializable;
+public class DashBoardController {
 
-import java.net.URL;
-import java.util.ResourceBundle;
+    private DashLayoutController parentController;
 
-public class DashBoardController implements Initializable {
+    public void setParentController(DashLayoutController controller) {
+        this.parentController = controller;
+    }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    @FXML
+    void orderOnAction(ActionEvent event) {
+        parentController.loadOrderPage();
     }
 }

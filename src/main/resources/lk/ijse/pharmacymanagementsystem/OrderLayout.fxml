@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -9,43 +10,62 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="846.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.Controller.OrderLayoutController">
     <children>
         <BorderPane layoutY="-1.0" prefHeight="846.0" prefWidth="1220.0">
             <left>
                 <VBox prefHeight="846.0" prefWidth="184.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Order">
+                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="List">
                             <VBox.margin>
                                 <Insets top="50.0" />
                             </VBox.margin>
                             <font>
-                                <Font size="15.0" />
+                                <Font size="20.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Employee">
+                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Add">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Medicine">
+                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Pay">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Report">
+                        <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Credit">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Button>
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Hold">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Search Bill">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Print">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <CheckBox mnemonicParsing="false" text="Auto Print">
+                     <VBox.margin>
+                        <Insets left="46.0" top="20.0" />
+                     </VBox.margin>
+                  </CheckBox>
                     </children>
                 </VBox>
             </left>
             <top>
                 <HBox prefHeight="59.0" prefWidth="1220.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Label prefHeight="59.0" prefWidth="322.0" text="Welcome to Pharmacy DashBoard">
+                        <Label prefHeight="59.0" prefWidth="322.0" text="Order Page">
                             <font>
                                 <Font size="21.0" />
                             </font>

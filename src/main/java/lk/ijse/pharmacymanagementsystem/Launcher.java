@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Launcher extends Application {
     private static Scene scene;
@@ -14,7 +15,7 @@ public class Launcher extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         /// create a scene Object
-        scene = new Scene(loadFXML("LogInPage"));
+        scene = new Scene(loadFXML("DashLayout"));
         /// scene object set to stage
         stage.setScene(scene);
         /// scene object pop up
