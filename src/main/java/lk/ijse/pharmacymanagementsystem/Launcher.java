@@ -14,7 +14,7 @@ public class Launcher extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         /// create a scene Object
-        scene = new Scene(loadFXML("DashBoard"));
+        scene = new Scene(loadFXML("LogInPage"));
         /// scene object set to stage
         stage.setScene(scene);
         /// scene object pop up
@@ -27,7 +27,7 @@ public class Launcher extends Application {
     }
 
     public static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("/lk/ijse/pharmacymanagementsystem/View/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

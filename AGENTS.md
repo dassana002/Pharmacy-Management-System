@@ -8,7 +8,7 @@
 - **Package**: `mvn clean package`
 
 ## Project Overview
-JavaFX desktop application (Java 25) with MySQL database backend. Stack: Maven, JUnit 5, JavaFX 21.0.6, MySQL Connector 9.5.0, BCrypt 0.4 for password hashing.
+JavaFX desktop application (Java 25) with MySQL database backend. Stack: Maven, JUnit 5, JavaFX 21.0.6, MySQL Connector 9.5.0, BCrypt 0.4 for password hashing. Main entry point: `lk.ijse.pharmacymanagementsystem.Launcher`.
 
 ## Code Style Guidelines
 **Package Structure**: `lk.ijse.pharmacymanagementsystem.*` with subpackages: Controller, Model, Dto, DBconnection
@@ -19,10 +19,12 @@ JavaFX desktop application (Java 25) with MySQL database backend. Stack: Maven, 
 
 **Formatting**: 4 spaces indentation, braces on same line, max 120 chars per line.
 
-**Error Handling**: Declare `throws SQLException` for database methods. Check null explicitly using explicit null checks (not elvis operators). Use BCrypt for passwords (never plaintext).
+**Null Checks**: Use explicit null checks (`if (value != null)`), never rely on implicit boolean conversion or elvis operators.
 
-**DTO/Model Separation**: DTOs for data transfer, Models for DB operations. Keep business logic in Models.
+**Error Handling**: Declare `throws SQLException` for database methods. Use try-catch in Controllers, never in Models. Log exceptions properly instead of silent failures.
 
-**Database**: Use PreparedStatements to prevent SQL injection. Implement Singleton for DB connections: `DBConnection.getInstance()`. External storage for DB credentials (never hardcoded).
+**DTO/Model Separation**: DTOs for data transfer (e.g., `EmployeeDTO`), Models for DB operations (e.g., `EmployeeModel`). Keep business logic in Models, validation in Controllers.
 
-**Security**: Hash passwords with BCrypt (e.g., `BCrypt.hashpw()` and `BCrypt.checkpw()`). Validate all user input in Controllers before passing to Models. Never store plaintext credentials.
+**Database**: Use `PreparedStatements` to prevent SQL injection. Singleton pattern for DB connections: `DBConnection.getInstance().getConnection()`. Store credentials externally (never hardcoded).
+
+**Security**: Hash passwords with BCrypt (`BCrypt.hashpw()` for hashing, `BCrypt.checkpw()` for verification). Validate all user input in Controllers before passing to Models. Never use plaintext passwords.

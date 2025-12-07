@@ -46,7 +46,7 @@ public class EmployeeModel {
 
             if (rs.next()) {
                 employeeDTO = new EmployeeDTO(
-                        rs.getInt("employee_id"),
+                        rs.getInt("employeeId"),
                         rs.getString("username"),
                         rs.getString("name"),
                         rs.getString("password"),
