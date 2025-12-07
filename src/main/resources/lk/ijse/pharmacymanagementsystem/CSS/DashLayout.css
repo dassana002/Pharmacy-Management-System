@@ -33,7 +33,7 @@
 
 .dashboard-vbox {
     -fx-background-color: #ffffff;
-    -fx-background-radius: 20px;
+    /*-fx-background-radius: 0px;*/
 }
 
 /* ==========================================
