@@ -30,17 +30,12 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Employee">
+                  <Button fx:id="employee_btn" mnemonicParsing="false" onAction="#employeeOnAction" prefHeight="55.0" prefWidth="184.0" text="Employee">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Medicine">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="184.0" text="Report">
+                  <Button fx:id="medicine_btn" mnemonicParsing="false" onAction="#medicineOnAction" prefHeight="55.0" prefWidth="184.0" text="Medicine">
                      <font>
                         <Font size="20.0" />
                      </font>

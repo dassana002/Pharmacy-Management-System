@@ -3,7 +3,6 @@ package lk.ijse.pharmacymanagementsystem.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import java.io.IOException;
 
 public class DashBoardController {
 
@@ -17,4 +16,15 @@ public class DashBoardController {
     void orderOnAction(ActionEvent event) {
         parentController.loadOrderPage();
     }
+
+    @FXML
+    void employeeOnAction(ActionEvent event) {
+        parentController.loadEmployeePage();
+    }
+
+    @FXML
+    void medicineOnAction(ActionEvent event) {
+        parentController.loadMedicinePage();
+    }
+
 }

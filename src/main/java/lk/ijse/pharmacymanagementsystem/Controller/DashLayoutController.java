@@ -19,10 +19,6 @@ public class DashLayoutController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadDashBoard();
-    }
-
-    public void loadDashBoard() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource( "/lk/ijse/pharmacymanagementsystem/View/DashBoard.fxml"));
             Parent uI = loader.load();
@@ -37,12 +33,53 @@ public class DashLayoutController implements Initializable {
         }
     }
 
+    public void backToDashBoard() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/View/DashBoard.fxml"));
+            Parent ui = loader.load();
+
+            DashBoardController controller = loader.getController();
+            controller.setParentController(this);
+
+            mainContent.getChildren().setAll(ui);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // Load Order Page
     public void loadOrderPage() {
         try {
-            Parent ui = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/lk/ijse/pharmacymanagementsystem/View/OrderLayout.fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/View/OrderLayout.fxml"));
+            Parent ui = loader.load();
+
+            OrderLayoutController controller = loader.getController();
+            controller.setParentController(this);
+
             mainContent.getChildren().setAll(ui);
-        } catch (IOException e) {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Load Employee Page
+    public void loadEmployeePage() {
+        try {
+            Parent uI = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/lk/ijse/pharmacymanagementsystem/View/SignUp.fxml")));
+            mainContent.getChildren().setAll(uI);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    // Load Medicine Page
+    public void loadMedicinePage() {
+        try {
+            Parent uI = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/lk/ijse/pharmacymanagementsystem/View/MedicineLayout.fxml")));
+            mainContent.getChildren().setAll(uI);
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
