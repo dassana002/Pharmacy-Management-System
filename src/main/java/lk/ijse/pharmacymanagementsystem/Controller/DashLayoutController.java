@@ -20,10 +20,10 @@ public class DashLayoutController implements Initializable {
         Parent dashBoardFXML = null;
         try {
             dashBoardFXML = Launcher.loadFXML("DashBoard");
+            mainContent.getChildren().setAll(dashBoardFXML);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        mainContent.getChildren().setAll(dashBoardFXML);
     }
 }
 

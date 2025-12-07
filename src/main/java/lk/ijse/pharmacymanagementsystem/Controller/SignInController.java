@@ -2,6 +2,7 @@ package lk.ijse.pharmacymanagementsystem.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import lk.ijse.pharmacymanagementsystem.Launcher;
 import lk.ijse.pharmacymanagementsystem.Model.EmployeeModel;
@@ -30,7 +31,8 @@ public class SignInController {
                 boolean isValid = employeeModel.checkValidation(userName, password);
                 if (isValid) {
                     System.out.println("login");
-                    Launcher.setRoot("DashLayout");
+                    Launcher.loadFXML("DashLayout");
+
                 }else{
                     System.out.println("UnAuthorized access");
                     new Alert(Alert.AlertType.ERROR, "Please Try Again", ButtonType.OK).show();
