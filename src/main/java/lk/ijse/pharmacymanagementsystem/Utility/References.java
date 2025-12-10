@@ -4,7 +4,7 @@ import lk.ijse.pharmacymanagementsystem.controller.DashBoardController;
 import lk.ijse.pharmacymanagementsystem.controller.ItemController;
 import lk.ijse.pharmacymanagementsystem.controller.layout.DashLayoutController;
 
-public class Reference {
+public class References {
     public static DashBoardController dashBoardController;
     public static ItemController  itemController;
     public static DashLayoutController dashLayoutController;
