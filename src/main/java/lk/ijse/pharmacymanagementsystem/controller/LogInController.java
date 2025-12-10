@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 import lk.ijse.pharmacymanagementsystem.Launcher;
 import lk.ijse.pharmacymanagementsystem.Model.EmployeeModel;
 
-public class SignInController {
+public class LogInController {
 
     @FXML
     private TextField nameField;
@@ -30,7 +30,7 @@ public class SignInController {
                 boolean isValid = employeeModel.checkValidation(userName, password);
                 if (isValid) {
                     System.out.println("login");
-                    Launcher.setRoot("DashLayout");
+                    Launcher.setRoot("layouts/DashLayout");
 
                 }else{
                     System.out.println("UnAuthorized access");

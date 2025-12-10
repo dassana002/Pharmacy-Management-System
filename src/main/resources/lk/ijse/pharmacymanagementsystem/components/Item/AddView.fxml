@@ -1,14 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<AnchorPane prefHeight="877.0" prefWidth="1227.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.item.AddViewController">
+    <SplitPane dividerPositions="0.38" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+        <items>
+            <!-- Form Section -->
+            <ScrollPane fitToHeight="true" fitToWidth="true">
+                <content>
+                    <VBox minWidth="300" spacing="0.0">
+                        <children>
+                            <GridPane hgap="10.0" prefHeight="749.0" prefWidth="407.0" vgap="15.0">
+                                <padding>
+                                    <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+                                </padding>
 
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="120" />
+                                    <ColumnConstraints hgrow="ALWAYS" minWidth="150" prefWidth="200" />
+                                </columnConstraints>
+
+                                <!-- Invoice No -->
+                                <Label text="Invoice No" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <TextField fx:id="invoice_number_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                                <!-- Date -->
+                                <Label text="Date" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <DatePicker fx:id="todayDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                <!-- Due Date -->
+                                <Label text="Due Date" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <DatePicker fx:id="DueDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                <!-- Supplier -->
+                                <Label text="Supplier" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                                <!-- Item Code -->
+                                <Label text="Item Code" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                <!-- Description -->
+                                <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <TextField maxWidth="Infinity" prefHeight="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                                <!-- Min Stock -->
+                                <Label text="Dosage" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+                                <!-- Unit Cost -->
+                                <Label text="Unit Cost" GridPane.columnIndex="0" GridPane.rowIndex="7">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+                                <!-- Sell Price -->
+                                <Label text="Sell Price" GridPane.columnIndex="0" GridPane.rowIndex="8">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+                                <!-- Qty -->
+                                <Label text="Qty" GridPane.columnIndex="0" GridPane.rowIndex="9">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+                                <!-- Free Qty -->
+                                <Label text="Available Qty" GridPane.columnIndex="0" GridPane.rowIndex="10">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <TextField maxWidth="Infinity" prefHeight="40.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+
+                                <Label text="Available Qty" GridPane.columnIndex="0" GridPane.rowIndex="11">
+                                    <font><Font size="16.0" /></font>
+                                </Label>
+                                <TextField maxWidth="Infinity" prefHeight="40.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                <rowConstraints>
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                </rowConstraints>
+                            </GridPane>
+
+                            <!-- Search Field at Bottom -->
+                            <HBox>
+                                <padding>
+                                    <Insets bottom="20.0" left="15.0" right="15.0" top="0.0" />
+                                </padding>
+                                <children>
+                                    <TextField maxWidth="Infinity" prefHeight="50.0" promptText="0 " HBox.hgrow="ALWAYS">
+                                        <font>
+                                            <Font size="14.0" />
+                                        </font>
+                                    </TextField>
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
+                </content>
+            </ScrollPane>
+
+            <!-- Table Section -->
+            <AnchorPane minWidth="400">
+                <children>
+                    <TableView layoutX="10.0" layoutY="14.0" prefHeight="693.0" prefWidth="736.0" AnchorPane.bottomAnchor="168.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="14.0">
+                        <columns>
+                            <TableColumn minWidth="40" prefWidth="50" text="NO" />
+                            <TableColumn minWidth="150" prefWidth="200" text="Description" />
+                            <TableColumn minWidth="80" prefWidth="100" text="Unit Cost" />
+                            <TableColumn minWidth="80" prefWidth="100" text="Sub Price" />
+                            <TableColumn minWidth="50" prefWidth="60" text="QTY" />
+                            <TableColumn minWidth="100" prefWidth="120" text="Sub Total" />
+                        </columns>
+                    </TableView>
+                </children>
+            </AnchorPane>
+        </items>
+    </SplitPane>
 </AnchorPane>

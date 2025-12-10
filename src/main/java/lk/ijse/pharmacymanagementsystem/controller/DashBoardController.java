@@ -4,6 +4,7 @@ package lk.ijse.pharmacymanagementsystem.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import lk.ijse.pharmacymanagementsystem.controller.layout.DashLayoutController;
 
 public class DashBoardController {
 

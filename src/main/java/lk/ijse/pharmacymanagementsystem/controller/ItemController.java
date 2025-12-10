@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import lk.ijse.pharmacymanagementsystem.controller.layout.DashLayoutController;
 
-public class MedicineController {
+public class ItemController {
 
     private DashLayoutController parentController =  new DashLayoutController();
 

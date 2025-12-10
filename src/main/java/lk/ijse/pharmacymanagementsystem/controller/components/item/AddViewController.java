@@ -1,5 +1,5 @@
 package lk.ijse.pharmacymanagementsystem.controller.components.item;
 
-public class ItemAddController {
+public class AddViewController {
 
 }

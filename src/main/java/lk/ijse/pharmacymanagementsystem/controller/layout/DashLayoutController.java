@@ -1,10 +1,12 @@
-package lk.ijse.pharmacymanagementsystem.controller;
+package lk.ijse.pharmacymanagementsystem.controller.layout;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.pharmacymanagementsystem.controller.DashBoardController;
+import lk.ijse.pharmacymanagementsystem.controller.ItemController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +23,7 @@ public class DashLayoutController implements Initializable {
 
     public void backToDashBoard() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/components/DashBoard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/pages/DashBoardPage.fxml"));
             Parent ui = loader.load();
 
             DashBoardController controller = loader.getController();
@@ -36,24 +38,24 @@ public class DashLayoutController implements Initializable {
 
     // Load Order Page
     public void loadOrderPage() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/components/OrderLayout.fxml"));
-            Parent ui = loader.load();
-
-            OrderLayoutController controller = loader.getController();
-            controller.setParentController(this);   // IMPORTANT
-
-            mainContent.getChildren().setAll(ui);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/pages/OrderPage.fxml"));
+//            Parent ui = loader.load();
+//
+//            OrderController controller = loader.getController();
+//            controller.setParentController(this);   // IMPORTANT
+//
+//            mainContent.getChildren().setAll(ui);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     // Load Employee Page
     public void loadEmployeePage() {
 //        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/View/OrderLayout.fxml"));
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/View/OrderPage.fxml"));
 //            Parent ui = loader.load();
 //
 //            SignUpController controller = loader.getController();
@@ -68,10 +70,10 @@ public class DashLayoutController implements Initializable {
     // Load Medicine Page
     public void loadMedicinePage() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/components/MedicineLayout.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/pages/ItemPage.fxml"));
             Parent ui = loader.load();
 
-            MedicineLayoutController controller = loader.getController();
+            ItemController controller = loader.getController();
             controller.setParentController(this);
 
             mainContent.getChildren().setAll(ui);

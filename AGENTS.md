@@ -8,23 +8,21 @@
 - **Package**: `mvn clean package`
 
 ## Project Overview
-JavaFX desktop application (Java 25) with MySQL database backend. Stack: Maven, JUnit 5, JavaFX 21.0.6, MySQL Connector 9.5.0, BCrypt 0.4 for password hashing. Main entry point: `lk.ijse.pharmacymanagementsystem.Launcher`.
+JavaFX desktop application (Java 25) with MySQL database backend. Stack: Maven, JUnit 5, JavaFX 21.0.6, MySQL Connector 9.5.0, BCrypt 0.4. Main entry point: `lk.ijse.pharmacymanagementsystem.Launcher` (extends `javafx.application.Application`).
 
 ## Code Style Guidelines
-**Package Structure**: `lk.ijse.pharmacymanagementsystem.*` with subpackages: Controller, Model, Dto, DBconnection
+**Package Structure**: `lk.ijse.pharmacymanagementsystem.*` with subpackages: `Controller`, `Model`, `Dto`, `DBconnection`
 
-**Imports**: Order as JavaFX → java.* → third-party (jbcrypt, mysql). Use explicit imports, no wildcards.
+**Imports**: Order as JavaFX → java.* → third-party (jbcrypt, mysql). Use explicit imports, no wildcards. Never use `import java.util.*`.
 
 **Naming**: PascalCase for classes (e.g., `EmployeeModel`), camelCase for methods/variables. Avoid abbreviations.
 
-**Formatting**: 4 spaces indentation, braces on same line, max 120 chars per line.
+**Formatting**: 4 spaces indentation, opening braces on same line, max 120 chars per line.
 
-**Null Checks**: Use explicit null checks (`if (value != null)`), never rely on implicit boolean conversion or elvis operators.
+**Types & Null Checks**: Use explicit `if (value != null)` checks. Never use implicit boolean conversion or elvis operators.
 
-**Error Handling**: Declare `throws SQLException` for database methods. Use try-catch in Controllers, never in Models. Log exceptions properly instead of silent failures.
+**Error Handling**: Database methods declare `throws SQLException`. Use try-catch only in Controllers, never in Models/Dto. Log exceptions properly; never fail silently.
 
-**DTO/Model Separation**: DTOs for data transfer (e.g., `EmployeeDTO`), Models for DB operations (e.g., `EmployeeModel`). Keep business logic in Models, validation in Controllers.
+**Architecture**: DTO classes (`EmployeeDTO`) for data transfer only. Model classes (`EmployeeModel`) contain DB logic via `PreparedStatement` queries. Controllers validate user input before calling Models. Singleton `DBConnection.getInstance().getConnection()` for database access.
 
-**Database**: Use `PreparedStatements` to prevent SQL injection. Singleton pattern for DB connections: `DBConnection.getInstance().getConnection()`. Store credentials externally (never hardcoded).
-
-**Security**: Hash passwords with BCrypt (`BCrypt.hashpw()` for hashing, `BCrypt.checkpw()` for verification). Validate all user input in Controllers before passing to Models. Never use plaintext passwords.
+**Security**: Hash passwords with BCrypt (`BCrypt.hashpw()` for hashing, `BCrypt.checkpw()` for verification). Validate all user input in Controllers. Never hardcode credentials or use plaintext passwords. Use `PreparedStatements` to prevent SQL injection.

@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class Launcher extends Application {
     private static Scene scene;
@@ -28,7 +27,7 @@ public class Launcher extends Application {
     }
 
     public static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("/lk/ijse/pharmacymanagementsystem/View/" +fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("/lk/ijse/pharmacymanagementsystem/" +fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

@@ -6,8 +6,14 @@ module lk.ijse.pharmacymanagementsystem {
     requires jbcrypt;
 
     exports lk.ijse.pharmacymanagementsystem;
-    exports lk.ijse.pharmacymanagementsystem.Controller;
-
     opens lk.ijse.pharmacymanagementsystem to javafx.fxml;
-    opens lk.ijse.pharmacymanagementsystem.Controller to javafx.fxml;
+
+    exports lk.ijse.pharmacymanagementsystem.controller;
+    opens lk.ijse.pharmacymanagementsystem.controller to javafx.fxml;
+
+    exports lk.ijse.pharmacymanagementsystem.controller.components.item;
+    opens lk.ijse.pharmacymanagementsystem.controller.components.item to javafx.fxml;
+
+    exports lk.ijse.pharmacymanagementsystem.controller.layout;
+    opens lk.ijse.pharmacymanagementsystem.controller.layout to javafx.fxml;
 }
