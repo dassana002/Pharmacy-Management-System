@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.item.NewItemAddController"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox minWidth="300" spacing="0.0">
+        <children>
+            <GridPane hgap="10.0" prefHeight="749.0" prefWidth="407.0" vgap="15.0">
+                <padding>
+                    <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+                </padding>
+
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="120" />
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="150" prefWidth="200" />
+                </columnConstraints>
+
+                <!-- Invoice No -->
+                <Label text="Item Code" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <font><Font size="16.0" /></font>
+                </Label>
+                <TextField fx:id="itemCode_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <!-- Invoice No -->
+                <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <font><Font size="16.0" /></font>
+                </Label>
+                <TextField fx:id="description_text" maxWidth="Infinity" prefHeight="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <!-- Invoice No -->
+                <Label text="Dosage" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <font><Font size="16.0" /></font>
+                </Label>
+                <TextField fx:id="dosage_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
+            </GridPane>
+
+            <!-- Search Field at Bottom -->
+            <HBox>
+                <padding>
+                    <Insets bottom="20.0" left="15.0" right="15.0" top="0.0" />
+                </padding>
+                <children>
+                    <TextField maxWidth="Infinity" prefHeight="50.0" promptText="0 " HBox.hgrow="ALWAYS">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </TextField>
+                </children>
+            </HBox>
+        </children>
+    </VBox>
+</AnchorPane>

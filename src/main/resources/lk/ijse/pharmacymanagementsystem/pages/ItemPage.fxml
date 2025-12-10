@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="877.0" prefWidth="1267.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.MedicineController">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <left>
+                <VBox maxWidth="250.0" minWidth="150.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: #f5f5f5;" BorderPane.alignment="CENTER">
+                    <padding>
+                        <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                    </padding>
+                    <children>
+                        <Label style="-fx-text-fill: #333333;" text="Item">
+                            <font>
+                                <Font name="System Bold" size="21.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="30.0" left="10.0" />
+                            </VBox.margin>
+                        </Label>
+
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5;" text="List">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5;" text="Add">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 5;" text="Return Item">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #9C27B0; -fx-text-fill: white; -fx-background-radius: 5;" text="Close Bill">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #00BCD4; -fx-text-fill: white; -fx-background-radius: 5;" text="Pay">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #3F51B5; -fx-text-fill: white; -fx-background-radius: 5;" text="Products">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #795548; -fx-text-fill: white; -fx-background-radius: 5;" text="Supplier">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #607D8B; -fx-text-fill: white; -fx-background-radius: 5;" text="Bill History">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #E91E63; -fx-text-fill: white; -fx-background-radius: 5;" text="Issue Order">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+
+                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #009688; -fx-text-fill: white; -fx-background-radius: 5;" text="Report">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+                  <Button fx:id="newItem_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleNewItemAdd" prefHeight="45.0" prefWidth="179.0" text="Add New Item">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+
+                        <CheckBox mnemonicParsing="false" text="Auto Print">
+                            <VBox.margin>
+                                <Insets left="46.0" top="20.0" />
+                            </VBox.margin>
+                        </CheckBox>
+
+                        <Button fx:id="back_btn" maxWidth="Infinity" mnemonicParsing="false" onAction="#backToDashBoard" prefHeight="45.0" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-background-radius: 5;" text="← Back">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+            </left>
+
+            <center>
+<!--                <SplitPane dividerPositions="0.38" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">-->
+<!--                    <items>-->
+<!--                        &lt;!&ndash; Form Section &ndash;&gt;-->
+<!--                        <ScrollPane fitToHeight="true" fitToWidth="true">-->
+<!--                            <content>-->
+<!--                                <VBox minWidth="300" spacing="0.0">-->
+<!--                                    <children>-->
+<!--                                        <GridPane hgap="10.0" prefHeight="749.0" prefWidth="407.0" vgap="15.0">-->
+<!--                                            <padding>-->
+<!--                                                <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />-->
+<!--                                            </padding>-->
+
+<!--                                            <columnConstraints>-->
+<!--                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="120" />-->
+<!--                                                <ColumnConstraints hgrow="ALWAYS" minWidth="150" prefWidth="200" />-->
+<!--                                            </columnConstraints>-->
+
+<!--                                            &lt;!&ndash; Invoice No &ndash;&gt;-->
+<!--                                            <Label text="Invoice No" GridPane.columnIndex="0" GridPane.rowIndex="0">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <TextField fx:id="invoice_number_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />-->
+
+<!--                                            &lt;!&ndash; Date &ndash;&gt;-->
+<!--                                            <Label text="Date" GridPane.columnIndex="0" GridPane.rowIndex="1">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <DatePicker fx:id="todayDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
+
+<!--                                            &lt;!&ndash; Due Date &ndash;&gt;-->
+<!--                                            <Label text="Due Date" GridPane.columnIndex="0" GridPane.rowIndex="2">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <DatePicker fx:id="DueDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />-->
+
+<!--                                            &lt;!&ndash; Supplier &ndash;&gt;-->
+<!--                                            <Label text="Supplier" GridPane.columnIndex="0" GridPane.rowIndex="3">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />-->
+
+<!--                                            &lt;!&ndash; Item Code &ndash;&gt;-->
+<!--                                            <Label text="Item Code" GridPane.columnIndex="0" GridPane.rowIndex="4">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />-->
+
+<!--                                            &lt;!&ndash; Description &ndash;&gt;-->
+<!--                                            <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="5">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <TextField maxWidth="Infinity" prefHeight="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />-->
+
+<!--                                            &lt;!&ndash; Min Stock &ndash;&gt;-->
+<!--                                            <Label text="Min Stock" GridPane.columnIndex="0" GridPane.rowIndex="6">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <TextField maxWidth="Infinity" prefHeight="40.0" promptText="Min Stock" GridPane.columnIndex="1" GridPane.rowIndex="6" />-->
+
+<!--                                            &lt;!&ndash; Unit Cost &ndash;&gt;-->
+<!--                                            <Label text="Unit Cost" GridPane.columnIndex="0" GridPane.rowIndex="7">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />-->
+
+<!--                                            &lt;!&ndash; Sell Price &ndash;&gt;-->
+<!--                                            <Label text="Sell Price" GridPane.columnIndex="0" GridPane.rowIndex="8">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />-->
+
+<!--                                            &lt;!&ndash; Qty &ndash;&gt;-->
+<!--                                            <Label text="Qty" GridPane.columnIndex="0" GridPane.rowIndex="9">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />-->
+
+<!--                                            &lt;!&ndash; Free Qty &ndash;&gt;-->
+<!--                                            <Label text="Available Qty" GridPane.columnIndex="0" GridPane.rowIndex="10">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <TextField maxWidth="Infinity" prefHeight="40.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="10" />-->
+
+<!--                                            <Label text="Available Qty" GridPane.columnIndex="0" GridPane.rowIndex="11">-->
+<!--                                                <font><Font size="16.0" /></font>-->
+<!--                                            </Label>-->
+<!--                                            <TextField maxWidth="Infinity" prefHeight="40.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="11" />-->
+<!--                                 <rowConstraints>-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                    <RowConstraints />-->
+<!--                                 </rowConstraints>-->
+<!--                                        </GridPane>-->
+
+<!--                                        &lt;!&ndash; Search Field at Bottom &ndash;&gt;-->
+<!--                                        <HBox>-->
+<!--                                            <padding>-->
+<!--                                                <Insets bottom="20.0" left="15.0" right="15.0" top="0.0" />-->
+<!--                                            </padding>-->
+<!--                                            <children>-->
+<!--                                                <TextField maxWidth="Infinity" prefHeight="50.0" promptText="0 " HBox.hgrow="ALWAYS">-->
+<!--                                                    <font>-->
+<!--                                                        <Font size="14.0" />-->
+<!--                                                    </font>-->
+<!--                                                </TextField>-->
+<!--                                            </children>-->
+<!--                                        </HBox>-->
+<!--                                    </children>-->
+<!--                                </VBox>-->
+<!--                            </content>-->
+<!--                        </ScrollPane>-->
+
+<!--                        &lt;!&ndash; Table Section &ndash;&gt;-->
+<!--                        <AnchorPane minWidth="400">-->
+<!--                            <children>-->
+<!--                                <TableView layoutX="10.0" layoutY="14.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="14.0">-->
+<!--                                    <columns>-->
+<!--                                        <TableColumn minWidth="40" prefWidth="50" text="NO" />-->
+<!--                                        <TableColumn minWidth="150" prefWidth="200" text="Description" />-->
+<!--                                        <TableColumn minWidth="80" prefWidth="100" text="Unit Cost" />-->
+<!--                                        <TableColumn minWidth="80" prefWidth="100" text="Sub Price" />-->
+<!--                                        <TableColumn minWidth="50" prefWidth="60" text="QTY" />-->
+<!--                                        <TableColumn minWidth="100" prefWidth="120" text="Sub Total" />-->
+<!--                                    </columns>-->
+<!--                                </TableView>-->
+<!--                            </children>-->
+<!--                        </AnchorPane>-->
+<!--                    </items>-->
+<!--                </SplitPane>-->
+            </center>
+         <center>
+            <AnchorPane fx:id="ItemMain_Content" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

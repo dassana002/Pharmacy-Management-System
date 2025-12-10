@@ -1,11 +1,12 @@
-package lk.ijse.pharmacymanagementsystem.Controller;
+package lk.ijse.pharmacymanagementsystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import lk.ijse.pharmacymanagementsystem.controller.layout.DashLayoutController;
 
-public class OrderLayoutController {
+public class MedicineController {
 
-    private DashLayoutController parentController;
+    private DashLayoutController parentController =  new DashLayoutController();
 
     public void setParentController(DashLayoutController parentController) {
         this.parentController = parentController;
@@ -15,4 +16,6 @@ public class OrderLayoutController {
     void backToDashBoard(ActionEvent event) {
         parentController.backToDashBoard();
     }
+
+
 }

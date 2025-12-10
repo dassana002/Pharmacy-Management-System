@@ -1,12 +1,18 @@
-package lk.ijse.pharmacymanagementsystem.Controller;
+package lk.ijse.pharmacymanagementsystem.controller;
 
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 
 public class DashBoardController {
 
     private DashLayoutController parentController;
+
+    public void initialize(){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DashLayout.fxml"));
+        parentController = fxmlLoader.getController();
+    }
 
     public void setParentController(DashLayoutController parentController) {
         this.parentController = parentController;
