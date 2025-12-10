@@ -86,7 +86,7 @@
                                 <Font size="16.0" />
                             </font>
                         </Button>
-                  <Button fx:id="newItem_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleNewItemAdd" prefHeight="45.0" prefWidth="179.0" text="Add New Item">
+                  <Button fx:id="newItem_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleNewItemAdd" prefHeight="45.0" prefWidth="179.0" text="New Item">
                      <font>
                         <Font size="16.0" />
                      </font>

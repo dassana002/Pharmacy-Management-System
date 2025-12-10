@@ -70,7 +70,7 @@ public class DashLayoutController implements Initializable {
     // Load Medicine Page
     public void loadMedicinePage() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/pages/ItemPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/pharmacymanagementsystem/pages/MedicinePage.fxml"));
             Parent ui = loader.load();
 
             ItemController controller = loader.getController();
