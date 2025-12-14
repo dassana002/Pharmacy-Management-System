@@ -2,11 +2,15 @@ package lk.ijse.pharmacymanagementsystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.pharmacymanagementsystem.Utility.References;
 
-public class DashBoardController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class DashBoardController implements Initializable {
 
     @FXML
     private Button employee_btn;
@@ -19,6 +23,11 @@ public class DashBoardController {
 
     @FXML
     private Button orderBtn;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        References.dashBoardController = this;
+    }
 
     @FXML
     void handleEmployeePage(ActionEvent event) {
@@ -38,5 +47,4 @@ public class DashBoardController {
     void handleOrderPage(ActionEvent event) {
         References.dashLayoutController.loadOrderPage();
     }
-
 }

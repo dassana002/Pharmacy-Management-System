@@ -1,5 +1,6 @@
 package lk.ijse.pharmacymanagementsystem.controller.layout;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -49,5 +50,10 @@ public class DashLayoutController implements Initializable {
     public void loadItemPage() throws IOException{
         Parent medicinePage = Launcher.loadFXML("pages/ItemPage");
         mainContent.getChildren().setAll(medicinePage);
+    }
+
+    @FXML
+    void handleLogOut(ActionEvent event) throws IOException {
+        Launcher.setRoot("LoginPage");
     }
 }

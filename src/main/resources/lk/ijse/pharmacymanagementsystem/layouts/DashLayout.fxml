@@ -77,15 +77,13 @@
                     </Label>
                 </VBox>
 
-                <Button fx:id="logoutButton" minWidth="80.0" prefHeight="40.0" styleClass="logout-button" text="Logout">
+                <Button fx:id="logoutButton" minWidth="80.0" onAction="#handleLogOut" prefHeight="40.0" styleClass="logout-button" text="Logout">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Button>
             </HBox>
             <AnchorPane fx:id="mainContent" prefHeight="846.0" prefWidth="1220.0" />
-
-            <AnchorPane/>
         </VBox>
     </StackPane>
 </AnchorPane>
