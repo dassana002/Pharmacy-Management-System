@@ -45,8 +45,7 @@ public class ItemController implements Initializable {
     }
 
     private void loadMainUI() throws IOException {
-        Parent mainUI = Launcher.loadFXML("components/Item/AddView");
-        ItemMain_Content.getChildren().setAll(mainUI);
+        handleItemsAddToInvetory(null);
     }
 
     @FXML
@@ -60,13 +59,15 @@ public class ItemController implements Initializable {
     }
 
     @FXML
-    void handleItemsAddToInvetory(ActionEvent event) {
-
+    void handleItemsAddToInvetory(ActionEvent event) throws IOException{
+        Parent mainUI = Launcher.loadFXML("components/Item/AddView");
+        ItemMain_Content.getChildren().setAll(mainUI);
     }
 
     @FXML
-    void handleNewItemAdd(ActionEvent event) {
-
+    void handleNewItemAdd(ActionEvent event) throws IOException {
+        Parent newItemUI = Launcher.loadFXML("components/Item/NewView");
+        ItemMain_Content.getChildren().setAll(newItemUI);
     }
 
     @FXML

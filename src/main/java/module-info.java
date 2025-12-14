@@ -16,4 +16,7 @@ module lk.ijse.pharmacymanagementsystem {
 
     exports lk.ijse.pharmacymanagementsystem.controller.layout;
     opens lk.ijse.pharmacymanagementsystem.controller.layout to javafx.fxml;
+
+    exports  lk.ijse.pharmacymanagementsystem.Dto;
+    opens  lk.ijse.pharmacymanagementsystem.Dto to java.base;
 }

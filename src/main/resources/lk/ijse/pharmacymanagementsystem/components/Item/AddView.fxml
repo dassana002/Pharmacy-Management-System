@@ -63,13 +63,13 @@
                                 <Label prefHeight="25.0" prefWidth="120.0" text="Company Name" GridPane.columnIndex="0" GridPane.rowIndex="4">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <TextField fx:id="companyName_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
                                 <!-- Item Code -->
                                 <Label text="Item Code" GridPane.columnIndex="0" GridPane.rowIndex="5">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <TextField fx:id="itemCode_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
                                 <!-- Description -->
                                 <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.valignment="TOP">
@@ -77,53 +77,50 @@
                                     <GridPane.margin>
                                         <Insets top="5.0" />
                                     </GridPane.margin>
-                           <padding>
-                              <Insets top="30.0" />
-                           </padding>
                                 </Label>
-                                <TextField maxWidth="Infinity" prefHeight="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                <TextField fx:id="des_text" maxWidth="Infinity" prefHeight="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
                                 <!-- Dosage -->
                                 <Label text="Dosage" GridPane.columnIndex="0" GridPane.rowIndex="7">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <TextField fx:id="dosage_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
                                 <!-- Unit Cost -->
                                 <Label text="Unit Cost" GridPane.columnIndex="0" GridPane.rowIndex="8">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                <TextField fx:id="unitCost_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
                                 <!-- Sell Price -->
                                 <Label text="Sell Price" GridPane.columnIndex="0" GridPane.rowIndex="9">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                <TextField fx:id="sellPrice_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
 
                                 <!-- Qty -->
                                 <Label text="Qty" GridPane.columnIndex="0" GridPane.rowIndex="10">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                <TextField fx:id="qty_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
 
                                 <!-- Available Qty 1 -->
                                 <Label text="Available Qty" GridPane.columnIndex="0" GridPane.rowIndex="11">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                <TextField fx:id="availableQty_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
 
                                 <!-- Free Qty -->
                                 <Label text="Free Qty" GridPane.columnIndex="0" GridPane.rowIndex="12">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField maxWidth="Infinity" prefHeight="40.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                <TextField fx:id="freeQty_txt" maxWidth="Infinity" prefHeight="40.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
 
                                 <!-- Batch No -->
                                 <Label text="Batch No" GridPane.columnIndex="0" GridPane.rowIndex="13">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                <TextField fx:id="batchNo_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
 
                                 <!-- Expire Date -->
                                 <Label prefHeight="25.0" prefWidth="119.0" text="Expire Date" GridPane.columnIndex="0" GridPane.rowIndex="14">
@@ -131,6 +128,7 @@
                                 </Label>
                                 <DatePicker fx:id="ExpireDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
                         <rowConstraints>
+                           <RowConstraints />
                            <RowConstraints />
                            <RowConstraints />
                            <RowConstraints />
@@ -166,14 +164,14 @@
             <!-- Table Section -->
             <AnchorPane minWidth="400">
                 <children>
-                    <TableView AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <TableView fx:id="itemAddView_tbl" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                         <columns>
-                            <TableColumn minWidth="40" prefWidth="50" text="NO" />
-                            <TableColumn minWidth="150" prefWidth="200" text="Description" />
-                            <TableColumn minWidth="80" prefWidth="100" text="Unit Cost" />
-                            <TableColumn minWidth="80" prefWidth="100" text="Sell Price" />
-                            <TableColumn minWidth="50" prefWidth="60" text="QTY" />
-                            <TableColumn minWidth="100" prefWidth="120" text="Sub Total" />
+                            <TableColumn fx:id="colNo" minWidth="40" prefWidth="50" text="NO" />
+                            <TableColumn fx:id="colDesc" minWidth="150" prefWidth="200" text="Description" />
+                            <TableColumn fx:id="colCost" minWidth="80" prefWidth="100" text="Unit Cost" />
+                            <TableColumn fx:id="colSellprice" minWidth="80" prefWidth="100" text="Sell Price" />
+                            <TableColumn fx:id="colQty" minWidth="50" prefWidth="60" text="QTY" />
+                            <TableColumn fx:id="colSubTotal" minWidth="100" prefWidth="120" text="Sub Total" />
                         </columns>
                     </TableView>
                 </children>
