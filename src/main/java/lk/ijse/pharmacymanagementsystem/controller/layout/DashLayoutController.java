@@ -2,8 +2,11 @@ package lk.ijse.pharmacymanagementsystem.controller.layout;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.pharmacymanagementsystem.Launcher;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,12 +16,21 @@ public class DashLayoutController implements Initializable {
     private AnchorPane mainContent;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        try {
+            backToDashBoard();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void backToDashBoard() {
-
+    public void backToDashBoard() throws IOException {
+        try {
+            Parent dashBoard = Launcher.loadFXML("pages/DashBoardPage");
+            mainContent.getChildren().setAll(dashBoard);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // Load Order Page

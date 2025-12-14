@@ -28,9 +28,6 @@ public class SignUpController implements Initializable {
     private ComboBox<String> comboBOX;
 
     @FXML
-    private Button submit_btn;
-
-    @FXML
     private TextField userName_Col;
 
     private final EmployeeModel empModel = new EmployeeModel();
