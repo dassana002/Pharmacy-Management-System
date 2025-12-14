@@ -11,13 +11,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.item.NewViewController">
+<AnchorPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.item.NewViewController"
+            AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 
-    <SplitPane dividerPositions="0.38" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <SplitPane dividerPositions="0.38"
+               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
             <!-- Form Section -->
             <ScrollPane fitToHeight="true" fitToWidth="true">
@@ -38,48 +42,50 @@
                                 <Label text="Item Code" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField fx:id="itemCode_text" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <TextField fx:id="itemCode_text" maxWidth="Infinity" prefHeight="40.0"
+                                           style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                                 <!-- Description -->
-                                <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                                       GridPane.valignment="TOP">
                                     <font><Font size="16.0" /></font>
                                     <GridPane.margin>
                                         <Insets top="5.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <TextField fx:id="des_text" maxWidth="Infinity" prefHeight="100.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="des_text" maxWidth="Infinity" prefHeight="100.0"
+                                           style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                                 <!-- Dosage -->
                                 <Label text="Dosage" GridPane.columnIndex="0" GridPane.rowIndex="2">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField fx:id="dosage_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <rowConstraints>
-                           <RowConstraints />
-                           <RowConstraints />
-                           <RowConstraints />
-                        </rowConstraints>
+                                <TextField fx:id="dosage_txt" maxWidth="Infinity" prefHeight="40.0"
+                                           style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="2" />
                             </GridPane>
 
                             <!-- Action Buttons -->
-                            <VBox alignment="CENTER_LEFT" spacing="10.0">
+                            <VBox alignment="CENTER" spacing="10.0">
                                 <children>
-                                    <Button fx:id="addtable_btn" maxWidth="250.0" minWidth="150.0" mnemonicParsing="false" onAction="#handleAddToTable" prefHeight="45.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;" text="Add to Table">
+                                    <Button fx:id="addtable_btn" text="Add to Table"
+                                            maxWidth="280.0" minWidth="180.0" prefHeight="45.0"
+                                            mnemonicParsing="false" onAction="#handleAddToTable"
+                                            style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;">
                                         <font>
                                             <Font size="16.0" />
                                         </font>
-                              <VBox.margin>
-                                 <Insets left="25.0" />
-                              </VBox.margin>
                                     </Button>
 
-                                    <Button fx:id="save_btn" maxWidth="250.0" minWidth="150.0" mnemonicParsing="false" onAction="#handleSaveItem" prefHeight="45.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;" text="Save">
+                                    <Button fx:id="save_btn" text="Save"
+                                            maxWidth="280.0" minWidth="180.0" prefHeight="45.0"
+                                            mnemonicParsing="false" onAction="#handleSaveItem"
+                                            style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;">
                                         <font>
                                             <Font size="16.0" />
                                         </font>
-                              <VBox.margin>
-                                 <Insets left="25.0" />
-                              </VBox.margin>
                                     </Button>
                                 </children>
                             </VBox>
@@ -91,11 +97,16 @@
             <!-- Table Section -->
             <AnchorPane minWidth="400">
                 <children>
-                    <TableView fx:id="newView_table" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <TableView fx:id="newView_table"
+                               AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+                               AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                         <columns>
-                            <TableColumn fx:id="code_Col" minWidth="80" prefWidth="120" text="item_Code" />
-                            <TableColumn fx:id="description_Col" minWidth="150" prefWidth="250" text="Description" />
-                            <TableColumn fx:id="dosage_col" minWidth="80" prefWidth="100" text="Dosage" />
+                            <TableColumn fx:id="code_Col" text="Item Code"
+                                         minWidth="80" prefWidth="120" />
+                            <TableColumn fx:id="description_Col" text="Description"
+                                         minWidth="150" prefWidth="250" />
+                            <TableColumn fx:id="dosage_col" text="Dosage"
+                                         minWidth="80" prefWidth="100" />
                         </columns>
                     </TableView>
                 </children>

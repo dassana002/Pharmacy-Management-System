@@ -5,34 +5,41 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.pharmacymanagementsystem.Dto.ItemDTO;
 import lk.ijse.pharmacymanagementsystem.Dto.NewItemTM;
 import lk.ijse.pharmacymanagementsystem.Model.ItemModel;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+/**
+ *
+ *
+ *
+ *
+ * Items save part Check
+ *
+ *
+ *
+ * */
 
 public class NewViewController implements Initializable {
 
     @FXML
-    private Button addtable_btn;
-
-    @FXML
-    private TableColumn<NewItemTM, Integer> code_Col;
+    private TableColumn<ItemDTO, Integer> code_Col;
 
     @FXML
     private TextField des_text;
 
     @FXML
-    private TableColumn<NewItemTM, String> description_Col;
+    private TableColumn<ItemDTO, String> description_Col;
 
     @FXML
-    private TableColumn<NewItemTM, String> dosage_col;
+    private TableColumn<ItemDTO, String> dosage_col;
 
     @FXML
     private TextField dosage_txt;
@@ -41,13 +48,10 @@ public class NewViewController implements Initializable {
     private TextField itemCode_text;
 
     @FXML
-    private TableView<NewItemTM> newView_table;
-
-    @FXML
-    private Button save_btn;
+    private TableView<ItemDTO> newView_table;
 
     private final ItemModel  itemModel = new ItemModel();
-    private final ObservableList<NewItemTM> itemList = FXCollections.observableArrayList();
+    private final ObservableList<ItemDTO> itemList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,9 +66,10 @@ public class NewViewController implements Initializable {
         String description = des_text.getText();
         String dosage = dosage_txt.getText();
 
-        NewItemTM newItem = new NewItemTM(itemCode, description, dosage);
+        ItemDTO newItem = new ItemDTO(itemCode, description, dosage);
         itemList.add(newItem);
 
+        cleanText();
         loadItemTable();
     }
 
@@ -73,7 +78,31 @@ public class NewViewController implements Initializable {
     }
 
     @FXML
-    void handleSaveItem(ActionEvent event) {
+    void handleSaveItem(ActionEvent event) throws SQLException {
+        ArrayList<ItemDTO> items = new ArrayList<>(itemList);
+        boolean isSave = itemModel.save(items);
 
+        if (isSave) {
+            System.out.println("Items saved successfully");
+            new Alert(Alert.AlertType.INFORMATION, "Items Saved successfully", ButtonType.OK).show();
+
+        }else{
+            System.out.println("Error while saving items");
+            new Alert(Alert.AlertType.ERROR, "Error while saving items", ButtonType.OK).show();
+        }
+
+        cleanText();
+        cleanTable();
+    }
+
+    private void cleanTable() {
+        itemList.clear();
+        newView_table.refresh();
+    }
+
+    private void cleanText() {
+        itemCode_text.clear();
+        des_text.clear();
+        dosage_txt.clear();
     }
 }
