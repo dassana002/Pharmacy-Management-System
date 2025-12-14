@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.pharmacymanagementsystem.Launcher;
+import lk.ijse.pharmacymanagementsystem.Utility.References;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +19,7 @@ public class DashLayoutController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         try {
+            References.dashLayoutController = this;
             backToDashBoard();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -44,7 +46,8 @@ public class DashLayoutController implements Initializable {
     }
 
     // Load Item Page
-    public void loadMedicinePage() {
-
+    public void loadItemPage() throws IOException{
+        Parent medicinePage = Launcher.loadFXML("pages/ItemPage");
+        mainContent.getChildren().setAll(medicinePage);
     }
 }

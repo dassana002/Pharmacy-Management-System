@@ -27,19 +27,19 @@
                             </VBox.margin>
                         </Label>
 
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5;" text="List">
+                        <Button fx:id="itemList_btn" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleItemListDialog" prefHeight="45.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5;" text="List">
                             <font>
                                 <Font size="16.0" />
                             </font>
                         </Button>
 
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5;" text="Add">
+                        <Button fx:id="itemAdd_btn" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleItemsAddToInvetory" prefHeight="45.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5;" text="Add">
                             <font>
                                 <Font size="16.0" />
                             </font>
                         </Button>
 
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 5;" text="Return Item">
+                        <Button fx:id="returnItem_btn" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleReturnItems" prefHeight="45.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 5;" text="Return Item">
                             <font>
                                 <Font size="16.0" />
                             </font>
