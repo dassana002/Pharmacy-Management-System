@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.dto;
+package lk.ijse.pharmacymanagementsystem.dto.employee;
 
 public class EmployeeDTO {
     private int employeeId;

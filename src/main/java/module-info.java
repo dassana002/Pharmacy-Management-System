@@ -22,4 +22,6 @@ module lk.ijse.pharmacymanagementsystem {
     opens lk.ijse.pharmacymanagementsystem.dto to java.base;
     exports lk.ijse.pharmacymanagementsystem.dto.item;
     opens lk.ijse.pharmacymanagementsystem.dto.item to java.base;
+    exports lk.ijse.pharmacymanagementsystem.dto.employee;
+    opens lk.ijse.pharmacymanagementsystem.dto.employee to java.base;
 }
