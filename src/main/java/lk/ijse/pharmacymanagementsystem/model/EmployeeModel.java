@@ -1,7 +1,7 @@
-package lk.ijse.pharmacymanagementsystem.Model;
+package lk.ijse.pharmacymanagementsystem.model;
 
-import lk.ijse.pharmacymanagementsystem.DBconnection.DBConnection;
-import lk.ijse.pharmacymanagementsystem.Dto.EmployeeDTO;
+import lk.ijse.pharmacymanagementsystem.dbConnection.DBConnection;
+import lk.ijse.pharmacymanagementsystem.dto.EmployeeDTO;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;

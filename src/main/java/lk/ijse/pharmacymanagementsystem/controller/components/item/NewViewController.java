@@ -7,9 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.pharmacymanagementsystem.Dto.ItemDTO;
-import lk.ijse.pharmacymanagementsystem.Dto.NewItemTM;
-import lk.ijse.pharmacymanagementsystem.Model.ItemModel;
+import lk.ijse.pharmacymanagementsystem.dto.ItemDTO;
+import lk.ijse.pharmacymanagementsystem.model.ItemModel;
 
 import java.net.URL;
 import java.sql.SQLException;

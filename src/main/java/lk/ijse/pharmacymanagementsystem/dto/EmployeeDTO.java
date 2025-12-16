@@ -1,6 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.Dto;
-
-import lk.ijse.pharmacymanagementsystem.Model.ROLE;
+package lk.ijse.pharmacymanagementsystem.dto;
 
 public class EmployeeDTO {
     private int employeeId;

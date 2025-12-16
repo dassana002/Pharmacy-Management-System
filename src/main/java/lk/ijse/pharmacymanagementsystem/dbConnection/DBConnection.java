@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.DBconnection;
+package lk.ijse.pharmacymanagementsystem.dbConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

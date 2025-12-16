@@ -1,8 +1,7 @@
-package lk.ijse.pharmacymanagementsystem.Model;
+package lk.ijse.pharmacymanagementsystem.model;
 
-import lk.ijse.pharmacymanagementsystem.DBconnection.DBConnection;
-import lk.ijse.pharmacymanagementsystem.Dto.ItemDTO;
-import lk.ijse.pharmacymanagementsystem.Utility.CrudUtil;
+import lk.ijse.pharmacymanagementsystem.dbConnection.DBConnection;
+import lk.ijse.pharmacymanagementsystem.dto.ItemDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

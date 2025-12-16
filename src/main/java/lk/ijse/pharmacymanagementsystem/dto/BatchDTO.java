@@ -1,6 +1,6 @@
-package lk.ijse.pharmacymanagementsystem.Dto;
+package lk.ijse.pharmacymanagementsystem.dto;
 
-import lk.ijse.pharmacymanagementsystem.Model.Status;
+import lk.ijse.pharmacymanagementsystem.model.Status;
 import java.util.Date;
 
 public class BatchDTO {

@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.Model;
+package lk.ijse.pharmacymanagementsystem.model;
 
 public enum Status {
     DRAFF,

@@ -4,6 +4,7 @@ module lk.ijse.pharmacymanagementsystem {
     requires javafx.graphics;
     requires java.sql;
     requires jbcrypt;
+    requires java.desktop;
 
     exports lk.ijse.pharmacymanagementsystem;
     opens lk.ijse.pharmacymanagementsystem to javafx.fxml;
@@ -17,6 +18,6 @@ module lk.ijse.pharmacymanagementsystem {
     exports lk.ijse.pharmacymanagementsystem.controller.layout;
     opens lk.ijse.pharmacymanagementsystem.controller.layout to javafx.fxml;
 
-    exports lk.ijse.pharmacymanagementsystem.Dto;
-    opens lk.ijse.pharmacymanagementsystem.Dto to java.base;
+    exports lk.ijse.pharmacymanagementsystem.dto;
+    opens lk.ijse.pharmacymanagementsystem.dto to java.base;
 }

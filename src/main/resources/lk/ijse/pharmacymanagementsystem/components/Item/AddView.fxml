@@ -70,7 +70,7 @@
                                 <Label text="Item Code" GridPane.columnIndex="0" GridPane.rowIndex="4">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField fx:id="itemCode_text" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <TextField fx:id="itemCode_text" maxWidth="Infinity" onKeyPressed="#handleFindItem" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
                                 <!-- Description -->
                                 <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.valignment="TOP">

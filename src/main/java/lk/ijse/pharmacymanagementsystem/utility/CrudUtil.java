@@ -1,6 +1,6 @@
-package lk.ijse.pharmacymanagementsystem.Utility;
+package lk.ijse.pharmacymanagementsystem.utility;
 
-import lk.ijse.pharmacymanagementsystem.DBconnection.DBConnection;
+import lk.ijse.pharmacymanagementsystem.dbConnection.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

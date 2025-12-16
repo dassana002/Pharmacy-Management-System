@@ -3,12 +3,9 @@ package lk.ijse.pharmacymanagementsystem.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import lk.ijse.pharmacymanagementsystem.Launcher;
-import lk.ijse.pharmacymanagementsystem.Model.EmployeeModel;
-import lk.ijse.pharmacymanagementsystem.Utility.References;
-import lk.ijse.pharmacymanagementsystem.controller.layout.DashLayoutController;
+import lk.ijse.pharmacymanagementsystem.model.EmployeeModel;
 
 import java.net.URL;
 import java.util.ResourceBundle;

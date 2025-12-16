@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.Dto;
+package lk.ijse.pharmacymanagementsystem.dto;
 
 public class SupplierDTO {
     private String company_name;

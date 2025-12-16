@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.Dto;
+package lk.ijse.pharmacymanagementsystem.dto;
 
 public class AddItemTM {
     private int number;

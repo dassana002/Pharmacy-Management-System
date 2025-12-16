@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.Utility;
+package lk.ijse.pharmacymanagementsystem.utility;
 
 import lk.ijse.pharmacymanagementsystem.controller.DashBoardController;
 import lk.ijse.pharmacymanagementsystem.controller.ItemController;

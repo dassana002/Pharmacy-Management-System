@@ -5,9 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import lk.ijse.pharmacymanagementsystem.Dto.EmployeeDTO;
+import lk.ijse.pharmacymanagementsystem.dto.EmployeeDTO;
 import lk.ijse.pharmacymanagementsystem.Launcher;
-import lk.ijse.pharmacymanagementsystem.Model.EmployeeModel;
+import lk.ijse.pharmacymanagementsystem.model.EmployeeModel;
 
 import java.io.IOException;
 import java.net.URL;

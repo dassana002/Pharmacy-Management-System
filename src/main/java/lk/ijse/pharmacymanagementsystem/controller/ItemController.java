@@ -7,8 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.pharmacymanagementsystem.Launcher;
-import lk.ijse.pharmacymanagementsystem.Utility.References;
-import lk.ijse.pharmacymanagementsystem.controller.layout.DashLayoutController;
+import lk.ijse.pharmacymanagementsystem.utility.References;
 
 import java.io.IOException;
 import java.net.URL;

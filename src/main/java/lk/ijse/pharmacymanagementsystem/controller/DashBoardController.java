@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.pharmacymanagementsystem.Utility.References;
+import lk.ijse.pharmacymanagementsystem.utility.References;
 
 import java.net.URL;
 import java.util.ResourceBundle;

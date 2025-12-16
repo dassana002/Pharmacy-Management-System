@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.pharmacymanagementsystem.Dto.AddItemTM;
+import javafx.scene.input.KeyCode;
+import lk.ijse.pharmacymanagementsystem.dto.AddItemTM;
 
+import javafx.scene.input.KeyEvent;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -104,7 +106,15 @@ public class AddViewController implements Initializable {
         todayDate_text.setValue(LocalDate.now());
         receivedDate_text.setValue(LocalDate.now());
     }
-    
+
+    @FXML
+    void handleFindItem(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            int itemCode = Integer.parseInt(itemCode_text.getText());
+
+        }
+    }
+
     @FXML
     void handleAddToCart(ActionEvent event) {
         String invoiceText= invoice_number_text.getText();
@@ -115,6 +125,7 @@ public class AddViewController implements Initializable {
         double unitCost = Double.parseDouble(unitCost_txt.getText());
         double sellPrice = Double.parseDouble(sellPrice_txt.getText());
         int qty = Integer.parseInt(qty_txt.getText());
+
     }
 
     @FXML

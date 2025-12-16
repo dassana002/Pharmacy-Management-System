@@ -1,25 +1,17 @@
-package lk.ijse.pharmacymanagementsystem.Dto;
+package lk.ijse.pharmacymanagementsystem.dto;
 
-public class NewItemTM {
+public class ItemDTO {
     private int item_code;
     private String description;
     private String dosage;
 
-    public NewItemTM() {
+    public ItemDTO() {
     }
 
-    public NewItemTM(int item_code, String description, String dosage) {
+    public ItemDTO(int item_code, String description, String dosage) {
         this.item_code = item_code;
         this.description = description;
         this.dosage = dosage;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public int getItem_code() {
@@ -28,6 +20,14 @@ public class NewItemTM {
 
     public void setItem_code(int item_code) {
         this.item_code = item_code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getDosage() {
@@ -40,7 +40,7 @@ public class NewItemTM {
 
     @Override
     public String toString() {
-        return "NewItemTM{" +
+        return "ItemDTO{" +
                 "item_code=" + item_code +
                 ", description='" + description + '\'' +
                 ", dosage='" + dosage + '\'' +
