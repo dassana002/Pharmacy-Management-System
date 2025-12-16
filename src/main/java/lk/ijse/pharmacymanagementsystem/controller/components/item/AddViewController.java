@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
-import lk.ijse.pharmacymanagementsystem.dto.AddItemTM;
+import lk.ijse.pharmacymanagementsystem.dto.item.AddItemTM;
 
 import javafx.scene.input.KeyEvent;
 import java.net.URL;

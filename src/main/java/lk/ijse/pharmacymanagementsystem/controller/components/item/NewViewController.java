@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.pharmacymanagementsystem.dto.ItemDTO;
+import lk.ijse.pharmacymanagementsystem.dto.item.ItemDTO;
 import lk.ijse.pharmacymanagementsystem.model.ItemModel;
 
 import java.net.URL;

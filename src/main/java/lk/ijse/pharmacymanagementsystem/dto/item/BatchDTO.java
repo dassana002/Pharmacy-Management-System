@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.dto;
+package lk.ijse.pharmacymanagementsystem.dto.item;
 
 import lk.ijse.pharmacymanagementsystem.model.Status;
 import java.util.Date;
