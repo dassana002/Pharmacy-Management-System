@@ -58,7 +58,7 @@
                                 <Label text="Received Date" GridPane.columnIndex="0" GridPane.rowIndex="2">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <DatePicker fx:id="DueDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <DatePicker fx:id="receivedDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                                 <!-- Company Name -->
                                 <Label text="Company Name" GridPane.columnIndex="0" GridPane.rowIndex="3">
@@ -105,29 +105,29 @@
                                 </Label>
                                 <TextField fx:id="qty_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
 
-                                <!-- Available Qty -->
-                                <Label text="Available Qty" GridPane.columnIndex="0" GridPane.rowIndex="10">
-                                    <font><Font size="16.0" /></font>
-                                </Label>
-                                <TextField fx:id="availableQty_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+<!--                                &lt;!&ndash; Available Qty &ndash;&gt;-->
+<!--                                <Label text="Available Qty" GridPane.columnIndex="0" GridPane.rowIndex="10">-->
+<!--                                    <font><Font size="16.0" /></font>-->
+<!--                                </Label>-->
+<!--                                <TextField fx:id="availableQty_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="10" />-->
 
                                 <!-- Free Qty -->
-                                <Label text="Free Qty" GridPane.columnIndex="0" GridPane.rowIndex="11">
+                                <Label text="Free Qty" GridPane.columnIndex="0" GridPane.rowIndex="10">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField fx:id="freeQty_txt" maxWidth="Infinity" prefHeight="40.0" promptText="0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                <TextField fx:id="freeQty_txt" maxWidth="Infinity" prefHeight="40.0" promptText="0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
 
                                 <!-- Batch No -->
-                                <Label text="Batch No" GridPane.columnIndex="0" GridPane.rowIndex="12">
+                                <Label text="Batch No" GridPane.columnIndex="0" GridPane.rowIndex="11">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField fx:id="batchNo_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                <TextField fx:id="batchNo_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="11" />
 
                                 <!-- Expire Date -->
-                                <Label text="Expire Date" GridPane.columnIndex="0" GridPane.rowIndex="13">
+                                <Label text="Expire Date" GridPane.columnIndex="0" GridPane.rowIndex="12">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <DatePicker fx:id="ExpireDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                <DatePicker fx:id="expireDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                         <rowConstraints>
                            <RowConstraints />
                            <RowConstraints />
@@ -152,7 +152,7 @@
             </ScrollPane>
 
             <!-- Table and Actions Section -->
-            <VBox minWidth="400" spacing="15.0">
+            <VBox minWidth="400" prefHeight="830.0" prefWidth="525.0" spacing="15.0">
                 <padding>
                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </padding>
@@ -173,7 +173,7 @@
                     <VBox spacing="15.0">
                         <children>
                             <!-- Total Field -->
-                            <TextField alignment="CENTER" editable="false" maxWidth="Infinity" prefHeight="55.0" promptText="Total: 0.00" style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-background-color: #f5f5f5; -fx-border-color: #cccccc; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;">
+                            <TextField fx:id="Alltotal_btn" alignment="CENTER" editable="false" maxWidth="Infinity" prefHeight="55.0" promptText="Total: 0.00" style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-background-color: #f5f5f5; -fx-border-color: #cccccc; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;">
                                 <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                 </VBox.margin>
@@ -182,19 +182,19 @@
                             <!-- Action Buttons -->
                             <HBox alignment="CENTER" spacing="15.0">
                                 <children>
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 14px;" text="Add To Cart">
+                                    <Button fx:id="addToCart_btn" mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 14px;" text="Add To Cart">
                                     </Button>
 
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 14px;" text="Close Bill">
+                                    <Button fx:id="closeBill_btn" mnemonicParsing="false" onAction="#handleCloseBIll" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 14px;" text="Close Bill">
                                     </Button>
 
-                                    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 14px;" text="Pay">
+                                    <Button fx:id="hold_btn" mnemonicParsing="false" onAction="#handleHoldLIst" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 14px;" text="Hold">
                                     </Button>
                                 </children>
                             </HBox>
                         </children>
                     </VBox>
-               <HBox prefHeight="45.0" prefWidth="612.0" />
+               <HBox fx:id="holdList_bar" prefHeight="54.0" prefWidth="612.0" />
                 </children>
             </VBox>
         </items>
