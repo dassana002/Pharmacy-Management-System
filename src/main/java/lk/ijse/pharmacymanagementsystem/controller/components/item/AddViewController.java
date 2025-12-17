@@ -322,7 +322,10 @@ public class AddViewController implements Initializable {
 
     @FXML
     void handleHoldLIst(ActionEvent event) {
-
+        //        Parent newItemUI = Launcher.loadFXML("components/Item/NewView");
+//        dialog = new Dialog<>();
+//        dialog.getDialogPane().setContent(newItemUI);
+//        dialog.showAndWait();
     }
 
     @FXML

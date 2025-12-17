@@ -4,17 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import lk.ijse.pharmacymanagementsystem.Launcher;
-import lk.ijse.pharmacymanagementsystem.dto.item.BatchDTO;
-import lk.ijse.pharmacymanagementsystem.model.BatchModel;
 import lk.ijse.pharmacymanagementsystem.utility.References;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ItemController implements Initializable {
@@ -22,22 +19,7 @@ public class ItemController implements Initializable {
     @FXML
     private AnchorPane ItemMain_Content;
 
-    @FXML
-    private Button back_btn;
-
-    @FXML
-    private Button itemAdd_btn;
-
-    @FXML
-    private Button itemList_btn;
-
-    @FXML
-    private Button newItem_btn;
-
-    @FXML
-    private Button returnItem_btn;
-
-    private BatchModel batchModel = new BatchModel();
+    private Dialog<Void> dialog;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,8 +42,7 @@ public class ItemController implements Initializable {
     }
 
     @FXML
-    void handleItemListDialog(ActionEvent event) {
-
+    void handleItemListDialog(ActionEvent event){
     }
 
     @FXML
@@ -72,8 +53,33 @@ public class ItemController implements Initializable {
 
     @FXML
     void handleNewItemAdd(ActionEvent event) throws IOException {
-        Parent newItemUI = Launcher.loadFXML("components/Item/NewView");
-        ItemMain_Content.getChildren().setAll(newItemUI);
+        showNewItemDialog();
+    }
+
+    private void showNewItemDialog() throws IOException {
+        // Load the dialog FXML
+        Parent dialogContent = Launcher.loadFXML("components/Item/NewView");
+
+        // Create StackPane overlay on current content
+        StackPane overlay = new StackPane();
+        overlay.setStyle("-fx-background-color: rgba(0,0,0,0.5);");
+        overlay.getChildren().add(dialogContent);
+
+        // Add overlay to main content
+        ItemMain_Content.getChildren().add(overlay);
+
+        // Make overlay fill the entire pane
+        AnchorPane.setTopAnchor(overlay, 0.0);
+        AnchorPane.setBottomAnchor(overlay, 0.0);
+        AnchorPane.setLeftAnchor(overlay, 0.0);
+        AnchorPane.setRightAnchor(overlay, 0.0);
+    }
+
+    public void closeNewItemDialog() {
+        // Remove the last child (which should be the overlay)
+        if (ItemMain_Content.getChildren().size() > 1) {
+            ItemMain_Content.getChildren().remove(ItemMain_Content.getChildren().size() - 1);
+        }
     }
 
     @FXML
