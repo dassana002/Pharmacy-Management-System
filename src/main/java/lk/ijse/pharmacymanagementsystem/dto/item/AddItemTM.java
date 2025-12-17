@@ -1,31 +1,39 @@
 package lk.ijse.pharmacymanagementsystem.dto.item;
 
 public class AddItemTM {
-    private int number;
+    private int id;
     private String description;
-    private double unit_cost;
-    private double sell_price;
+    private double unitCost;
+    private double sellPrice;
     private int qty;
-    private double subtotal;
+    private double subTotal;
 
     public AddItemTM() {
     }
 
-    public AddItemTM(int number, String description, double unit_cost, double sell_price, int qty, double subtotal) {
-        this.number = number;
+    public AddItemTM(String description, double unitCost, double sellPrice, int qty, double subTotal) {
         this.description = description;
-        this.unit_cost = unit_cost;
-        this.sell_price = sell_price;
+        this.unitCost = unitCost;
+        this.sellPrice = sellPrice;
         this.qty = qty;
-        this.subtotal = subtotal;
+        this.subTotal = subTotal;
     }
 
-    public int getNumber() {
-        return number;
+    public AddItemTM(int number, String description, double unitCost, double sellPrice, int qty, double subTotal) {
+        this.id = number;
+        this.description = description;
+        this.unitCost = unitCost;
+        this.sellPrice = sellPrice;
+        this.qty = qty;
+        this.subTotal = subTotal;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int number) {
+        this.id = number;
     }
 
     public String getDescription() {
@@ -36,20 +44,20 @@ public class AddItemTM {
         this.description = description;
     }
 
-    public double getUnit_cost() {
-        return unit_cost;
+    public double getUnitCost() {
+        return unitCost;
     }
 
-    public void setUnit_cost(double unit_cost) {
-        this.unit_cost = unit_cost;
+    public void setUnitCost(double unitCost) {
+        this.unitCost = unitCost;
     }
 
-    public double getSell_price() {
-        return sell_price;
+    public double getSellPrice() {
+        return sellPrice;
     }
 
-    public void setSell_price(double sell_price) {
-        this.sell_price = sell_price;
+    public void setSellPrice(double sellPrice) {
+        this.sellPrice = sellPrice;
     }
 
     public int getQty() {
@@ -60,23 +68,23 @@ public class AddItemTM {
         this.qty = qty;
     }
 
-    public double getSubtotal() {
-        return subtotal;
+    public double getSubTotal() {
+        return subTotal;
     }
 
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
     }
 
     @Override
     public String toString() {
         return "AddItemTM{" +
-                "number=" + number +
+                "number=" + id +
                 ", description='" + description + '\'' +
-                ", unit_cost=" + unit_cost +
-                ", sell_price=" + sell_price +
+                ", unitCost=" + unitCost +
+                ", sellPrice=" + sellPrice +
                 ", qty=" + qty +
-                ", subtotal=" + subtotal +
+                ", subTotal=" + subTotal +
                 '}';
     }
 }

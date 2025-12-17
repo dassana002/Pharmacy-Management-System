@@ -7,10 +7,14 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.pharmacymanagementsystem.Launcher;
+import lk.ijse.pharmacymanagementsystem.dto.item.BatchDTO;
+import lk.ijse.pharmacymanagementsystem.model.BatchModel;
 import lk.ijse.pharmacymanagementsystem.utility.References;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ItemController implements Initializable {
@@ -32,6 +36,8 @@ public class ItemController implements Initializable {
 
     @FXML
     private Button returnItem_btn;
+
+    private BatchModel batchModel = new BatchModel();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

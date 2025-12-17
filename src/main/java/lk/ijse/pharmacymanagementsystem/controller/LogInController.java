@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import lk.ijse.pharmacymanagementsystem.Launcher;
+import lk.ijse.pharmacymanagementsystem.controller.components.item.AddViewController;
+import lk.ijse.pharmacymanagementsystem.model.BatchModel;
 import lk.ijse.pharmacymanagementsystem.model.EmployeeModel;
 
 import java.net.URL;
@@ -22,6 +24,7 @@ public class LogInController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        moveToNextOnEnter(nameField, passwordField);
     }
 
     @FXML
@@ -49,6 +52,17 @@ public class LogInController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void moveToNextOnEnter(Control current, Control next) {
+        current.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case ENTER -> {
+                    next.requestFocus();
+                    event.consume();
+                }
+            }
+        });
     }
 
     private void cleanFields() {

@@ -1,51 +1,69 @@
 package lk.ijse.pharmacymanagementsystem.dto.item;
 
-import lk.ijse.pharmacymanagementsystem.model.Status;
 import java.util.Date;
 
 public class BatchDTO {
-    private String batch_id;
-    private String batch_number;
+    private int batch_id;
+    private int batch_number;
     private String invoice_number;
     private double sell_price;
     private double cost_price;
-    private Date expired_date;
-    private Date received_date;
+    private String today_Date;
+    private String received_date;
+    private String expired_date;
     private int qty;
-    private Status status;
+    private int available_qty;
+    private String status;
     private String company_name;
-    private String itemCode;
+    private int item_code;
 
     public BatchDTO() {
     }
 
-    public BatchDTO(String batch_id, String batch_number, ItemDTO item, String invoice_number, double cost_price, double sell_price, Date expired_date, Date received_date, int qty, Status status, String company_name, String itemCode) {
+    public BatchDTO(int batch_id, int batch_number, String invoice_number, double sell_price, double cost_price, String today_Date, String received_date, String expired_date, int qty, int available_qty, String status, String company_name, int item_code) {
         this.batch_id = batch_id;
         this.batch_number = batch_number;
         this.invoice_number = invoice_number;
-        this.cost_price = cost_price;
         this.sell_price = sell_price;
-        this.expired_date = expired_date;
+        this.cost_price = cost_price;
+        this.today_Date = today_Date;
         this.received_date = received_date;
+        this.expired_date = expired_date;
         this.qty = qty;
+        this.available_qty = available_qty;
         this.status = status;
         this.company_name = company_name;
-        this.itemCode = itemCode;
+        this.item_code = item_code;
     }
 
-    public String getBatch_id() {
+    public BatchDTO(int batch_number, String invoice_number, double sell_price, double cost_price, String today_Date, String received_date, String expired_date, int qty, int available_qty, String status, String company_name, int item_code) {
+        this.batch_number = batch_number;
+        this.invoice_number = invoice_number;
+        this.sell_price = sell_price;
+        this.cost_price = cost_price;
+        this.today_Date = today_Date;
+        this.received_date = received_date;
+        this.expired_date = expired_date;
+        this.qty = qty;
+        this.available_qty = available_qty;
+        this.status = status;
+        this.company_name = company_name;
+        this.item_code = item_code;
+    }
+
+    public int getBatch_id() {
         return batch_id;
     }
 
-    public void setBatch_id(String batch_id) {
+    public void setBatch_id(int batch_id) {
         this.batch_id = batch_id;
     }
 
-    public String getBatch_number() {
+    public int getBatch_number() {
         return batch_number;
     }
 
-    public void setBatch_number(String batch_number) {
+    public void setBatch_number(int batch_number) {
         this.batch_number = batch_number;
     }
 
@@ -73,20 +91,28 @@ public class BatchDTO {
         this.cost_price = cost_price;
     }
 
-    public Date getExpired_date() {
-        return expired_date;
+    public String getToday_Date() {
+        return today_Date;
     }
 
-    public void setExpired_date(Date expired_date) {
-        this.expired_date = expired_date;
+    public void setToday_Date(String today_Date) {
+        this.today_Date = today_Date;
     }
 
-    public Date getReceived_date() {
+    public String getReceived_date() {
         return received_date;
     }
 
-    public void setReceived_date(Date received_date) {
+    public void setReceived_date(String received_date) {
         this.received_date = received_date;
+    }
+
+    public String getExpired_date() {
+        return expired_date;
+    }
+
+    public void setExpired_date(String expired_date) {
+        this.expired_date = expired_date;
     }
 
     public int getQty() {
@@ -97,11 +123,19 @@ public class BatchDTO {
         this.qty = qty;
     }
 
-    public Status getStatus() {
+    public int getAvailable_qty() {
+        return available_qty;
+    }
+
+    public void setAvailable_qty(int available_qty) {
+        this.available_qty = available_qty;
+    }
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -113,28 +147,30 @@ public class BatchDTO {
         this.company_name = company_name;
     }
 
-    public String getItemCode() {
-        return itemCode;
+    public int getItem_code() {
+        return item_code;
     }
 
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
+    public void setItem_code(int item_code) {
+        this.item_code = item_code;
     }
 
     @Override
     public String toString() {
         return "BatchDTO{" +
-                "batch_id='" + batch_id + '\'' +
-                ", batch_number='" + batch_number + '\'' +
+                "batch_id=" + batch_id +
+                ", batch_number=" + batch_number +
                 ", invoice_number='" + invoice_number + '\'' +
                 ", sell_price=" + sell_price +
                 ", cost_price=" + cost_price +
-                ", expired_date=" + expired_date +
+                ", today_Date=" + today_Date +
                 ", received_date=" + received_date +
+                ", expired_date=" + expired_date +
                 ", qty=" + qty +
-                ", status=" + status +
-                ", company_name=" + company_name +
-                ", itemCode=" + itemCode +
+                ", available_qty=" + available_qty +
+                ", status='" + status + '\'' +
+                ", company_name='" + company_name + '\'' +
+                ", item_code=" + item_code +
                 '}';
     }
 }

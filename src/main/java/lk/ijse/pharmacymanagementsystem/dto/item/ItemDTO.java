@@ -3,15 +3,13 @@ package lk.ijse.pharmacymanagementsystem.dto.item;
 public class ItemDTO {
     private int item_code;
     private String description;
-    private String dosage;
 
     public ItemDTO() {
     }
 
-    public ItemDTO(int item_code, String description, String dosage) {
+    public ItemDTO(int item_code, String description) {
         this.item_code = item_code;
         this.description = description;
-        this.dosage = dosage;
     }
 
     public int getItem_code() {
@@ -30,20 +28,11 @@ public class ItemDTO {
         this.description = description;
     }
 
-    public String getDosage() {
-        return dosage;
-    }
-
-    public void setDosage(String dosage) {
-        this.dosage = dosage;
-    }
-
     @Override
     public String toString() {
         return "ItemDTO{" +
                 "item_code=" + item_code +
                 ", description='" + description + '\'' +
-                ", dosage='" + dosage + '\'' +
                 '}';
     }
 }

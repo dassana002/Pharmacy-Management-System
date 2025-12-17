@@ -59,13 +59,23 @@ public class NewViewController implements Initializable {
         dosage_col.setCellValueFactory(new PropertyValueFactory<>("dosage"));
     }
 
+    private void moveToNextOnEnter(Control current, Control next) {
+        current.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case ENTER -> {
+                    next.requestFocus();
+                    event.consume();
+                }
+            }
+        });
+    }
+
     @FXML
     void handleAddToTable(ActionEvent event) {
         int itemCode = Integer.parseInt(itemCode_text.getText());
         String description = des_text.getText();
-        String dosage = dosage_txt.getText();
 
-        ItemDTO newItem = new ItemDTO(itemCode, description, dosage);
+        ItemDTO newItem = new ItemDTO(itemCode, description);
         itemList.add(newItem);
 
         cleanText();
@@ -79,7 +89,7 @@ public class NewViewController implements Initializable {
     @FXML
     void handleSaveItem(ActionEvent event) throws SQLException {
         ArrayList<ItemDTO> items = new ArrayList<>(itemList);
-        boolean isSave = itemModel.save(items);
+        boolean isSave = itemModel.saveAll(items);
 
         if (isSave) {
             System.out.println("Items saved successfully");
