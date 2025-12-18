@@ -53,12 +53,22 @@ public class ItemController implements Initializable {
 
     @FXML
     void handleNewItemAdd(ActionEvent event) throws IOException {
-        showNewItemDialog();
+        showNewItemDialog("NewView");
     }
 
-    private void showNewItemDialog() throws IOException {
+    @FXML
+    void handleReturnItems(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleAddSupplier(ActionEvent event) throws IOException {
+        showNewItemDialog("SupplierAdd");
+    }
+
+    private void showNewItemDialog(String root) throws IOException {
         // Load the dialog FXML
-        Parent dialogContent = Launcher.loadFXML("components/Item/NewView");
+        Parent dialogContent = Launcher.loadFXML("components/Item/"+root);
 
         // Create StackPane overlay on current content
         StackPane overlay = new StackPane();
@@ -80,10 +90,5 @@ public class ItemController implements Initializable {
         if (ItemMain_Content.getChildren().size() > 1) {
             ItemMain_Content.getChildren().remove(ItemMain_Content.getChildren().size() - 1);
         }
-    }
-
-    @FXML
-    void handleReturnItems(ActionEvent event) {
-
     }
 }

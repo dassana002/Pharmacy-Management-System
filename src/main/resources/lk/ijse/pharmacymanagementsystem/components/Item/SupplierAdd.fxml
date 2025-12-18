@@ -13,7 +13,7 @@
 
 <StackPane fx:id="mainContent" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.item.SupplierAddController">
 
-    <VBox fx:id="popupCard" alignment="CENTER" maxWidth="500" prefHeight="200.0" prefWidth="300.0" style="             -fx-background-color: white;             -fx-background-radius: 18;             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 5);           ">
+    <VBox fx:id="popupCard" alignment="CENTER" maxWidth="500.0" prefHeight="200.0" prefWidth="300.0" style="             -fx-background-color: white;             -fx-background-radius: 18;             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 5);           ">
 
         <padding>
             <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
@@ -21,7 +21,7 @@
 
         <children>
             <!-- Title -->
-            <Label style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Add New Item">
+            <Label style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Supplier">
                 <font>
                     <Font size="20.0" />
                 </font>
@@ -37,30 +37,49 @@
                     <ColumnConstraints hgrow="ALWAYS" minWidth="150" prefWidth="200" />
                 </columnConstraints>
 
-                <!-- Item Code -->
-                <Label text="Item Code" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <!-- Company Name -->
+                <Label text="Company Name" GridPane.columnIndex="0" GridPane.rowIndex="0">
                     <font><Font size="16.0" /></font>
                 </Label>
-                <TextField fx:id="itemCode_text" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="companyName_text" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <!-- Description -->
-                <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                <!-- Company Address -->
+                <Label text="Address" GridPane.columnIndex="0" GridPane.rowIndex="1">
                     <font><Font size="16.0" /></font>
-                    <GridPane.margin>
-                        <Insets top="5.0" />
-                    </GridPane.margin>
                 </Label>
-                <TextField fx:id="des_text" maxWidth="Infinity" prefHeight="80.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="address_text" maxWidth="Infinity" prefHeight="80.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <!-- Dosage -->
-                <Label text="Dosage" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <!-- contact -->
+                <Label text="Contact" GridPane.columnIndex="0" GridPane.rowIndex="2">
                     <font><Font size="16.0" /></font>
                 </Label>
-                <TextField fx:id="dosage_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="CompanyContact_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <!-- email -->
+                <Label text="Email" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    <font><Font size="16.0" /></font>
+                </Label>
+                <TextField fx:id="CompanyEmail_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <!-- Supplier Name -->
+                <Label text="Supplier Name" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                    <font><Font size="16.0" /></font>
+                </Label>
+                <TextField fx:id="SupplierName_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <!-- Supplier Contact -->
+                <Label text="Supplier Contact" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                    <font><Font size="16.0" /></font>
+                </Label>
+                <TextField fx:id="SupplierContact_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
                 <rowConstraints>
                     <RowConstraints />
                     <RowConstraints />
                     <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
                 </rowConstraints>
             </GridPane>
 
@@ -70,7 +89,7 @@
                     <Insets top="20.0" />
                 </VBox.margin>
                 <children>
-                    <Button fx:id="save_btn" maxWidth="280.0" minWidth="180.0" onAction="#handleSaveItem" prefHeight="45.0" style="                                 -fx-background-color: #4CAF50;                                 -fx-text-fill: white;                                 -fx-background-radius: 5;                                 -fx-font-weight: bold;                                 -fx-cursor: hand;                             " text="Save">
+                    <Button fx:id="save_btn" maxWidth="280.0" minWidth="180.0" onAction="#handleSaveSupplier" prefHeight="45.0" style="                                 -fx-background-color: #4CAF50;                                 -fx-text-fill: white;                                 -fx-background-radius: 5;                                 -fx-font-weight: bold;                                 -fx-cursor: hand;                             " text="Save">
                         <font>
                             <Font size="16.0" />
                         </font>

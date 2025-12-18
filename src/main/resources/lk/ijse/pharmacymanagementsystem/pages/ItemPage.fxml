@@ -45,35 +45,35 @@
                             </font>
                         </Button>
 
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #9C27B0; -fx-text-fill: white; -fx-background-radius: 5;" text="Close Bill">
+<!--                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #9C27B0; -fx-text-fill: white; -fx-background-radius: 5;" text="Close Bill">-->
+<!--                            <font>-->
+<!--                                <Font size="16.0" />-->
+<!--                            </font>-->
+<!--                        </Button>-->
+
+<!--                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #00BCD4; -fx-text-fill: white; -fx-background-radius: 5;" text="Pay">-->
+<!--                            <font>-->
+<!--                                <Font size="16.0" />-->
+<!--                            </font>-->
+<!--                        </Button>-->
+
+<!--                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #3F51B5; -fx-text-fill: white; -fx-background-radius: 5;" text="Products">-->
+<!--                            <font>-->
+<!--                                <Font size="16.0" />-->
+<!--                            </font>-->
+<!--                        </Button>-->
+
+                        <Button fx:id="supplier_btn" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleAddSupplier" prefHeight="45.0" style="-fx-background-color: #795548; -fx-text-fill: white; -fx-background-radius: 5;" text="Supplier">
                             <font>
                                 <Font size="16.0" />
                             </font>
                         </Button>
 
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #00BCD4; -fx-text-fill: white; -fx-background-radius: 5;" text="Pay">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Button>
-
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #3F51B5; -fx-text-fill: white; -fx-background-radius: 5;" text="Products">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Button>
-
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #795548; -fx-text-fill: white; -fx-background-radius: 5;" text="Supplier">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Button>
-
-                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #607D8B; -fx-text-fill: white; -fx-background-radius: 5;" text="Bill History">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Button>
+<!--                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #607D8B; -fx-text-fill: white; -fx-background-radius: 5;" text="Bill History">-->
+<!--                            <font>-->
+<!--                                <Font size="16.0" />-->
+<!--                            </font>-->
+<!--                        </Button>-->
 
                         <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #E91E63; -fx-text-fill: white; -fx-background-radius: 5;" text="Issue Order">
                             <font>
