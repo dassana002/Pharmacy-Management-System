@@ -93,20 +93,20 @@ public class AddViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // Auto Number Generate to table
-//        colNo.setCellFactory(column -> new TableCell<AddItemTM, Integer>() {
-//            @Override
-//            protected void updateItem(Integer item, boolean empty) {
-//                super.updateItem(item, empty);
-//
-//                if (empty) {
-//                    setText(null);
-//                } else {
-//                    setText(String.valueOf(getIndex() + 1));
-//                }
-//            }
-//        });
+        colId.setCellFactory(column -> new TableCell<AddItemTM, Integer>() {
+            @Override
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
 
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+                if (empty) {
+                    setText(null);
+                } else {
+                    setText(String.valueOf(getIndex() + 1));
+                }
+            }
+        });
+
+//        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
         colCost.setCellValueFactory(new PropertyValueFactory<>("unitCost"));
         colSellPrice.setCellValueFactory(new PropertyValueFactory<>("sellPrice"));
@@ -170,11 +170,7 @@ public class AddViewController implements Initializable {
     }
 
     private void editItem(int itemCode) {
-        try {
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private void deleteItem(int itemCode) {
@@ -210,7 +206,7 @@ public class AddViewController implements Initializable {
 
     private void loadComboDosages(int itemCode) {
         try {
-            ArrayList<DosageDTO> dosageDTOs = dosageModel.getDosage(itemCode);
+            ArrayList<DosageDTO> dosageDTOs = dosageModel.getDosageById(itemCode);
 
             if (dosageDTOs != null) {
                 ObservableList<String> observableList = FXCollections.observableArrayList();
@@ -322,10 +318,7 @@ public class AddViewController implements Initializable {
 
     @FXML
     void handleHoldLIst(ActionEvent event) {
-        //        Parent newItemUI = Launcher.loadFXML("components/Item/NewView");
-//        dialog = new Dialog<>();
-//        dialog.getDialogPane().setContent(newItemUI);
-//        dialog.showAndWait();
+
     }
 
     @FXML
@@ -336,13 +329,13 @@ public class AddViewController implements Initializable {
     private void cleanText() {
         itemCode_text.clear();
         des_text.clear();
-        dosage_cmb.setItems(null);
+        dosage_cmb.getEditor().clear();
         unitCost_txt.clear();
         sellPrice_txt.clear();
         qty_txt.clear();
         freeQty_txt.clear();
         batchNo_txt.clear();
-        expireDate_text.setValue(null);
+        expireDate_text.getEditor().clear();
     }
 
     private void cleanTable() {

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class DosageModel {
 
-    public ArrayList<DosageDTO> getDosage(int itemCode) throws SQLException {
+    public ArrayList<DosageDTO> getDosageById(int itemCode) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
         PreparedStatement ps = conn.prepareStatement("SELECT * FROM dosage WHERE itemCode = ?");
         ps.setInt(1, itemCode);

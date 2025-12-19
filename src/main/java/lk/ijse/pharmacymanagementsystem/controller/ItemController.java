@@ -53,7 +53,7 @@ public class ItemController implements Initializable {
 
     @FXML
     void handleNewItemAdd(ActionEvent event) throws IOException {
-        showNewItemDialog("NewView");
+        showNewItemDialog("ItemAdd");
     }
 
     @FXML
@@ -85,7 +85,14 @@ public class ItemController implements Initializable {
         AnchorPane.setRightAnchor(overlay, 0.0);
     }
 
-    public void closeNewItemDialog() {
+    public void closeItemAddDialog() {
+        // Remove the last child (which should be the overlay)
+        if (ItemMain_Content.getChildren().size() > 1) {
+            ItemMain_Content.getChildren().remove(ItemMain_Content.getChildren().size() - 1);
+        }
+    }
+
+    public void closeSupplierAddDialog() {
         // Remove the last child (which should be the overlay)
         if (ItemMain_Content.getChildren().size() > 1) {
             ItemMain_Content.getChildren().remove(ItemMain_Content.getChildren().size() - 1);

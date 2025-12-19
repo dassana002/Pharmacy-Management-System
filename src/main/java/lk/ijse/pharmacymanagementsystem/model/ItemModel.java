@@ -30,7 +30,7 @@ public class ItemModel {
                     rs.getString("description")
             );
         }
-        return null;
+        return itemDTO;
     }
 
     public boolean saveAll(ItemDTO itemDTO, String dosage) throws SQLException {

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="mainContent" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.item.NewViewController">
+<StackPane fx:id="mainContent" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.item.ItemAddController">
 
     <VBox fx:id="popupCard" alignment="CENTER" maxWidth="500" prefHeight="200.0" prefWidth="300.0" style="             -fx-background-color: white;             -fx-background-radius: 18;             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 5);           ">
 
@@ -21,7 +22,7 @@
 
         <children>
             <!-- Title -->
-            <Label style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Add New Item">
+            <Label style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Add Item">
                 <font>
                     <Font size="20.0" />
                 </font>
@@ -41,7 +42,7 @@
                 <Label text="Item Code" GridPane.columnIndex="0" GridPane.rowIndex="0">
                     <font><Font size="16.0" /></font>
                 </Label>
-                <TextField fx:id="itemCode_text" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="itemCode_text" maxWidth="Infinity" onKeyPressed="#handleFindItem" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                 <!-- Description -->
                 <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
@@ -53,11 +54,12 @@
                 <TextField fx:id="des_text" maxWidth="Infinity" prefHeight="80.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                 <!-- Dosage -->
-                <Label text="Dosage" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label fx:id="dosageID" text="Dosage" GridPane.columnIndex="0" GridPane.rowIndex="2">
                     <font><Font size="16.0" /></font>
                 </Label>
-                <TextField fx:id="dosage_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <rowConstraints>
+                <ComboBox fx:id="dosage_cmb" editable="true" maxWidth="Infinity" prefHeight="40.0" promptText="Select Dosage" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <rowConstraints>
                <RowConstraints />
                <RowConstraints />
                <RowConstraints />
