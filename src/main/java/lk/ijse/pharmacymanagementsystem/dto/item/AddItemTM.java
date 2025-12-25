@@ -1,7 +1,7 @@
 package lk.ijse.pharmacymanagementsystem.dto.item;
 
 public class AddItemTM {
-    private int id;
+    private int itemId;
     private String description;
     private double unitCost;
     private double sellPrice;
@@ -11,7 +11,8 @@ public class AddItemTM {
     public AddItemTM() {
     }
 
-    public AddItemTM(String description, double unitCost, double sellPrice, int qty, double subTotal) {
+    public AddItemTM(int itemId, String description, double unitCost, double sellPrice, int qty, double subTotal) {
+        this.itemId = itemId;
         this.description = description;
         this.unitCost = unitCost;
         this.sellPrice = sellPrice;
@@ -19,21 +20,12 @@ public class AddItemTM {
         this.subTotal = subTotal;
     }
 
-    public AddItemTM(int number, String description, double unitCost, double sellPrice, int qty, double subTotal) {
-        this.id = number;
-        this.description = description;
-        this.unitCost = unitCost;
-        this.sellPrice = sellPrice;
-        this.qty = qty;
-        this.subTotal = subTotal;
+    public int getItemId() {
+        return itemId;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int number) {
-        this.id = number;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
     public String getDescription() {
@@ -79,7 +71,7 @@ public class AddItemTM {
     @Override
     public String toString() {
         return "AddItemTM{" +
-                "number=" + id +
+                "itemId=" + itemId +
                 ", description='" + description + '\'' +
                 ", unitCost=" + unitCost +
                 ", sellPrice=" + sellPrice +

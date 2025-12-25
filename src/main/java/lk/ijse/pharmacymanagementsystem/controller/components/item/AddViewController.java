@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import lk.ijse.pharmacymanagementsystem.dto.item.*;
 
 import javafx.scene.input.KeyEvent;
@@ -39,7 +40,7 @@ public class AddViewController implements Initializable {
     private TableColumn<AddItemTM, String> colDesc;
 
     @FXML
-    private TableColumn<AddItemTM, Integer> colId;
+    private TableColumn<AddItemTM, Integer> colItemId;
 
     @FXML
     private TableColumn<AddItemTM, Integer> colQty;
@@ -83,6 +84,9 @@ public class AddViewController implements Initializable {
     @FXML
     private TextField unitCost_txt;
 
+    @FXML
+    private HBox holdList_bar;
+
     private final ItemModel itemModel = new ItemModel();
     private final DosageModel dosageModel = new DosageModel();
     private final SupplierModel supplierModel = new SupplierModel();
@@ -93,20 +97,20 @@ public class AddViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // Auto Number Generate to table
-        colId.setCellFactory(column -> new TableCell<AddItemTM, Integer>() {
-            @Override
-            protected void updateItem(Integer item, boolean empty) {
-                super.updateItem(item, empty);
+//        colId.setCellFactory(column -> new TableCell<AddItemTM, Integer>() {
+//            @Override
+//            protected void updateItem(Integer item, boolean empty) {
+//                super.updateItem(item, empty);
+//
+//                if (empty) {
+//                    setText(null);
+//                } else {
+//                    setText(String.valueOf(getIndex() + 1));
+//                }
+//            }
+//        });
 
-                if (empty) {
-                    setText(null);
-                } else {
-                    setText(String.valueOf(getIndex() + 1));
-                }
-            }
-        });
-
-//        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
         colCost.setCellValueFactory(new PropertyValueFactory<>("unitCost"));
         colSellPrice.setCellValueFactory(new PropertyValueFactory<>("sellPrice"));
@@ -146,13 +150,13 @@ public class AddViewController implements Initializable {
             edit.setOnAction(event -> {
                 AddItemTM selectedItem = row.getItem();
                 System.out.println("Edit : " + selectedItem.getDescription());
-                editItem(selectedItem.getId());
+                editItem(selectedItem.getItemId());
             });
 
             delete.setOnAction(event -> {
                 AddItemTM selectedItem = row.getItem();
                 System.out.println("Delete : " + selectedItem);
-                deleteItem(selectedItem.getId());
+                deleteItem(selectedItem.getItemId());
             });
 
             contextMenu.getItems().addAll(edit, delete);
@@ -174,6 +178,10 @@ public class AddViewController implements Initializable {
     }
 
     private void deleteItem(int itemCode) {
+
+    }
+
+    private void setHoldList_bar() {
 
     }
 
@@ -258,13 +266,13 @@ public class AddViewController implements Initializable {
         int free_qty = Integer.parseInt(freeQty_txt.getText());
         String status = "DRAFF";
         String companyName = companyName_cmb.getValue();
-        int itemCode = Integer.parseInt(itemCode_text.getText());
 
         // Item
         String desc = des_text.getText();
+        int itemCode = Integer.parseInt(itemCode_text.getText());
 
         // Dosage
-        String dosage = companyName_cmb.getValue();
+        String dosage = dosage_cmb.getValue();
 
         // Set to table
         int AllQty = qty + free_qty;

@@ -25,9 +25,9 @@
             <!-- Form Section -->
             <ScrollPane fitToHeight="true" fitToWidth="true">
                 <content>
-                    <VBox minWidth="300" spacing="0.0">
+                    <VBox minWidth="300" prefHeight="817.0" prefWidth="300.0" spacing="0.0">
                         <children>
-                            <GridPane hgap="10.0" vgap="15.0">
+                            <GridPane hgap="10.0" prefHeight="817.0" prefWidth="300.0" vgap="15.0">
                                 <padding>
                                     <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
                                 </padding>
@@ -153,7 +153,7 @@
             </ScrollPane>
 
             <!-- Table and Actions Section -->
-            <VBox minWidth="400" prefHeight="830.0" prefWidth="525.0" spacing="15.0">
+            <VBox minWidth="400.0" prefHeight="830.0" prefWidth="596.0" spacing="15.0">
                 <padding>
                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </padding>
@@ -161,12 +161,12 @@
                     <!-- Table -->
                     <TableView fx:id="itemAddView_tbl" VBox.vgrow="ALWAYS">
                         <columns>
-                            <TableColumn fx:id="colId" minWidth="40" prefWidth="71.0" text="id" />
-                            <TableColumn fx:id="colDesc" minWidth="150" prefWidth="198.0" text="description" />
-                            <TableColumn fx:id="colCost" minWidth="80" prefWidth="100.0" text="unitCost" />
-                            <TableColumn fx:id="colSellPrice" minWidth="80" prefWidth="81.0" text="sellPrice" />
-                            <TableColumn fx:id="colQty" minWidth="50" prefWidth="60" text="qty" />
-                            <TableColumn fx:id="colSubTotal" minWidth="100" prefWidth="126" text="subTotal" />
+                            <TableColumn fx:id="colItemId" minWidth="40" prefWidth="58.0" text="Id" />
+                            <TableColumn fx:id="colDesc" minWidth="114.0" prefWidth="127.0" text="description" />
+                            <TableColumn fx:id="colCost" minWidth="80" prefWidth="115.0" text="unitCost" />
+                            <TableColumn fx:id="colSellPrice" minWidth="80" prefWidth="97.0" text="sellPrice" />
+                            <TableColumn fx:id="colQty" minWidth="50.0" prefWidth="63.0" text="qty" />
+                            <TableColumn fx:id="colSubTotal" minWidth="93.0" prefWidth="112.0" text="subTotal" />
                         </columns>
                     </TableView>
 

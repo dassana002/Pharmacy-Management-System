@@ -66,7 +66,6 @@ public class ItemModel {
 
         } finally {
             conn.setAutoCommit(true);
-
         }
     }
 }
