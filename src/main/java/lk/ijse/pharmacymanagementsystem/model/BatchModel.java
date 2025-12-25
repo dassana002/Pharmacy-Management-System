@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class BatchModel {
 
@@ -83,5 +84,34 @@ public class BatchModel {
         Connection conn = DBConnection.getInstance().getConnection();
         String query = "SELECT * FROM batch WHERE item_code = ?";
         return 0;
+    }
+
+    public ArrayList<BatchDTO> getBillByInvoice(String invoiceNumber) throws SQLException {
+        Connection conn = DBConnection.getInstance().getConnection();
+        String query = "SELECT * FROM batch WHERE invoice_number = ?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, invoiceNumber);
+        ResultSet rs = ps.executeQuery();
+
+        ArrayList<BatchDTO> batchDTOs = new ArrayList<>();
+        while (rs.next()) {
+            BatchDTO batchDTO = new BatchDTO(
+                   rs.getInt("batch_id"),
+                   rs.getInt("batch_number"),
+                   rs.getString("invoice_number"),
+                   rs.getDouble("sell_price"),
+                   rs.getDouble("cost_price"),
+                   rs.getString("today_date"),
+                   rs.getString("expired_date"),
+                   rs.getString("received_date"),
+                   rs.getInt("qty"),
+                   rs.getInt("available_qty"),
+                   rs.getString("status"),
+                   rs.getString("company_name"),
+                   rs.getInt("item_code")
+            );
+            batchDTOs.add(batchDTO);
+        }
+        return batchDTOs;
     }
 }

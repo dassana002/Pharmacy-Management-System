@@ -6,6 +6,8 @@ import lk.ijse.pharmacymanagementsystem.dto.item.FreeDTO;
 import lk.ijse.pharmacymanagementsystem.utility.CrudUtil;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class FreeModel {
@@ -41,5 +43,21 @@ public class FreeModel {
         }
 
         return true;
+    }
+
+    public int getFreeQtyById(int batchId) throws SQLException {
+        Connection conn = DBConnection.getInstance().getConnection();
+        String query = "SELECT qty FROM free WHERE batch_id=?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1,batchId);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        int qty = 0;
+        if (resultSet.next()) {
+            qty = resultSet.getInt("qty");
+        }
+
+        return qty;
     }
 }

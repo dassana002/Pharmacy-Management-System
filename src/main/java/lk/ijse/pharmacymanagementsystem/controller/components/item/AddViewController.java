@@ -13,10 +13,7 @@ import javafx.scene.layout.HBox;
 import lk.ijse.pharmacymanagementsystem.dto.item.*;
 
 import javafx.scene.input.KeyEvent;
-import lk.ijse.pharmacymanagementsystem.model.BatchModel;
-import lk.ijse.pharmacymanagementsystem.model.DosageModel;
-import lk.ijse.pharmacymanagementsystem.model.ItemModel;
-import lk.ijse.pharmacymanagementsystem.model.SupplierModel;
+import lk.ijse.pharmacymanagementsystem.model.*;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -94,7 +91,9 @@ public class AddViewController implements Initializable {
     private final DosageModel dosageModel = new DosageModel();
     private final SupplierModel supplierModel = new SupplierModel();
     private final BatchModel batchModel = new  BatchModel();
+    private final FreeModel freeModel = new FreeModel();
     private final ObservableList<AddItemTM> itemTMList = FXCollections.observableArrayList();
+    private final ArrayList<BatchDTO> batchDTOList = new ArrayList<>();
 
     // Regex patterns
     private static final String INT_REGEX = "^[0-9]+$";
@@ -120,7 +119,6 @@ public class AddViewController implements Initializable {
         loadComboCompanies();
 
         // Move To Next Action
-        moveToNextOnEnter(invoice_number_text, todayDate_text);
         moveToNextOnEnter(todayDate_text, receivedDate_text);
         moveToNextOnEnter(receivedDate_text, companyName_cmb);
         moveToNextOnEnter(companyName_cmb, itemCode_text);
@@ -187,17 +185,47 @@ public class AddViewController implements Initializable {
 
     @FXML
     void handleCloseBIll(ActionEvent event) {
-
+        cleanTable();
     }
 
     @FXML
     void handleHoldLIst(ActionEvent event) {
-
+        cleanTable();
     }
 
     @FXML
     void findManyItems(KeyEvent event) {
+        try {
+            if (event.getCode() == KeyCode.ENTER) {
+                if (isValid(invoice_number_text, TEXT_REGEX)) {
+                    ArrayList<BatchDTO> batchDTOS = batchModel.getBillByInvoice(invoice_number_text.getText());
+                    batchDTOList.addAll(batchDTOS);
 
+                    for (BatchDTO batchDTO : batchDTOS) {
+                        ItemDTO itemDTO = itemModel.getItem(batchDTO.getItem_code());
+                        int AllQty = batchDTO.getQty() + freeModel.getFreeQtyById(batchDTO.getBatch_id());
+                        double subTotal = batchDTO.getQty() * batchDTO.getCost_price();
+
+                        AddItemTM addItemTM = new AddItemTM(
+                                batchDTO.getItem_code(),
+                                itemDTO.getDescription(),
+                                batchDTO.getCost_price(),
+                                batchDTO.getSell_price(),
+                                AllQty,
+                                subTotal
+                        );
+                        itemTMList.add(addItemTM);
+                    }
+                }else {
+                    fullCleanText();
+                    cleanTable();
+                    new Alert(Alert.AlertType.WARNING, "Invoice Not Found", ButtonType.OK).show();
+                }
+                loadItemTable();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void moveToNextOnEnter(Control current, Control next) {
@@ -371,7 +399,24 @@ public class AddViewController implements Initializable {
         expireDate_text.getEditor().clear();
     }
 
+    private void fullCleanText() {
+        invoice_number_text.clear();
+        todayDate_text.getEditor().clear();
+        receivedDate_text.getEditor().clear();
+        companyName_cmb.getEditor().clear();
+        itemCode_text.clear();
+        des_text.clear();
+        dosage_cmb.getEditor().clear();
+        unitCost_txt.clear();
+        sellPrice_txt.clear();
+        qty_txt.clear();
+        freeQty_txt.clear();
+        batchNo_txt.clear();
+        expireDate_text.getEditor().clear();
+    }
+
     private void cleanTable() {
+        itemTMList.clear();
         itemAddView_tbl.refresh();
     }
 }
