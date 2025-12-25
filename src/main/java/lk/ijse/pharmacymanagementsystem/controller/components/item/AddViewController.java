@@ -87,6 +87,9 @@ public class AddViewController implements Initializable {
     @FXML
     private HBox holdList_bar;
 
+    @FXML
+    private TextField allTotal_btn;
+
     private final ItemModel itemModel = new ItemModel();
     private final DosageModel dosageModel = new DosageModel();
     private final SupplierModel supplierModel = new SupplierModel();
@@ -298,6 +301,7 @@ public class AddViewController implements Initializable {
             if (isSave) {
                 System.out.println("Items saved successfully");
                 new Alert(Alert.AlertType.INFORMATION, "Items Saved successfully", ButtonType.OK).show();
+                calcAllTotal();
             }else {
                 System.out.println("Error while saving items");
                 new Alert(Alert.AlertType.ERROR, "Error while saving items", ButtonType.OK).show();
@@ -325,9 +329,12 @@ public class AddViewController implements Initializable {
 
     }
 
-    @FXML
-    void handleGetCompany(MouseEvent event) {
-
+    private void calcAllTotal() {
+        double total = 0.0;
+        for (AddItemTM addItemTM : itemTMList) {
+            total += addItemTM.getSubTotal();
+        }
+        allTotal_btn.setText("Total: "+String.valueOf(total));
     }
 
     private void cleanText() {

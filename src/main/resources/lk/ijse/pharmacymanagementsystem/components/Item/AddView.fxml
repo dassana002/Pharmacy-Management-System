@@ -65,7 +65,7 @@
                                 <Label text="Company Name" GridPane.columnIndex="0" GridPane.rowIndex="3">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <ComboBox fx:id="companyName_cmb" maxWidth="Infinity" onMouseClicked="#handleGetCompany" prefHeight="40.0" promptText="Select Company" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <ComboBox fx:id="companyName_cmb" maxWidth="Infinity" prefHeight="40.0" promptText="Select Company" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                                 <!-- Item Code -->
                                 <Label text="Item Code" GridPane.columnIndex="0" GridPane.rowIndex="4">
@@ -174,7 +174,7 @@
                     <VBox spacing="15.0">
                         <children>
                             <!-- Total Field -->
-                            <TextField fx:id="Alltotal_btn" alignment="CENTER" editable="false" maxWidth="Infinity" prefHeight="55.0" promptText="Total: 0.00" style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-background-color: #f5f5f5; -fx-border-color: #cccccc; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;">
+                            <TextField fx:id="allTotal_btn" alignment="CENTER" editable="false" maxWidth="Infinity" prefHeight="55.0" promptText="Total: 0.00" style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-background-color: #f5f5f5; -fx-border-color: #cccccc; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;">
                                 <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                 </VBox.margin>
