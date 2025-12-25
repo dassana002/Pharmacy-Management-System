@@ -92,6 +92,7 @@ public class AddViewController implements Initializable {
     private final SupplierModel supplierModel = new SupplierModel();
     private final BatchModel batchModel = new  BatchModel();
     private final FreeModel freeModel = new FreeModel();
+    private final BillModel billModel = new BillModel();
     private final ObservableList<AddItemTM> itemTMList = FXCollections.observableArrayList();
     private final ArrayList<BatchDTO> batchDTOList = new ArrayList<>();
 
@@ -196,9 +197,12 @@ public class AddViewController implements Initializable {
     @FXML
     void findManyItems(KeyEvent event) {
         try {
+
             if (event.getCode() == KeyCode.ENTER) {
+
                 if (isValid(invoice_number_text, TEXT_REGEX)) {
-                    ArrayList<BatchDTO> batchDTOS = batchModel.getBillByInvoice(invoice_number_text.getText());
+                    int billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
+                    ArrayList<BatchDTO> batchDTOS = batchModel.getBatchesByBillId(billId);
                     batchDTOList.addAll(batchDTOS);
 
                     for (BatchDTO batchDTO : batchDTOS) {
@@ -315,7 +319,6 @@ public class AddViewController implements Initializable {
 
         // Batch
         int batchNo = Integer.parseInt(batchNo_txt.getText());
-        String invoice = invoice_number_text.getText();
         double sell_price = Double.parseDouble(sellPrice_txt.getText());
         double unit_cost = Double.parseDouble(unitCost_txt.getText());
         String todayDate = String.valueOf(todayDate_text.getValue());
@@ -325,6 +328,9 @@ public class AddViewController implements Initializable {
         int free_qty = 0;
         String status = "DRAFF";
         String companyName = companyName_cmb.getValue();
+
+//        Bill
+        String invoice = invoice_number_text.getText();
 
         // Item
         String desc = des_text.getText();
@@ -343,10 +349,27 @@ public class AddViewController implements Initializable {
             int batchID = UUID.randomUUID().hashCode();
             int freeID = UUID.randomUUID().hashCode();
             int dosageID = UUID.randomUUID().hashCode();
+            int billId = UUID.randomUUID().hashCode();
 
             BatchDTO batchDTO = new BatchDTO(
-                    batchID, batchNo, invoice, sell_price, unit_cost, todayDate,
-                    receivedDate, expireDate, qty, AllQty, status, companyName, itemCode
+                    batchID,
+                    batchNo,
+                    sell_price,
+                    unit_cost,
+                    todayDate,
+                    expireDate,
+                    receivedDate,
+                    qty,
+                    AllQty,
+                    status,
+                    companyName,
+                    itemCode,
+                    billId
+            );
+
+            BillDTO billDTO = new BillDTO(
+                    invoice,
+                    billId
             );
 
             FreeDTO freeDTO = new FreeDTO(
@@ -357,7 +380,8 @@ public class AddViewController implements Initializable {
                     dosageID, dosage, itemCode
             );
 
-            boolean isSave = batchModel.batchSaveTemp(batchDTO, freeDTO, dosageDTO);
+            boolean isSave = billModel.saveBill(batchDTO, freeDTO, dosageDTO, billDTO);
+
             if (isSave) {
                 System.out.println("Items saved successfully");
                 new Alert(Alert.AlertType.INFORMATION, "Items Saved successfully", ButtonType.OK).show();

@@ -34,7 +34,7 @@ public class BatchModel {
         return true;
     }
 
-    public boolean batchSaveTemp(BatchDTO batchDTO, FreeDTO freeDTO, DosageDTO dosageDTO) throws SQLException {
+    public boolean batchSaveTemp(BatchDTO batchDTO, FreeDTO freeDTO, DosageDTO dosageDTO, int billId) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         try {
@@ -46,7 +46,6 @@ public class BatchModel {
                     query,
                     batchDTO.getBatch_id(),
                     batchDTO.getBatch_number(),
-                    batchDTO.getInvoice_number(),
                     batchDTO.getSell_price(),
                     batchDTO.getCost_price(),
                     batchDTO.getToday_Date(),
@@ -56,7 +55,8 @@ public class BatchModel {
                     batchDTO.getAvailable_qty(),
                     batchDTO.getStatus(),
                     batchDTO.getCompany_name(),
-                    batchDTO.getItem_code()
+                    batchDTO.getItem_code(),
+                    billId
             );
 
             // Free Save
@@ -86,11 +86,11 @@ public class BatchModel {
         return 0;
     }
 
-    public ArrayList<BatchDTO> getBillByInvoice(String invoiceNumber) throws SQLException {
+    public ArrayList<BatchDTO> getBatchesByBillId(int billId) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
-        String query = "SELECT * FROM batch WHERE invoice_number = ?";
+        String query = "SELECT * FROM batch WHERE bill_id = ?";
         PreparedStatement ps = conn.prepareStatement(query);
-        ps.setString(1, invoiceNumber);
+        ps.setInt(1, billId);
         ResultSet rs = ps.executeQuery();
 
         ArrayList<BatchDTO> batchDTOs = new ArrayList<>();
@@ -98,7 +98,6 @@ public class BatchModel {
             BatchDTO batchDTO = new BatchDTO(
                    rs.getInt("batch_id"),
                    rs.getInt("batch_number"),
-                   rs.getString("invoice_number"),
                    rs.getDouble("sell_price"),
                    rs.getDouble("cost_price"),
                    rs.getString("today_date"),
@@ -108,10 +107,19 @@ public class BatchModel {
                    rs.getInt("available_qty"),
                    rs.getString("status"),
                    rs.getString("company_name"),
-                   rs.getInt("item_code")
+                   rs.getInt("item_code"),
+                    rs.getInt("bill_id")
             );
             batchDTOs.add(batchDTO);
         }
         return batchDTOs;
+    }
+
+    public void getAllTemporaryBills() throws SQLException {
+        Connection conn = DBConnection.getInstance().getConnection();
+        String query = "SELECT DISTINCT invoice_number FROM batch";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ResultSet rs = ps.executeQuery();
+        
     }
 }
