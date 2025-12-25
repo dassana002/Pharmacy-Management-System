@@ -96,22 +96,14 @@ public class AddViewController implements Initializable {
     private final BatchModel batchModel = new  BatchModel();
     private final ObservableList<AddItemTM> itemTMList = FXCollections.observableArrayList();
 
+    // Regex patterns
+    private static final String INT_REGEX = "^[0-9]+$";
+    private static final String DOUBLE_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
+    private static final String TEXT_REGEX = "^[A-Za-z0-9 .,-]+$";
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        // Auto Number Generate to table
-//        colId.setCellFactory(column -> new TableCell<AddItemTM, Integer>() {
-//            @Override
-//            protected void updateItem(Integer item, boolean empty) {
-//                super.updateItem(item, empty);
-//
-//                if (empty) {
-//                    setText(null);
-//                } else {
-//                    setText(String.valueOf(getIndex() + 1));
-//                }
-//            }
-//        });
 
         colItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -176,6 +168,11 @@ public class AddViewController implements Initializable {
         });
     }
 
+    private boolean isValid(TextField field, String regex) {
+        return field.getText() != null && field.getText().matches(regex);
+    }
+
+
     private void editItem(int itemCode) {
 
     }
@@ -185,6 +182,21 @@ public class AddViewController implements Initializable {
     }
 
     private void setHoldList_bar() {
+
+    }
+
+    @FXML
+    void handleCloseBIll(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleHoldLIst(ActionEvent event) {
+
+    }
+
+    @FXML
+    void findManyItems(KeyEvent event) {
 
     }
 
@@ -253,6 +265,26 @@ public class AddViewController implements Initializable {
 
     @FXML
     void handleAddToCart(ActionEvent event) {
+
+        //  Validation
+        if (!isValid(batchNo_txt, INT_REGEX) ||
+                !isValid(freeQty_txt, INT_REGEX) ||
+                !isValid(sellPrice_txt, DOUBLE_REGEX) ||
+                !isValid(unitCost_txt, DOUBLE_REGEX) ||
+                !isValid(qty_txt, INT_REGEX) ||
+                !isValid(itemCode_text, INT_REGEX) ||
+                !isValid(invoice_number_text, TEXT_REGEX) ||
+                !des_text.getText().matches(TEXT_REGEX) ||
+                todayDate_text.getValue() == null ||
+                receivedDate_text.getValue() == null ||
+                expireDate_text.getValue() == null ||
+                companyName_cmb.getValue() == null ||
+                dosage_cmb.getValue() == null
+        ) {
+            new Alert(Alert.AlertType.WARNING, "Invalid input detected").show();
+            return;
+        }
+
         // Batch
         int batchNo = Integer.parseInt(batchNo_txt.getText());
         String invoice = invoice_number_text.getText();
@@ -262,7 +294,7 @@ public class AddViewController implements Initializable {
         String receivedDate = String.valueOf(receivedDate_text.getValue());
         String expireDate = String.valueOf(expireDate_text.getValue());
         int qty = Integer.parseInt(qty_txt.getText());
-        int free_qty = Integer.parseInt(freeQty_txt.getText());
+        int free_qty = 0;
         String status = "DRAFF";
         String companyName = companyName_cmb.getValue();
 
@@ -317,16 +349,6 @@ public class AddViewController implements Initializable {
 
     public void loadItemTable() {
         itemAddView_tbl.setItems(itemTMList);
-    }
-
-    @FXML
-    void handleCloseBIll(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleHoldLIst(ActionEvent event) {
-
     }
 
     private void calcAllTotal() {
