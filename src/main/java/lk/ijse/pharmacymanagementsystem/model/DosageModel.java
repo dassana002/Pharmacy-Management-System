@@ -12,20 +12,15 @@ import java.util.ArrayList;
 
 public class DosageModel {
 
-    public ArrayList<DosageDTO> getDosageById(int itemCode) throws SQLException {
+    public ArrayList<String> getDosageById(int itemCode) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
-        PreparedStatement ps = conn.prepareStatement("SELECT * FROM dosage WHERE itemCode = ?");
+        PreparedStatement ps = conn.prepareStatement("SELECT DISTINCT size FROM dosage WHERE itemCode = ?");
         ps.setInt(1, itemCode);
         ResultSet rs = ps.executeQuery();
 
-        ArrayList<DosageDTO> dosages = new ArrayList<>();
+        ArrayList<String> dosages = new ArrayList<>();
         while (rs.next()) {
-            DosageDTO dto = new DosageDTO(
-                    rs.getInt("dosage_id"),
-                    rs.getString("size"),
-                    rs.getInt("itemCode")
-            );
-            dosages.add(dto);
+            dosages.add(rs.getString("size"));
         }
         return dosages;
     }

@@ -214,14 +214,10 @@ public class AddViewController implements Initializable {
 
     private void loadComboDosages(int itemCode) {
         try {
-            ArrayList<DosageDTO> dosageDTOs = dosageModel.getDosageById(itemCode);
+            ArrayList<String> dosages = dosageModel.getDosageById(itemCode);
 
-            if (dosageDTOs != null) {
-                ObservableList<String> observableList = FXCollections.observableArrayList();
-                for (DosageDTO dosageDTO : dosageDTOs) {
-                    observableList.add(dosageDTO.getSize());
-                }
-
+            if (dosages != null) {
+                ObservableList<String> observableList = FXCollections.observableArrayList(dosages);
                 dosage_cmb.setItems(observableList);
             }else {
                 dosage_cmb.setItems(null);

@@ -124,18 +124,13 @@ public class ItemAddController implements Initializable {
                         ItemDTO dbItem = itemModel.getItem(itemCode);
                         des_text.setText(dbItem.getDescription());
 
-                        ArrayList<DosageDTO> dosageDTOs = dosageModel.getDosageById(itemCode);
+                        ArrayList<String> dosages = dosageModel.getDosageById(itemCode);
 
-                        if (dosageDTOs == null) {
+                        if (dosages == null) {
                             dosage_cmb.setVisible(false);
                             dosageID.setVisible(false);
                         }else {
-                            ObservableList<String> observableList = FXCollections.observableArrayList();
-                            for (DosageDTO dosageDTO : dosageDTOs) {
-                                String size = dosageDTO.getSize();
-                                observableList.add(size);
-                            }
-
+                            ObservableList<String> observableList = FXCollections.observableArrayList(dosages);
                             dosage_cmb.setItems(observableList);
                         }
                     }else {
