@@ -10,7 +10,6 @@ public class BatchDTO {
     private String received_date;
     private int qty;
     private int available_qty;
-    private String status;
     private String company_name;
     private int item_code;
     private int bill_id;
@@ -18,22 +17,20 @@ public class BatchDTO {
     public BatchDTO() {
     }
 
-    public BatchDTO(int batchID, int batchNo, double sellPrice, double unitCost, String todayDate, String expireDate, String receivedDate, int qty, int allQty, String status, String companyName, int itemCode, int billId) {
-        this.batch_id = batchID;
-        this.batch_number = batchNo;
-        this.sell_price = sellPrice;
-        this.cost_price = unitCost;
-        this.today_Date = todayDate;
-        this.expired_date = expireDate;
-        this.received_date = receivedDate;
+    public BatchDTO(int batch_id, int batch_number, double sell_price, double cost_price, String today_Date, String expired_date, String received_date, int qty, int available_qty, String company_name, int item_code, int bill_id) {
+        this.batch_id = batch_id;
+        this.batch_number = batch_number;
+        this.sell_price = sell_price;
+        this.cost_price = cost_price;
+        this.today_Date = today_Date;
+        this.expired_date = expired_date;
+        this.received_date = received_date;
         this.qty = qty;
-        this.available_qty = allQty;
-        this.status = status;
-        this.company_name = companyName;
-        this.item_code = itemCode;
-        this.bill_id = billId;
+        this.available_qty = available_qty;
+        this.company_name = company_name;
+        this.item_code = item_code;
+        this.bill_id = bill_id;
     }
-
 
     public int getBatch_id() {
         return batch_id;
@@ -107,14 +104,6 @@ public class BatchDTO {
         this.available_qty = available_qty;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getCompany_name() {
         return company_name;
     }
@@ -151,7 +140,6 @@ public class BatchDTO {
                 ", received_date='" + received_date + '\'' +
                 ", qty=" + qty +
                 ", available_qty=" + available_qty +
-                ", status='" + status + '\'' +
                 ", company_name='" + company_name + '\'' +
                 ", item_code=" + item_code +
                 ", bill_id=" + bill_id +
