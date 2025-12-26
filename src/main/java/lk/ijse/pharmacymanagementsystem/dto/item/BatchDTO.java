@@ -16,7 +16,7 @@ public class BatchDTO {
     public BatchDTO() {
     }
 
-    public BatchDTO(int batch_id, int batch_number, double sell_price, double cost_price, String today_Date, String expired_date, String received_date, int qty, int available_qty, String company_name, int item_code, int bill_id) {
+    public BatchDTO(int batch_id, int batch_number, double sell_price, double cost_price, String today_Date, String expired_date, String received_date, int qty, int available_qty, int item_code, int bill_id) {
         this.batch_id = batch_id;
         this.batch_number = batch_number;
         this.sell_price = sell_price;
