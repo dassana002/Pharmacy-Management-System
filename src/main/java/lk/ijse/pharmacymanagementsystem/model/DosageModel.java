@@ -36,8 +36,7 @@ public class DosageModel {
                     dosageDTO.getItemCode()
             );
         }
-        assert resultSet != null;
-        return resultSet.next();
+        return resultSet != null;
     }
 
     public boolean isDosageExists(String size, int itemCode) throws SQLException {

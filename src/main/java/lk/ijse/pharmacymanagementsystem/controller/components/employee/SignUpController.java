@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.controller;
+package lk.ijse.pharmacymanagementsystem.controller.components.employee;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;

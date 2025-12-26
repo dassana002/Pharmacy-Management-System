@@ -13,11 +13,11 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        /// create a scene Object
-        scene = new Scene(loadFXML("LogInPage"));
-        /// scene object set to stage
+        // create a scene Object
+        scene = new Scene(loadFXML("layouts/DashLayout"));
+        //scene object set to stage
         stage.setScene(scene);
-        /// scene object pop up
+        // scene object pop up
         stage.show();
     }
 
@@ -32,6 +32,6 @@ public class Launcher extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }
