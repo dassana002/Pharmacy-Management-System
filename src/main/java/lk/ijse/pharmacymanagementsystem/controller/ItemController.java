@@ -19,8 +19,6 @@ public class ItemController implements Initializable {
     @FXML
     private AnchorPane ItemMain_Content;
 
-    private Dialog<Void> dialog;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         References.itemController = this;
@@ -97,5 +95,30 @@ public class ItemController implements Initializable {
         if (ItemMain_Content.getChildren().size() > 1) {
             ItemMain_Content.getChildren().remove(ItemMain_Content.getChildren().size() - 1);
         }
+    }
+
+    @FXML
+    void handleOutOfStock(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleEditBatch(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleEditItem(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleEditSupplier(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleExpireItem(ActionEvent event) {
+
     }
 }
