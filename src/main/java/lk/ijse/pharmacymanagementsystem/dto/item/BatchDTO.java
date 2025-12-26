@@ -10,7 +10,6 @@ public class BatchDTO {
     private String received_date;
     private int qty;
     private int available_qty;
-    private String company_name;
     private int item_code;
     private int bill_id;
 
@@ -27,7 +26,6 @@ public class BatchDTO {
         this.received_date = received_date;
         this.qty = qty;
         this.available_qty = available_qty;
-        this.company_name = company_name;
         this.item_code = item_code;
         this.bill_id = bill_id;
     }
@@ -104,14 +102,6 @@ public class BatchDTO {
         this.available_qty = available_qty;
     }
 
-    public String getCompany_name() {
-        return company_name;
-    }
-
-    public void setCompany_name(String company_name) {
-        this.company_name = company_name;
-    }
-
     public int getItem_code() {
         return item_code;
     }
@@ -140,7 +130,6 @@ public class BatchDTO {
                 ", received_date='" + received_date + '\'' +
                 ", qty=" + qty +
                 ", available_qty=" + available_qty +
-                ", company_name='" + company_name + '\'' +
                 ", item_code=" + item_code +
                 ", bill_id=" + bill_id +
                 '}';

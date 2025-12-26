@@ -8,22 +8,25 @@ public class BillDTO {
     private int bill_id;
     private String invoice_number;
     private Status status;
+    private String company_name;
     private ArrayList<BatchDTO> BatchDtoList;
 
     public BillDTO() {
     }
 
-    public BillDTO(int bill_id, String invoice_number, Status status, ArrayList<BatchDTO> batchDtoList) {
+    public BillDTO(int bill_id, String invoice_number, Status status, String company_name, ArrayList<BatchDTO> batchDtoList) {
         this.bill_id = bill_id;
         this.invoice_number = invoice_number;
         this.status = status;
+        this.company_name = company_name;
         BatchDtoList = batchDtoList;
     }
 
-    public BillDTO(int bill_id, String invoice_number, Status status) {
+    public BillDTO(int bill_id, String invoice_number, Status status, String company_name) {
         this.bill_id = bill_id;
         this.invoice_number = invoice_number;
         this.status = status;
+        this.company_name = company_name;
     }
 
     public int getBill_id() {
@@ -58,12 +61,21 @@ public class BillDTO {
         BatchDtoList = batchDtoList;
     }
 
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
+
     @Override
     public String toString() {
         return "BillDTO{" +
                 "bill_id=" + bill_id +
                 ", invoice_number='" + invoice_number + '\'' +
                 ", status=" + status +
+                ", company_name='" + company_name + '\'' +
                 ", BatchDtoList=" + BatchDtoList +
                 '}';
     }
