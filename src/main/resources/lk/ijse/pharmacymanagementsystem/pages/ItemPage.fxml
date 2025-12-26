@@ -38,6 +38,16 @@
                                 <Font size="16.0" />
                             </font>
                         </Button>
+                  <Button fx:id="newItem_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleNewItemAdd" prefHeight="45.0" prefWidth="179.0" text="New Item">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="editItem_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleEditItem" prefHeight="45.0" prefWidth="179.0" text="Edit Item">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
 
                         <Button fx:id="returnItem_btn" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleReturnItems" prefHeight="45.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 5;" text="Return Item">
                             <font>
@@ -68,6 +78,11 @@
                                 <Font size="16.0" />
                             </font>
                         </Button>
+                  <Button fx:id="editSupplier_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleEditSupplier" prefHeight="45.0" prefWidth="179.0" text="Edit Supplier ">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
 
 <!--                        <Button maxWidth="Infinity" mnemonicParsing="false" prefHeight="45.0" style="-fx-background-color: #607D8B; -fx-text-fill: white; -fx-background-radius: 5;" text="Bill History">-->
 <!--                            <font>-->
@@ -86,7 +101,17 @@
                                 <Font size="16.0" />
                             </font>
                         </Button>
-                  <Button fx:id="newItem_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleNewItemAdd" prefHeight="45.0" prefWidth="179.0" text="New Item">
+                  <Button fx:id="editBatch_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleEditBatch" prefHeight="45.0" prefWidth="179.0" text="Edit Batch">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="outOfStock_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleOutOfStock" prefHeight="45.0" prefWidth="179.0" text="Out of Stock">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="expireDate_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleExpireItem" prefHeight="45.0" prefWidth="179.0" text="Expire Item">
                      <font>
                         <Font size="16.0" />
                      </font>
