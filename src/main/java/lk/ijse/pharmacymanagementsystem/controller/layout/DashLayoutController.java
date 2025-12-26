@@ -42,8 +42,9 @@ public class DashLayoutController implements Initializable {
     }
 
     // Load Employee Page
-    public void loadEmployeePage() {
-
+    public void loadEmployeePage() throws IOException {
+        Parent medicinePage = Launcher.loadFXML("components/employee/SignUpPage");
+        mainContent.getChildren().setAll(medicinePage);
     }
 
     // Load Item Page

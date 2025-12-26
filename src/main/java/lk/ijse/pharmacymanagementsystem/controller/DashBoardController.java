@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.pharmacymanagementsystem.utility.References;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,7 +31,7 @@ public class DashBoardController implements Initializable {
     }
 
     @FXML
-    void handleEmployeePage(ActionEvent event) {
+    void handleEmployeePage(ActionEvent event) throws IOException {
         References.dashLayoutController.loadEmployeePage();
     }
 
