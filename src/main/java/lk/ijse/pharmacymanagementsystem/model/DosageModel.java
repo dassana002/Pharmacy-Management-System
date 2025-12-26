@@ -26,7 +26,23 @@ public class DosageModel {
     }
 
     public boolean dosageSaveTemp(DosageDTO dosageDTO) throws SQLException {
-        String query = "INSERT INTO dosage VALUES(?,?,?)";
-        return CrudUtil.execute(query, dosageDTO.getDosage_id(), dosageDTO.getSize(), dosageDTO.getItemCode());
+        ResultSet resultSet = null;
+        if (!isDosageExists(dosageDTO.getSize(), dosageDTO.getItemCode())) {
+            String query = "INSERT INTO dosage (dosage_id, size, itemCode) VALUES (?, ?, ?)";
+            resultSet = CrudUtil.execute(
+                    query,
+                    dosageDTO.getDosage_id(),
+                    dosageDTO.getSize(),
+                    dosageDTO.getItemCode()
+            );
+        }
+        assert resultSet != null;
+        return resultSet.next();
+    }
+
+    public boolean isDosageExists(String size, int itemCode) throws SQLException {
+        String sql = "SELECT 1 FROM dosage WHERE size = ? AND itemCode = ?";
+        ResultSet rs = CrudUtil.execute(sql, size, itemCode);
+        return rs.next();
     }
 }

@@ -100,7 +100,7 @@ public class AddViewController implements Initializable {
     private static final String INT_REGEX = "^[0-9]+$";
     private static final String DOUBLE_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
     private static final String TEXT_REGEX = "^[A-Za-z0-9 .,-]+$";
-
+    private static final String INVOICE_REGEX = "^[A-Z0-9-]+$";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -200,8 +200,13 @@ public class AddViewController implements Initializable {
 
             if (event.getCode() == KeyCode.ENTER) {
 
-                if (isValid(invoice_number_text, TEXT_REGEX)) {
+                if (isValid(invoice_number_text, INVOICE_REGEX)) {
                     int billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
+
+                    if (billId == 0) {
+                        new Alert(Alert.AlertType.WARNING, "Invoice Not Found", ButtonType.OK).show();
+                    }
+
                     ArrayList<BatchDTO> batchDTOS = batchModel.getBatchesByBillId(billId);
                     batchDTOList.addAll(batchDTOS);
 
@@ -223,7 +228,8 @@ public class AddViewController implements Initializable {
                 }else {
                     fullCleanText();
                     cleanTable();
-                    new Alert(Alert.AlertType.WARNING, "Invoice Not Found", ButtonType.OK).show();
+                    new Alert(Alert.AlertType.WARNING, "Invalid Character using", ButtonType.OK).show();
+                    throw new Exception();
                 }
                 loadItemTable();
             }
@@ -305,7 +311,7 @@ public class AddViewController implements Initializable {
                 !isValid(unitCost_txt, DOUBLE_REGEX) ||
                 !isValid(qty_txt, INT_REGEX) ||
                 !isValid(itemCode_text, INT_REGEX) ||
-                !isValid(invoice_number_text, TEXT_REGEX) ||
+                !isValid(invoice_number_text, INVOICE_REGEX) ||
                 !des_text.getText().matches(TEXT_REGEX) ||
                 todayDate_text.getValue() == null ||
                 receivedDate_text.getValue() == null ||
@@ -325,11 +331,11 @@ public class AddViewController implements Initializable {
         String receivedDate = String.valueOf(receivedDate_text.getValue());
         String expireDate = String.valueOf(expireDate_text.getValue());
         int qty = Integer.parseInt(qty_txt.getText());
-        int free_qty = 0;
-        String status = "DRAFF";
+        int free_qty = Integer.parseInt(freeQty_txt.getText());
+        Status status = Status.DRAFF;
         String companyName = companyName_cmb.getValue();
 
-//        Bill
+        //  Bill
         String invoice = invoice_number_text.getText();
 
         // Item
@@ -345,41 +351,42 @@ public class AddViewController implements Initializable {
         AddItemTM addItemTM = new AddItemTM(itemCode, desc, unit_cost, sell_price, AllQty, subTotal);
         itemTMList.add(addItemTM);
 
+        // UUID generate
+        int batchID = UUID.randomUUID().hashCode();
+        int freeID = UUID.randomUUID().hashCode();
+        int dosageID = UUID.randomUUID().hashCode();
+        int billId = UUID.randomUUID().hashCode();
+
+        BatchDTO batchDTO = new BatchDTO(
+                batchID,
+                batchNo,
+                sell_price,
+                unit_cost,
+                todayDate,
+                expireDate,
+                receivedDate,
+                qty,
+                AllQty,
+                itemCode,
+                billId
+        );
+
+        BillDTO billDTO = new BillDTO(
+                billId,
+                invoice,
+                status,
+                companyName
+        );
+
+        FreeDTO freeDTO = new FreeDTO(
+                freeID, batchID, free_qty, free_qty
+        );
+
+        DosageDTO dosageDTO = new DosageDTO(
+                dosageID, dosage, itemCode
+        );
+
         try {
-            int batchID = UUID.randomUUID().hashCode();
-            int freeID = UUID.randomUUID().hashCode();
-            int dosageID = UUID.randomUUID().hashCode();
-            int billId = UUID.randomUUID().hashCode();
-
-            BatchDTO batchDTO = new BatchDTO(
-                    batchID,
-                    batchNo,
-                    sell_price,
-                    unit_cost,
-                    todayDate,
-                    expireDate,
-                    receivedDate,
-                    qty,
-                    AllQty,
-                    status,
-                    companyName,
-                    itemCode,
-                    billId
-            );
-
-            BillDTO billDTO = new BillDTO(
-                    invoice,
-                    billId
-            );
-
-            FreeDTO freeDTO = new FreeDTO(
-                    freeID, batchID, free_qty, free_qty
-            );
-
-            DosageDTO dosageDTO = new DosageDTO(
-                    dosageID, dosage, itemCode
-            );
-
             boolean isSave = billModel.saveBill(batchDTO, freeDTO, dosageDTO, billDTO);
 
             if (isSave) {

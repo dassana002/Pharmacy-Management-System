@@ -2,6 +2,7 @@ package lk.ijse.pharmacymanagementsystem.model;
 
 import lk.ijse.pharmacymanagementsystem.dbConnection.DBConnection;
 import lk.ijse.pharmacymanagementsystem.dto.item.BatchDTO;
+import lk.ijse.pharmacymanagementsystem.dto.item.BillDTO;
 import lk.ijse.pharmacymanagementsystem.dto.item.DosageDTO;
 import lk.ijse.pharmacymanagementsystem.dto.item.FreeDTO;
 import lk.ijse.pharmacymanagementsystem.utility.CrudUtil;
@@ -34,57 +35,26 @@ public class BatchModel {
         return true;
     }
 
-    public boolean batchSaveTemp(BatchDTO batchDTO, FreeDTO freeDTO, DosageDTO dosageDTO, int billId) throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
+    public void batchSaveTemp(BatchDTO batchDTO, int billId) throws SQLException {
 
-        try {
-            connection.setAutoCommit(false);
+        String query = "INSERT INTO batch (batch_id, batch_number, sell_price, cost_price, today_date, received_date, expired_date, qty, available_qty, item_code, bill_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            // Batch save
-            String query = "INSERT INTO batch (batch_id, batch_number, invoice_number, sell_price, cost_price, today_date, received_date, expired_date, qty, available_qty, status, company_name, item_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            boolean isBatchSave = CrudUtil.execute(
-                    query,
-                    batchDTO.getBatch_id(),
-                    batchDTO.getBatch_number(),
-                    batchDTO.getSell_price(),
-                    batchDTO.getCost_price(),
-                    batchDTO.getToday_Date(),
-                    batchDTO.getReceived_date(),
-                    batchDTO.getExpired_date(),
-                    batchDTO.getQty(),
-                    batchDTO.getAvailable_qty(),
-                    batchDTO.getStatus(),
-                    batchDTO.getCompany_name(),
-                    batchDTO.getItem_code(),
-                    billId
-            );
-
-            // Free Save
-            if (isBatchSave) {
-                boolean isFreeSave = freeModel.freeSaveTemp(freeDTO, dosageDTO);
-
-            } else {
-                throw new SQLException();
-            }
-
-            connection.commit();
-            return true;
-
-        } catch (Exception e) {
-            connection.rollback();
-            throw e;
-
-        } finally {
-            connection.setAutoCommit(true);
-
-        }
+        CrudUtil.execute(
+                query,
+                batchDTO.getBatch_id(),
+                batchDTO.getBatch_number(),
+                batchDTO.getSell_price(),
+                batchDTO.getCost_price(),
+                batchDTO.getToday_Date(),
+                batchDTO.getReceived_date(),
+                batchDTO.getExpired_date(),
+                batchDTO.getQty(),
+                batchDTO.getAvailable_qty(),
+                batchDTO.getItem_code(),
+                billId
+        );
     }
 
-    public int getBatch(int itemCode) throws SQLException {
-        Connection conn = DBConnection.getInstance().getConnection();
-        String query = "SELECT * FROM batch WHERE item_code = ?";
-        return 0;
-    }
 
     public ArrayList<BatchDTO> getBatchesByBillId(int billId) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
@@ -105,8 +75,6 @@ public class BatchModel {
                    rs.getString("received_date"),
                    rs.getInt("qty"),
                    rs.getInt("available_qty"),
-                   rs.getString("status"),
-                   rs.getString("company_name"),
                    rs.getInt("item_code"),
                     rs.getInt("bill_id")
             );
@@ -117,9 +85,14 @@ public class BatchModel {
 
     public void getAllTemporaryBills() throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
-        String query = "SELECT DISTINCT invoice_number FROM batch";
+        String query = "SELECT DISTINCT bill_id FROM batch";
         PreparedStatement ps = conn.prepareStatement(query);
         ResultSet rs = ps.executeQuery();
-        
+
+        ArrayList<BillDTO> BillDTOs = new ArrayList<>();
+        while (rs.next()) {
+            ArrayList<BatchDTO> batchDTOs = new ArrayList<>();
+
+        }
     }
 }

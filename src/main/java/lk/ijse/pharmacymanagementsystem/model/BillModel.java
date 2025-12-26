@@ -15,28 +15,34 @@ import java.sql.SQLException;
 public class BillModel {
 
     private final BatchModel batchModel = new BatchModel();
+    private final FreeModel freeModel = new FreeModel();
+    private final DosageModel dosageModel = new  DosageModel();
 
     public boolean saveBill(BatchDTO batchDTO, FreeDTO freeDTO, DosageDTO dosageDTO, BillDTO billDTO) throws SQLException {
+
         Connection conn = DBConnection.getInstance().getConnection();
 
         try {
             conn.setAutoCommit(false);
 
-            // Bill save
-            String query = "INSERT INTO bill (bill_id, invoice_number) VALUES (?, ?)";
-            boolean isBillSave = CrudUtil.execute(
-                    query,
+            // Bill
+            String billQuery = "INSERT INTO bill (bill_id, invoice_number, status, company_name) VALUES (?, ?, ?, ?)";
+            CrudUtil.execute(
+                    billQuery,
                     billDTO.getBill_id(),
-                    billDTO.getInvoice_number()
+                    billDTO.getInvoice_number(),
+                    billDTO.getStatus().name(),
+                    billDTO.getCompany_name()
             );
 
-            // Batch save
-            if (isBillSave) {
-                boolean isBatchSave = batchModel.batchSaveTemp(batchDTO, freeDTO, dosageDTO, billDTO.getBill_id());
+            // Batch
+            batchModel.batchSaveTemp(batchDTO, billDTO.getBill_id());
 
-            } else {
-                throw new  SQLException();
-            }
+            // Free
+            freeModel.freeSaveTemp(freeDTO);
+
+            // Dosage
+            dosageModel.dosageSaveTemp(dosageDTO);
 
             conn.commit();
             return true;
@@ -44,7 +50,6 @@ public class BillModel {
         } catch (Exception e) {
             conn.rollback();
             throw e;
-
         } finally {
             conn.setAutoCommit(true);
         }
@@ -52,7 +57,7 @@ public class BillModel {
 
     public int getBillIdByInvoice(String invoiceNumber) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
-        String query = "SELECT bill_id FROM batch WHERE invoice_number = ?";
+        String query = "SELECT bill_id FROM bill WHERE invoice_number = ?";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, invoiceNumber);
         ResultSet rs = ps.executeQuery();
