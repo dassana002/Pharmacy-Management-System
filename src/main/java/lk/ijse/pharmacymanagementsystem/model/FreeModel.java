@@ -14,9 +14,9 @@ public class FreeModel {
 
     private final DosageModel  dosageModel = new  DosageModel();
 
-    public void freeSaveTemp(FreeDTO freeDTO) throws SQLException {
+    public boolean freeSaveTemp(FreeDTO freeDTO) throws SQLException {
         String query = "INSERT INTO free (free_id, batch_id, qty, ava_qty) VALUES (?, ?, ?, ?)";
-        CrudUtil.execute(
+        return CrudUtil.execute(
                 query,
                 freeDTO.getFree_id(),
                 freeDTO.getBatch_id(),

@@ -28,11 +28,11 @@ public class BatchModel {
         return count;
     }
 
-    public void batchSaveTemp(BatchDTO batchDTO, int billId) throws SQLException {
+    public boolean batchSave(BatchDTO batchDTO, int billId) throws SQLException {
 
         String query = "INSERT INTO batch (batch_id, batch_number, sell_price, cost_price, expired_date, qty, available_qty, item_code, bill_id) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        CrudUtil.execute(
+        return CrudUtil.execute(
                 query,
                 batchDTO.getBatch_id(),
                 batchDTO.getBatch_number(),
@@ -70,18 +70,5 @@ public class BatchModel {
             batchDTOs.add(batchDTO);
         }
         return batchDTOs;
-    }
-
-    public void getAllTemporaryBills() throws SQLException {
-        Connection conn = DBConnection.getInstance().getConnection();
-        String query = "SELECT DISTINCT bill_id FROM batch";
-        PreparedStatement ps = conn.prepareStatement(query);
-        ResultSet rs = ps.executeQuery();
-
-        ArrayList<BillDTO> BillDTOs = new ArrayList<>();
-        while (rs.next()) {
-            ArrayList<BatchDTO> batchDTOs = new ArrayList<>();
-
-        }
     }
 }

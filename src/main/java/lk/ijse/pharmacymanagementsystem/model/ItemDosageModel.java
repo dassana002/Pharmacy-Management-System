@@ -45,7 +45,7 @@ public class ItemDosageModel {
             }
 
             // save item-dosage
-            boolean isItemDosageSaved = save(itemDosageDTO);
+            boolean isItemDosageSaved = itemDosageSave(itemDosageDTO);
 
             if (!isItemDosageSaved) {
                 con.rollback();
@@ -64,7 +64,7 @@ public class ItemDosageModel {
         }
     }
 
-    public boolean save(ItemDosageDTO itemDosageDTO) throws SQLException {
+    public boolean itemDosageSave(ItemDosageDTO itemDosageDTO) throws SQLException {
         String query = "INSERT INTO itemdosage (item_code, dosage_id) VALUES (?,?)";
         return CrudUtil.execute(
                 query,

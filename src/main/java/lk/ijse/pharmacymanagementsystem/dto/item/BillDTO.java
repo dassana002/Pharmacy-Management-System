@@ -15,6 +15,16 @@ public class BillDTO {
     public BillDTO() {
     }
 
+    public BillDTO(int bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date, ArrayList<BatchDTO> batchDtoList) {
+        this.bill_id = bill_id;
+        this.invoice_number = invoice_number;
+        this.status = status;
+        this.company_name = company_name;
+        this.today_date = today_date;
+        this.received_date = received_date;
+        BatchDtoList = batchDtoList;
+    }
+
     public BillDTO(int bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date) {
         this.bill_id = bill_id;
         this.invoice_number = invoice_number;

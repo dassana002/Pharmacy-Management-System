@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class BillModel {
 
@@ -35,13 +37,25 @@ public class BillModel {
             );
 
             // Batch
-            batchModel.batchSaveTemp(batchDTO, billDTO.getBill_id());
+            boolean isBatchSave = batchModel.batchSave(batchDTO, billDTO.getBill_id());
+            if (!isBatchSave) {
+                conn.rollback();
+                return false;
+            }
 
             // Free
-            freeModel.freeSaveTemp(freeDTO);
+            boolean isFreeSave = freeModel.freeSaveTemp(freeDTO);
+            if (!isFreeSave) {
+                conn.rollback();
+                return false;
+            }
 
             // Dosage
-            itemDosageModel.save(itemDosageDTO);
+            boolean isItemDosageSave = itemDosageModel.itemDosageSave(itemDosageDTO);
+            if (!isItemDosageSave) {
+                conn.rollback();
+                return false;
+            }
 
             conn.commit();
             return true;
@@ -67,5 +81,37 @@ public class BillModel {
              return id;
         }
         return id;
+    }
+
+    public BillDTO getBillById(int billId) throws SQLException {
+        String query = "SELECT * FROM bill WHERE bill_id = ?";
+        ResultSet rs = CrudUtil.execute(query, billId);
+
+        BillDTO billDTO = null;
+        ArrayList<BatchDTO> batchDTOS = batchModel.getBatchesByBillId(billId);
+
+        if (rs.next()) {
+            billDTO = new BillDTO(
+                    rs.getInt("bill_id"),
+                    rs.getString("invoice_number"),
+                    Status.valueOf(rs.getString("status")),
+                    rs.getString("company_name"),
+                    rs.getString("today_date"),
+                    rs.getString("received_date"),
+                    batchDTOS
+            );
+        }
+        return billDTO;
+    }
+
+    public String searchStatusById(int billId) throws SQLException {
+        String query = "SELECT status FROM bill WHERE bill_id = ?";
+        ResultSet rs =  CrudUtil.execute(query, billId);
+
+        String status = null;
+        if (rs.next()) {
+             status = rs.getString("status");
+        }
+        return status;
     }
 }

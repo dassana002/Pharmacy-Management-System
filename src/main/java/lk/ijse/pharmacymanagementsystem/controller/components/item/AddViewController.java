@@ -86,7 +86,7 @@ public class AddViewController implements Initializable {
     private HBox holdList_bar;
 
     @FXML
-    private TextField allTotal_btn;
+    private TextField allTotal_lbl;
 
     private final ItemModel itemModel = new ItemModel();
     private final DosageModel dosageModel = new DosageModel();
@@ -96,7 +96,6 @@ public class AddViewController implements Initializable {
     private final BillModel billModel = new BillModel();
     private final ItemDosageModel itemDosageModel = new ItemDosageModel();
     private final ObservableList<AddItemTM> itemTMList = FXCollections.observableArrayList();
-    private final ArrayList<BatchDTO> batchDTOList = new ArrayList<>();
 
     // Regex patterns
     private static final String INT_REGEX = "^[0-9]+$";
@@ -198,6 +197,9 @@ public class AddViewController implements Initializable {
 
     @FXML
     void findManyItems(KeyEvent event) {
+        cleanTable();
+        cleanText();
+        allTotal_lbl.clear();
         try {
             if (event.getCode() == KeyCode.ENTER) {
                 if (isValid(invoice_number_text, INVOICE_REGEX)) {
@@ -205,12 +207,26 @@ public class AddViewController implements Initializable {
 
                     if (billId == 0) {
                         new Alert(Alert.AlertType.WARNING, "Invoice Not Found", ButtonType.OK).show();
+                        return;
                     }
 
-                    ArrayList<BatchDTO> batchDTOS = batchModel.getBatchesByBillId(billId);
-                    batchDTOList.addAll(batchDTOS);
+                    // Check current status
+                    Status status = Status.valueOf(billModel.searchStatusById(billId));
 
-                    for (BatchDTO batchDTO : batchDTOS) {
+                    if (status != Status.DRAFF) {
+                        new Alert(Alert.AlertType.WARNING, "This Invoice is Already Closed", ButtonType.OK).show();
+                        return;
+                    }
+
+                    // get All Batches by Bill Id
+                    BillDTO billDTOs= billModel.getBillById(billId);
+
+                    todayDate_text.setValue(LocalDate.parse(billDTOs.getToday_date()));
+                    receivedDate_text.setValue(LocalDate.parse(billDTOs.getReceived_date()));
+                    companyName_cmb.setValue(billDTOs.getCompany_name());
+
+                    // batches set To table
+                    for (BatchDTO batchDTO : billDTOs.getBatchDtoList()) {
                         ItemDTO itemDTO = itemModel.getItem(batchDTO.getItem_code());
                         int AllQty = batchDTO.getQty() + freeModel.getFreeQtyById(batchDTO.getBatch_id());
                         double subTotal = batchDTO.getQty() * batchDTO.getCost_price();
@@ -225,11 +241,11 @@ public class AddViewController implements Initializable {
                         );
                         itemTMList.add(addItemTM);
                     }
+                    calcAllTotal();
                 }else {
                     fullCleanText();
                     cleanTable();
                     new Alert(Alert.AlertType.WARNING, "Invalid Character using", ButtonType.OK).show();
-                    throw new Exception();
                 }
                 loadItemTable();
             }
@@ -420,7 +436,7 @@ public class AddViewController implements Initializable {
         for (AddItemTM addItemTM : itemTMList) {
             total += addItemTM.getSubTotal();
         }
-        allTotal_btn.setText("Total: "+String.valueOf(total));
+        allTotal_lbl.setText("Total: "+String.valueOf(total));
     }
 
     private void cleanText() {
@@ -437,6 +453,21 @@ public class AddViewController implements Initializable {
 
     private void fullCleanText() {
         invoice_number_text.clear();
+        todayDate_text.getEditor().clear();
+        receivedDate_text.getEditor().clear();
+        companyName_cmb.getEditor().clear();
+        itemCode_text.clear();
+        des_text.clear();
+        dosage_cmb.getEditor().clear();
+        unitCost_txt.clear();
+        sellPrice_txt.clear();
+        qty_txt.clear();
+        freeQty_txt.clear();
+        batchNo_txt.clear();
+        expireDate_text.getEditor().clear();
+    }
+
+    private void halfCleanText() {
         todayDate_text.getEditor().clear();
         receivedDate_text.getEditor().clear();
         companyName_cmb.getEditor().clear();
