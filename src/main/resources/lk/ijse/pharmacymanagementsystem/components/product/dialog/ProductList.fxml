@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="mainContent" alignment="CENTER"
+           style="-fx-background-color: rgba(0,0,0,0.5);"
+           xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.product.dialog.ProductAddController">
+
+    <VBox fx:id="popupCard"
+          alignment="TOP_CENTER"
+          prefWidth="600"
+          prefHeight="500"
+          minWidth="400"
+          minHeight="400"
+          maxWidth="800"
+          maxHeight="700"
+          style="
+            -fx-background-color: white;
+            -fx-background-radius: 18;
+            -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 5);
+          ">
+
+        <padding>
+            <Insets top="25.0" bottom="25.0" left="20.0" right="20.0" />
+        </padding>
+
+        <children>
+            <!-- Title -->
+            <Label text="Select Product"
+                   style="-fx-text-fill: #333333; -fx-font-weight: bold;">
+                <font>
+                    <Font size="22.0" />
+                </font>
+                <VBox.margin>
+                    <Insets bottom="20.0" />
+                </VBox.margin>
+            </Label>
+
+            <!-- Search Section -->
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <VBox.margin>
+                    <Insets bottom="15.0" />
+                </VBox.margin>
+                <children>
+                    <Label text="Product:"
+                           style="-fx-text-fill: #333333;">
+                        <font>
+                            <Font size="16.0" />
+                        </font>
+                    </Label>
+
+                    <TextField fx:id="itemCode_txt"
+                               onKeyPressed="#handleFindItem"
+                               promptText="Enter Item Code or Name"
+                               prefHeight="40.0"
+                               HBox.hgrow="ALWAYS"
+                               style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-size: 14px;">
+                    </TextField>
+                </children>
+            </HBox>
+
+            <!-- Table -->
+            <TableView fx:id="itemTable"
+                       VBox.vgrow="ALWAYS"
+                       style="-fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8;">
+                <columns>
+                    <TableColumn fx:id="itemCode_col"
+                                 text="Item Code"
+                                 prefWidth="120"
+                                 minWidth="80"
+                                 style="-fx-alignment: CENTER;"/>
+                    <TableColumn fx:id="des_col"
+                                 text="Description"
+                                 prefWidth="300"
+                                 minWidth="150"
+                                 style="-fx-alignment: CENTER-LEFT;"/>
+                    <TableColumn fx:id="dosage_col"
+                                 text="Dosage"
+                                 prefWidth="120"
+                                 minWidth="80"
+                                 style="-fx-alignment: CENTER;"/>
+                </columns>
+            </TableView>
+
+        </children>
+    </VBox>
+
+</StackPane>
