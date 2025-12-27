@@ -15,8 +15,6 @@ import java.util.ArrayList;
 
 public class BatchModel {
 
-    private final FreeModel freeModel = new FreeModel();
-
     public int getBatchesCount(int itemCode) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
         PreparedStatement ps = conn.prepareStatement("SELECT * FROM batch WHERE item_code = ?");
@@ -30,14 +28,9 @@ public class BatchModel {
         return count;
     }
 
-    public boolean deleteBatch(int itemCode, int batchNumber) throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        return true;
-    }
-
     public void batchSaveTemp(BatchDTO batchDTO, int billId) throws SQLException {
 
-        String query = "INSERT INTO batch (batch_id, batch_number, sell_price, cost_price, today_date, received_date, expired_date, qty, available_qty, item_code, bill_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO batch (batch_id, batch_number, sell_price, cost_price, expired_date, qty, available_qty, item_code, bill_id) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         CrudUtil.execute(
                 query,
@@ -45,8 +38,6 @@ public class BatchModel {
                 batchDTO.getBatch_number(),
                 batchDTO.getSell_price(),
                 batchDTO.getCost_price(),
-                batchDTO.getToday_Date(),
-                batchDTO.getReceived_date(),
                 batchDTO.getExpired_date(),
                 batchDTO.getQty(),
                 batchDTO.getAvailable_qty(),
@@ -70,9 +61,7 @@ public class BatchModel {
                    rs.getInt("batch_number"),
                    rs.getDouble("sell_price"),
                    rs.getDouble("cost_price"),
-                   rs.getString("today_date"),
                    rs.getString("expired_date"),
-                   rs.getString("received_date"),
                    rs.getInt("qty"),
                    rs.getInt("available_qty"),
                    rs.getInt("item_code"),

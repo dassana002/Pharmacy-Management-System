@@ -1,15 +1,20 @@
 package lk.ijse.pharmacymanagementsystem.dto.item;
 
-public class Item_DosageDTO {
+public class ItemDosageDTO {
     private int itemDosage_id;
     private int itemCode;
     private int dosageId;
 
-    public Item_DosageDTO() {
+    public ItemDosageDTO() {
     }
 
-    public Item_DosageDTO(int itemDosage_id, int itemCode, int dosageId) {
+    public ItemDosageDTO(int itemDosage_id, int itemCode, int dosageId) {
         this.itemDosage_id = itemDosage_id;
+        this.itemCode = itemCode;
+        this.dosageId = dosageId;
+    }
+
+    public ItemDosageDTO(int itemCode, int dosageId) {
         this.itemCode = itemCode;
         this.dosageId = dosageId;
     }

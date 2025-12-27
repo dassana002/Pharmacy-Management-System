@@ -11,7 +11,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import lk.ijse.pharmacymanagementsystem.dto.item.DosageDTO;
 import lk.ijse.pharmacymanagementsystem.dto.item.ItemDTO;
+import lk.ijse.pharmacymanagementsystem.dto.item.ItemDosageDTO;
 import lk.ijse.pharmacymanagementsystem.model.DosageModel;
+import lk.ijse.pharmacymanagementsystem.model.ItemDosageModel;
 import lk.ijse.pharmacymanagementsystem.model.ItemModel;
 import lk.ijse.pharmacymanagementsystem.utility.References;
 
@@ -47,7 +49,7 @@ public class ItemAddController implements Initializable {
     // Dosage – numbers + optional unit
     private static final String DOSAGE_REGEX = "^[0-9]+(mg|ml|g)?$";
 
-
+    private final ItemDosageModel itemDosageModel = new ItemDosageModel();
     private final ItemModel itemModel = new ItemModel();
     private final DosageModel dosageModel = new DosageModel();
 
@@ -94,7 +96,7 @@ public class ItemAddController implements Initializable {
         }
     }
 
-    private boolean findItem(int itemCode) {
+    private boolean existItem(int itemCode) {
         try {
             ItemDTO dbItem = itemModel.getItem(itemCode);
             if (dbItem != null) {
@@ -110,6 +112,7 @@ public class ItemAddController implements Initializable {
     void handleFindItem(KeyEvent event) {
         des_text.clear();
         dosage_cmb.setItems(null);
+
         try {
             if (event.getCode() == KeyCode.ENTER) {
                 dosage_cmb.setVisible(true);
@@ -120,17 +123,23 @@ public class ItemAddController implements Initializable {
                 if (item.matches(ITEM_CODE_REGEX) || itemCode_text.getText() == null || "".equals(itemCode_text.getText())) {
                     int itemCode = Integer.parseInt(itemCode_text.getText());
 
-                    if (findItem(itemCode)) {
+                    // Check Exist Item
+                    if (existItem(itemCode)) {
                         ItemDTO dbItem = itemModel.getItem(itemCode);
                         des_text.setText(dbItem.getDescription());
 
-                        ArrayList<String> dosages = dosageModel.getDosageById(itemCode);
+                        // Get All Dosage Ids
+                        ArrayList<Integer> dosageIds = itemDosageModel.getItemDosagesByItemCode(itemCode);
 
-                        if (dosages == null) {
+                        // Get All Dosages
+                        ArrayList<String> sizes = dosageModel.getDosageIdsBySize(dosageIds);
+
+                        // check sizes
+                        if (sizes == null) {
                             dosage_cmb.setVisible(false);
                             dosageID.setVisible(false);
                         }else {
-                            ObservableList<String> observableList = FXCollections.observableArrayList(dosages);
+                            ObservableList<String> observableList = FXCollections.observableArrayList(sizes);
                             dosage_cmb.setItems(observableList);
                         }
                     }else {
@@ -152,7 +161,7 @@ public class ItemAddController implements Initializable {
             String desc = des_text.getText();
             String dosage = dosage_cmb.getValue();
 
-            if (!findItem(itemCode)) {
+            if (!existItem(itemCode)) {
                 ItemDTO itemDTO = new ItemDTO(
                         itemCode,
                         desc
@@ -168,15 +177,23 @@ public class ItemAddController implements Initializable {
                     new Alert(Alert.AlertType.ERROR, "Error while saving items", ButtonType.OK).show();
                     throw new RuntimeException();
                 }
+
             } else {
+
+                // New Dosage Add and Save
                 int dosage_id = UUID.randomUUID().hashCode();
+
                 DosageDTO dosageDTO = new DosageDTO(
                         dosage_id,
-                        dosage,
-                        itemCode
+                        dosage
                 );
 
-                boolean isDosageSave = dosageModel.dosageSaveTemp(dosageDTO);
+                ItemDosageDTO itemDosageDTO = new ItemDosageDTO(
+                        itemCode,
+                        dosage_id
+                );
+
+                boolean isDosageSave = itemDosageModel.newDosageSave(dosageDTO,itemDosageDTO);
                 if (isDosageSave) {
                     new Alert(Alert.AlertType.INFORMATION, "Item Saved successfully", ButtonType.OK).show();
 

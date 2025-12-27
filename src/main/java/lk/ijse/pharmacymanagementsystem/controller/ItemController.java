@@ -40,7 +40,8 @@ public class ItemController implements Initializable {
     }
 
     @FXML
-    void handleItemListDialog(ActionEvent event){
+    void handleItemListDialog(ActionEvent event) throws IOException {
+        showNewItemDialog("ItemList");
     }
 
     @FXML

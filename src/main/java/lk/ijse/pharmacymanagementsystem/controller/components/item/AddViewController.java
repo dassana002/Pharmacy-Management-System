@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import lk.ijse.pharmacymanagementsystem.model.*;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -93,6 +94,7 @@ public class AddViewController implements Initializable {
     private final BatchModel batchModel = new  BatchModel();
     private final FreeModel freeModel = new FreeModel();
     private final BillModel billModel = new BillModel();
+    private final ItemDosageModel itemDosageModel = new ItemDosageModel();
     private final ObservableList<AddItemTM> itemTMList = FXCollections.observableArrayList();
     private final ArrayList<BatchDTO> batchDTOList = new ArrayList<>();
 
@@ -197,9 +199,7 @@ public class AddViewController implements Initializable {
     @FXML
     void findManyItems(KeyEvent event) {
         try {
-
             if (event.getCode() == KeyCode.ENTER) {
-
                 if (isValid(invoice_number_text, INVOICE_REGEX)) {
                     int billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
 
@@ -267,10 +267,11 @@ public class AddViewController implements Initializable {
 
     private void loadComboDosages(int itemCode) {
         try {
-            ArrayList<String> dosages = dosageModel.getDosageById(itemCode);
+            ArrayList<Integer> dosageIds = itemDosageModel.getItemDosagesByItemCode(itemCode);
+            ArrayList<String> sizes = dosageModel.getDosageIdsBySize(dosageIds);
 
-            if (dosages != null) {
-                ObservableList<String> observableList = FXCollections.observableArrayList(dosages);
+            if (sizes != null) {
+                ObservableList<String> observableList = FXCollections.observableArrayList(sizes);
                 dosage_cmb.setItems(observableList);
             }else {
                 dosage_cmb.setItems(null);
@@ -302,7 +303,7 @@ public class AddViewController implements Initializable {
     }
 
     @FXML
-    void handleAddToCart(ActionEvent event) {
+    void handleAddToCart(ActionEvent event) throws SQLException {
 
         //  Validation
         if (!isValid(batchNo_txt, INT_REGEX) ||
@@ -354,7 +355,6 @@ public class AddViewController implements Initializable {
         // UUID generate
         int batchID = UUID.randomUUID().hashCode();
         int freeID = UUID.randomUUID().hashCode();
-        int dosageID = UUID.randomUUID().hashCode();
         int billId = UUID.randomUUID().hashCode();
 
         BatchDTO batchDTO = new BatchDTO(
@@ -362,11 +362,9 @@ public class AddViewController implements Initializable {
                 batchNo,
                 sell_price,
                 unit_cost,
-                todayDate,
                 expireDate,
-                receivedDate,
                 qty,
-                AllQty,
+                qty,
                 itemCode,
                 billId
         );
@@ -375,19 +373,26 @@ public class AddViewController implements Initializable {
                 billId,
                 invoice,
                 status,
-                companyName
+                companyName,
+                todayDate,
+                receivedDate
         );
 
         FreeDTO freeDTO = new FreeDTO(
                 freeID, batchID, free_qty, free_qty
         );
 
-        DosageDTO dosageDTO = new DosageDTO(
-                dosageID, dosage, itemCode
+        // Find dosage Id
+        int dosageId = dosageModel.findSizeById(dosage);
+
+        ItemDosageDTO itemDosageDTO = new  ItemDosageDTO(
+            itemCode,
+            dosageId
         );
 
         try {
-            boolean isSave = billModel.saveBill(batchDTO, freeDTO, dosageDTO, billDTO);
+            // save Bill
+            boolean isSave = billModel.saveBill(batchDTO, freeDTO, itemDosageDTO, billDTO);
 
             if (isSave) {
                 System.out.println("Items saved successfully");

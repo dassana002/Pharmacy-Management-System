@@ -12,36 +12,37 @@ import java.util.ArrayList;
 
 public class DosageModel {
 
-    public ArrayList<String> getDosageById(int itemCode) throws SQLException {
+    public ArrayList<String> getDosageIdsBySize(ArrayList<Integer> dosageIds) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
-        PreparedStatement ps = conn.prepareStatement("SELECT DISTINCT size FROM dosage WHERE itemCode = ?");
-        ps.setInt(1, itemCode);
-        ResultSet rs = ps.executeQuery();
+        PreparedStatement ps = conn.prepareStatement("SELECT size FROM dosage WHERE dosage_id = ?");
 
         ArrayList<String> dosages = new ArrayList<>();
-        while (rs.next()) {
-            dosages.add(rs.getString("size"));
+
+        for (int dosageId : dosageIds) {
+            ps.setInt(1, dosageId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                dosages.add(rs.getString("size"));
+            }
         }
         return dosages;
     }
 
-    public boolean dosageSaveTemp(DosageDTO dosageDTO) throws SQLException {
-        ResultSet resultSet = null;
-        if (!isDosageExists(dosageDTO.getSize(), dosageDTO.getItemCode())) {
-            String query = "INSERT INTO dosage (dosage_id, size, itemCode) VALUES (?, ?, ?)";
-            resultSet = CrudUtil.execute(
-                    query,
-                    dosageDTO.getDosage_id(),
-                    dosageDTO.getSize(),
-                    dosageDTO.getItemCode()
-            );
-        }
-        return resultSet != null;
+    public boolean save(DosageDTO dosageDTO) throws SQLException {
+        String query = "INSERT INTO dosage VALUES (?,?)";
+        return CrudUtil.execute(query,dosageDTO.getDosage_id(), dosageDTO.getSize());
     }
 
-    public boolean isDosageExists(String size, int itemCode) throws SQLException {
-        String sql = "SELECT 1 FROM dosage WHERE size = ? AND itemCode = ?";
-        ResultSet rs = CrudUtil.execute(sql, size, itemCode);
-        return rs.next();
+    public int findSizeById(String dosage) throws SQLException {
+        String query = "SELECT dosage_id FROM dosage WHERE size = ?";
+        ResultSet rs = CrudUtil.execute(query, dosage);
+
+        if (rs.next()) {
+            return rs.getInt("dosage_id");
+        } else {
+            throw new SQLException("Dosage not found for size: " + dosage);
+        }
     }
+
 }

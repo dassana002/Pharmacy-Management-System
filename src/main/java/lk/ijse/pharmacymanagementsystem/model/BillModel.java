@@ -1,10 +1,7 @@
 package lk.ijse.pharmacymanagementsystem.model;
 
 import lk.ijse.pharmacymanagementsystem.dbConnection.DBConnection;
-import lk.ijse.pharmacymanagementsystem.dto.item.BatchDTO;
-import lk.ijse.pharmacymanagementsystem.dto.item.BillDTO;
-import lk.ijse.pharmacymanagementsystem.dto.item.DosageDTO;
-import lk.ijse.pharmacymanagementsystem.dto.item.FreeDTO;
+import lk.ijse.pharmacymanagementsystem.dto.item.*;
 import lk.ijse.pharmacymanagementsystem.utility.CrudUtil;
 
 import java.sql.Connection;
@@ -16,9 +13,9 @@ public class BillModel {
 
     private final BatchModel batchModel = new BatchModel();
     private final FreeModel freeModel = new FreeModel();
-    private final DosageModel dosageModel = new  DosageModel();
+    private final ItemDosageModel itemDosageModel = new ItemDosageModel();
 
-    public boolean saveBill(BatchDTO batchDTO, FreeDTO freeDTO, DosageDTO dosageDTO, BillDTO billDTO) throws SQLException {
+    public boolean saveBill(BatchDTO batchDTO, FreeDTO freeDTO, ItemDosageDTO itemDosageDTO, BillDTO billDTO) throws SQLException {
 
         Connection conn = DBConnection.getInstance().getConnection();
 
@@ -26,13 +23,15 @@ public class BillModel {
             conn.setAutoCommit(false);
 
             // Bill
-            String billQuery = "INSERT INTO bill (bill_id, invoice_number, status, company_name) VALUES (?, ?, ?, ?)";
+            String billQuery = "INSERT INTO bill (bill_id, invoice_number, status, company_name, today_date, received_date) VALUES (?, ?, ?, ?,?,?)";
             CrudUtil.execute(
                     billQuery,
                     billDTO.getBill_id(),
                     billDTO.getInvoice_number(),
                     billDTO.getStatus().name(),
-                    billDTO.getCompany_name()
+                    billDTO.getCompany_name(),
+                    billDTO.getToday_date(),
+                    billDTO.getReceived_date()
             );
 
             // Batch
@@ -42,7 +41,7 @@ public class BillModel {
             freeModel.freeSaveTemp(freeDTO);
 
             // Dosage
-            dosageModel.dosageSaveTemp(dosageDTO);
+            itemDosageModel.save(itemDosageDTO);
 
             conn.commit();
             return true;

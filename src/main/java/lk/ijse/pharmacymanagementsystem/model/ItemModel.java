@@ -48,10 +48,14 @@ public class ItemModel {
                 int dosage_id = UUID.randomUUID().hashCode();
                 DosageDTO dosageDTO = new DosageDTO(
                         dosage_id,
-                        dosage,
-                        itemDTO.getItem_code()
+                        dosage
                 );
-                boolean isDosageSave = dosageModel.dosageSaveTemp(dosageDTO);
+                boolean isDosageSave = dosageModel.save(dosageDTO);
+
+                if (!isDosageSave) {
+                    conn.rollback();
+                    throw new SQLException();
+                }
 
             }else {
                 throw new SQLException();
