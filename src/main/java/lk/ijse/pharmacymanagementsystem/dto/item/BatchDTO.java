@@ -1,13 +1,13 @@
 package lk.ijse.pharmacymanagementsystem.dto.item;
 
+import java.util.Date;
+
 public class BatchDTO {
     private int batch_id;
     private int batch_number;
     private double sell_price;
     private double cost_price;
-    private String today_Date;
     private String expired_date;
-    private String received_date;
     private int qty;
     private int available_qty;
     private int item_code;
@@ -16,14 +16,12 @@ public class BatchDTO {
     public BatchDTO() {
     }
 
-    public BatchDTO(int batch_id, int batch_number, double sell_price, double cost_price, String today_Date, String expired_date, String received_date, int qty, int available_qty, int item_code, int bill_id) {
+    public BatchDTO(int batch_id, int batch_number, double sell_price, double cost_price, String expired_date, int qty, int available_qty, int item_code, int bill_id) {
         this.batch_id = batch_id;
         this.batch_number = batch_number;
         this.sell_price = sell_price;
         this.cost_price = cost_price;
-        this.today_Date = today_Date;
         this.expired_date = expired_date;
-        this.received_date = received_date;
         this.qty = qty;
         this.available_qty = available_qty;
         this.item_code = item_code;
@@ -62,28 +60,12 @@ public class BatchDTO {
         this.cost_price = cost_price;
     }
 
-    public String getToday_Date() {
-        return today_Date;
-    }
-
-    public void setToday_Date(String today_Date) {
-        this.today_Date = today_Date;
-    }
-
     public String getExpired_date() {
         return expired_date;
     }
 
     public void setExpired_date(String expired_date) {
         this.expired_date = expired_date;
-    }
-
-    public String getReceived_date() {
-        return received_date;
-    }
-
-    public void setReceived_date(String received_date) {
-        this.received_date = received_date;
     }
 
     public int getQty() {
@@ -125,9 +107,7 @@ public class BatchDTO {
                 ", batch_number=" + batch_number +
                 ", sell_price=" + sell_price +
                 ", cost_price=" + cost_price +
-                ", today_Date='" + today_Date + '\'' +
-                ", expired_date='" + expired_date + '\'' +
-                ", received_date='" + received_date + '\'' +
+                ", expired_date=" + expired_date +
                 ", qty=" + qty +
                 ", available_qty=" + available_qty +
                 ", item_code=" + item_code +
