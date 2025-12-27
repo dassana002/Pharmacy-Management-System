@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.controller.components.item;
+package lk.ijse.pharmacymanagementsystem.controller.components.product.dialog;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
-public class ItemAddController implements Initializable {
+public class ProductAddController implements Initializable {
 
     @FXML
     private TextField des_text;
@@ -91,8 +91,8 @@ public class ItemAddController implements Initializable {
     @FXML
     void handleClose(ActionEvent event) {
         // Close the dialog through ItemController
-        if (References.itemController != null) {
-            References.itemController.closeItemAddDialog();
+        if (References.productController != null) {
+            References.productController.closeItemAddDialog();
         }
     }
 

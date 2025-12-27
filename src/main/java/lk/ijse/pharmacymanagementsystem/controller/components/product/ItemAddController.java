@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.controller.components.item;
+package lk.ijse.pharmacymanagementsystem.controller.components.product;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import lk.ijse.pharmacymanagementsystem.dto.item.*;
 
@@ -20,7 +19,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
-public class AddViewController implements Initializable {
+public class ItemAddController implements Initializable {
 
     @FXML
     private DatePicker expireDate_text;
@@ -145,7 +144,11 @@ public class AddViewController implements Initializable {
             edit.setOnAction(event -> {
                 AddItemTM selectedItem = row.getItem();
                 System.out.println("Edit : " + selectedItem.getDescription());
-                editItem(selectedItem.getItemId());
+                try {
+                    editItem(selectedItem.getItemId());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             });
 
             delete.setOnAction(event -> {
@@ -173,8 +176,15 @@ public class AddViewController implements Initializable {
     }
 
 
-    private void editItem(int itemCode) {
+    private void editItem(int itemCode) throws SQLException {
+        try {
+            BatchDTO batchDTO = batchModel.getBatch(itemCode);
+            if (batchDTO != null) {
 
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void deleteItem(int itemCode) {

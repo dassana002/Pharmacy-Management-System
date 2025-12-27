@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lk.ijse.pharmacymanagementsystem.Launcher;
@@ -14,14 +13,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ItemController implements Initializable {
+public class ProductController implements Initializable {
 
     @FXML
     private AnchorPane ItemMain_Content;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        References.itemController = this;
+        References.productController = this;
         try {
             loadMainUI();
         } catch (IOException e) {
@@ -30,7 +29,7 @@ public class ItemController implements Initializable {
     }
 
     private void loadMainUI() throws IOException {
-        Parent mainUI = Launcher.loadFXML("components/Item/AddView");
+        Parent mainUI = Launcher.loadFXML("components/product/ItemAdd");
         ItemMain_Content.getChildren().setAll(mainUI);
     }
 
@@ -41,18 +40,18 @@ public class ItemController implements Initializable {
 
     @FXML
     void handleItemListDialog(ActionEvent event) throws IOException {
-        showNewItemDialog("ItemList");
+        showNewItemDialog("ProductList");
     }
 
     @FXML
     void handleItemsAddToInvetory(ActionEvent event) throws IOException{
-        Parent addItemUI = Launcher.loadFXML("components/Item/AddView");
+        Parent addItemUI = Launcher.loadFXML("components/product/ItemAdd");
         ItemMain_Content.getChildren().setAll(addItemUI);
     }
 
     @FXML
     void handleNewItemAdd(ActionEvent event) throws IOException {
-        showNewItemDialog("ItemAdd");
+        showNewItemDialog("ProductAdd");
     }
 
     @FXML
@@ -67,7 +66,7 @@ public class ItemController implements Initializable {
 
     private void showNewItemDialog(String root) throws IOException {
         // Load the dialog FXML
-        Parent dialogContent = Launcher.loadFXML("components/Item/"+root);
+        Parent dialogContent = Launcher.loadFXML("components/product/dialog/"+root);
 
         // Create StackPane overlay on current content
         StackPane overlay = new StackPane();

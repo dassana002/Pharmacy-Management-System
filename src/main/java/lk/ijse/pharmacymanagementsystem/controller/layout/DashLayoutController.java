@@ -49,7 +49,7 @@ public class DashLayoutController implements Initializable {
 
     // Load Item Page
     public void loadItemPage() throws IOException{
-        Parent medicinePage = Launcher.loadFXML("pages/ItemPage");
+        Parent medicinePage = Launcher.loadFXML("pages/ProductPage");
         mainContent.getChildren().setAll(medicinePage);
     }
 

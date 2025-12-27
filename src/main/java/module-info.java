@@ -13,8 +13,8 @@ module lk.ijse.pharmacymanagementsystem {
     exports lk.ijse.pharmacymanagementsystem.controller;
     opens lk.ijse.pharmacymanagementsystem.controller to javafx.fxml;
 
-    exports lk.ijse.pharmacymanagementsystem.controller.components.item;
-    opens lk.ijse.pharmacymanagementsystem.controller.components.item to javafx.fxml;
+    exports lk.ijse.pharmacymanagementsystem.controller.components.product;
+    opens lk.ijse.pharmacymanagementsystem.controller.components.product to javafx.fxml;
 
     exports lk.ijse.pharmacymanagementsystem.controller.layout;
     opens lk.ijse.pharmacymanagementsystem.controller.layout to javafx.fxml;
@@ -25,4 +25,6 @@ module lk.ijse.pharmacymanagementsystem {
     opens lk.ijse.pharmacymanagementsystem.dto.employee to java.base;
     exports lk.ijse.pharmacymanagementsystem.controller.components.employee;
     opens lk.ijse.pharmacymanagementsystem.controller.components.employee to javafx.fxml;
+    exports lk.ijse.pharmacymanagementsystem.controller.components.product.dialog;
+    opens lk.ijse.pharmacymanagementsystem.controller.components.product.dialog to javafx.fxml;
 }

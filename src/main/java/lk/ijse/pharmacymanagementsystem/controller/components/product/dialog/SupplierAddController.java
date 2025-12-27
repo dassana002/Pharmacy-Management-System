@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.controller.components.item;
+package lk.ijse.pharmacymanagementsystem.controller.components.product.dialog;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -77,8 +77,8 @@ public class SupplierAddController implements Initializable {
     @FXML
     void handleClose(ActionEvent event) {
         // Close the dialog through ItemController
-        if (References.itemController != null) {
-            References.itemController.closeSupplierAddDialog();
+        if (References.productController != null) {
+            References.productController.closeSupplierAddDialog();
         }
     }
 
