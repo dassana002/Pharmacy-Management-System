@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.product.ItemAddController">
+<AnchorPane prefHeight="832.0" prefWidth="1057.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.product.ItemAddController">
 
     <SplitPane dividerPositions="0.3389450056116723" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -163,10 +163,11 @@
                         <columns>
                             <TableColumn fx:id="colItemId" minWidth="40.0" prefWidth="58.0" text="Id" />
                             <TableColumn fx:id="colDesc" minWidth="114.0" prefWidth="127.0" text="description" />
-                            <TableColumn fx:id="colCost" minWidth="80" prefWidth="115.0" text="unitCost" />
-                            <TableColumn fx:id="colSellPrice" minWidth="80" prefWidth="97.0" text="sellPrice" />
-                            <TableColumn fx:id="colQty" minWidth="50.0" prefWidth="63.0" text="qty" />
-                            <TableColumn fx:id="colSubTotal" minWidth="93.0" prefWidth="112.0" text="subTotal" />
+                            <TableColumn fx:id="colDosage" minWidth="80" prefWidth="115.0" text="dosage" />
+                            <TableColumn fx:id="colUnitCost" minWidth="80" prefWidth="97.0" text="unitCost" />
+                            <TableColumn fx:id="colSellPrice" minWidth="50.0" prefWidth="107.0" text="sellPrice" />
+                            <TableColumn fx:id="ColQty" minWidth="68.0" prefWidth="68.0" text="qty" />
+                     <TableColumn fx:id="colSubTotal" minWidth="93.0" prefWidth="112.0" text="subTotal" />
                         </columns>
                     </TableView>
 
