@@ -1,4 +1,4 @@
-package lk.ijse.pharmacymanagementsystem.model;
+package lk.ijse.pharmacymanagementsystem.dto.item;
 
 public class BatchDosageDTO {
     private int batch_id;
