@@ -5,15 +5,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import lk.ijse.pharmacymanagementsystem.Launcher;
 import lk.ijse.pharmacymanagementsystem.dto.item.*;
 
 import javafx.scene.input.KeyEvent;
 import lk.ijse.pharmacymanagementsystem.model.*;
+import lk.ijse.pharmacymanagementsystem.utility.References;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -31,7 +37,10 @@ public class ItemAddController implements Initializable {
     private TextField batchNo_txt;
 
     @FXML
-    private TableColumn<AddItemTM, Double> colCost;
+    private TableColumn<AddItemTM, Double> colUnitCost;
+
+    @FXML
+    private TableColumn<AddItemTM, String> colDosage;
 
     @FXML
     private TableColumn<AddItemTM, String> colDesc;
@@ -107,7 +116,8 @@ public class ItemAddController implements Initializable {
 
         colItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
-        colCost.setCellValueFactory(new PropertyValueFactory<>("unitCost"));
+        colDosage.setCellValueFactory(new PropertyValueFactory<>("dosage"));
+        colUnitCost.setCellValueFactory(new PropertyValueFactory<>("unitCost"));
         colSellPrice.setCellValueFactory(new PropertyValueFactory<>("sellPrice"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
         colSubTotal.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
@@ -131,7 +141,7 @@ public class ItemAddController implements Initializable {
         moveToNextOnEnter(freeQty_txt, batchNo_txt);
         moveToNextOnEnter(batchNo_txt, expireDate_text);
 
-        // Table Row Edit / Delete ContextMenu
+        // Table Row Edit ContextMenu
         itemAddView_tbl.setRowFactory(tv -> {
 
             TableRow<AddItemTM> row = new TableRow<>();
@@ -139,25 +149,18 @@ public class ItemAddController implements Initializable {
             ContextMenu contextMenu = new ContextMenu();
 
             MenuItem edit = new MenuItem("Edit");
-            MenuItem delete = new MenuItem("Delete");
 
             edit.setOnAction(event -> {
                 AddItemTM selectedItem = row.getItem();
                 System.out.println("Edit : " + selectedItem.getDescription());
                 try {
-                    editItem(selectedItem.getItemId());
-                } catch (SQLException e) {
+                    editItem(selectedItem.getItemId(), String.valueOf(invoice_number_text));
+                } catch (SQLException | IOException e) {
                     throw new RuntimeException(e);
                 }
             });
 
-            delete.setOnAction(event -> {
-                AddItemTM selectedItem = row.getItem();
-                System.out.println("Delete : " + selectedItem);
-                deleteItem(selectedItem.getItemId());
-            });
-
-            contextMenu.getItems().addAll(edit, delete);
+            contextMenu.getItems().addAll(edit);
 
             // Row empty
             row.contextMenuProperty().bind(
@@ -176,15 +179,9 @@ public class ItemAddController implements Initializable {
     }
 
 
-    private void editItem(int itemCode) throws SQLException {
-        try {
-            BatchDTO batchDTO = batchModel.getBatch(itemCode);
-            if (batchDTO != null) {
-
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    private void editItem(int itemCode, String invoice) throws SQLException, IOException {
+        References.productController.editItemDialog();
+        References.itemEditController.setItemCode(itemCode, invoice);
     }
 
     private void deleteItem(int itemCode) {
@@ -228,7 +225,7 @@ public class ItemAddController implements Initializable {
                         return;
                     }
 
-                    // get All Batches by Bill Id
+                    // get All Batches by BillId
                     BillDTO billDTOs= billModel.getBillById(billId);
 
                     todayDate_text.setValue(LocalDate.parse(billDTOs.getToday_date()));
@@ -238,12 +235,15 @@ public class ItemAddController implements Initializable {
                     // batches set To table
                     for (BatchDTO batchDTO : billDTOs.getBatchDtoList()) {
                         ItemDTO itemDTO = itemModel.getItem(batchDTO.getItem_code());
+                        ItemDosageDTO itemDosageDTO = itemDosageModel.getDosageIdByBatchId();
+                        DosageDTO dosageDTO =
                         int AllQty = batchDTO.getQty() + freeModel.getFreeQtyById(batchDTO.getBatch_id());
                         double subTotal = batchDTO.getQty() * batchDTO.getCost_price();
 
                         AddItemTM addItemTM = new AddItemTM(
                                 batchDTO.getItem_code(),
                                 itemDTO.getDescription(),
+
                                 batchDTO.getCost_price(),
                                 batchDTO.getSell_price(),
                                 AllQty,

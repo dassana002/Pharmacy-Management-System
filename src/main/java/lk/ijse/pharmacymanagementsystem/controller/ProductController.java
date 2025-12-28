@@ -28,6 +28,10 @@ public class ProductController implements Initializable {
         }
     }
 
+    public void editItemDialog() throws IOException {
+        showNewItemDialog("ItemEdit");
+    }
+
     private void loadMainUI() throws IOException {
         Parent mainUI = Launcher.loadFXML("components/product/ItemAdd");
         ItemMain_Content.getChildren().setAll(mainUI);

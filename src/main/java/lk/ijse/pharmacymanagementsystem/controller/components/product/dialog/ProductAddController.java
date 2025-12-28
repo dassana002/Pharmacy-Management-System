@@ -11,9 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import lk.ijse.pharmacymanagementsystem.dto.item.DosageDTO;
 import lk.ijse.pharmacymanagementsystem.dto.item.ItemDTO;
-import lk.ijse.pharmacymanagementsystem.dto.item.ItemDosageDTO;
 import lk.ijse.pharmacymanagementsystem.model.DosageModel;
-import lk.ijse.pharmacymanagementsystem.model.ItemDosageModel;
 import lk.ijse.pharmacymanagementsystem.model.ItemModel;
 import lk.ijse.pharmacymanagementsystem.utility.References;
 
