@@ -23,16 +23,10 @@ import java.util.ResourceBundle;
 public class ItemEditController implements Initializable {
 
     @FXML
-    private TextField batchNo_txt;
-
-    @FXML
     private Button close_btn;
 
     @FXML
     private TextField des_text;
-
-    @FXML
-    private ComboBox<?> dosage_cmb;
 
     @FXML
     private DatePicker expireDate_text;

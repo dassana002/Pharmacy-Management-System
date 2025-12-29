@@ -173,10 +173,6 @@ public class ItemAddController implements Initializable {
         References.itemEditController.setItemCode(itemCode, invoice);
     }
 
-    private void deleteItem(int itemCode) {
-
-    }
-
     private void setHoldList_bar() {
         try {
             ArrayList<BillDTO> billDTOS = billModel.getAllBills();
