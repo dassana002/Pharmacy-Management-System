@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -86,17 +85,11 @@
                         </Label>
                         <TextField fx:id="freeQty_txt" maxWidth="Infinity" prefHeight="40.0" promptText="0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-                        <!-- Batch No -->
-                        <Label style="-fx-text-fill: #333333;" text="Batch No" GridPane.columnIndex="0" GridPane.rowIndex="7">
-                            <font><Font size="15.0" /></font>
-                        </Label>
-                        <TextField fx:id="batchNo_txt" maxWidth="Infinity" prefHeight="40.0" promptText="Enter batch number" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-
                         <!-- Expire Date -->
-                        <Label style="-fx-text-fill: #333333;" text="Expire Date" GridPane.columnIndex="0" GridPane.rowIndex="8">
+                        <Label style="-fx-text-fill: #333333;" text="Expire Date" GridPane.columnIndex="0" GridPane.rowIndex="7">
                             <font><Font size="15.0" /></font>
                         </Label>
-                        <DatePicker fx:id="expireDate_text" maxWidth="Infinity" prefHeight="40.0" promptText="Select expire date" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <DatePicker fx:id="expireDate_text" maxWidth="Infinity" prefHeight="40.0" promptText="Select expire date" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <rowConstraints>
                      <RowConstraints />
                      <RowConstraints />

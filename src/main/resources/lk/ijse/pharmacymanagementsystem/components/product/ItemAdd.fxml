@@ -77,46 +77,40 @@
                                 <TextField fx:id="des_text" maxWidth="Infinity" prefHeight="100.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
                                 <!-- Unit Cost -->
-                                <Label text="Unit Cost" GridPane.columnIndex="0" GridPane.rowIndex="7">
+                                <Label text="Unit Cost" GridPane.columnIndex="0" GridPane.rowIndex="6">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField fx:id="unitCost_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <TextField fx:id="unitCost_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
                                 <!-- Sell Price -->
-                                <Label text="Sell Price" GridPane.columnIndex="0" GridPane.rowIndex="8">
+                                <Label text="Sell Price" GridPane.columnIndex="0" GridPane.rowIndex="7">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField fx:id="sellPrice_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                <TextField fx:id="sellPrice_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
                                 <!-- Qty -->
-                                <Label text="Qty" GridPane.columnIndex="0" GridPane.rowIndex="9">
+                                <Label text="Qty" GridPane.columnIndex="0" GridPane.rowIndex="8">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField fx:id="qty_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-
-<!--                                &lt;!&ndash; Available Qty &ndash;&gt;-->
-<!--                                <Label text="Available Qty" GridPane.columnIndex="0" GridPane.rowIndex="10">-->
-<!--                                    <font><Font size="16.0" /></font>-->
-<!--                                </Label>-->
-<!--                                <TextField fx:id="availableQty_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="10" />-->
+                                <TextField fx:id="qty_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
                                 <!-- Free Qty -->
-                                <Label text="Free Qty" GridPane.columnIndex="0" GridPane.rowIndex="10">
+                                <Label text="Free Qty" GridPane.columnIndex="0" GridPane.rowIndex="9">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField fx:id="freeQty_txt" maxWidth="Infinity" prefHeight="40.0" promptText="0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                <TextField fx:id="freeQty_txt" maxWidth="Infinity" prefHeight="40.0" promptText="0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
 
                                 <!-- Batch No -->
-                                <Label text="Batch No" GridPane.columnIndex="0" GridPane.rowIndex="11">
+                                <Label text="Batch No" GridPane.columnIndex="0" GridPane.rowIndex="10">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField fx:id="batchNo_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                <TextField fx:id="batchNo_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
 
                                 <!-- Expire Date -->
-                                <Label text="Expire Date" GridPane.columnIndex="0" GridPane.rowIndex="12">
+                                <Label text="Expire Date" GridPane.columnIndex="0" GridPane.rowIndex="11">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <DatePicker fx:id="expireDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                <DatePicker fx:id="expireDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                         <rowConstraints>
                            <RowConstraints />
                            <RowConstraints />
