@@ -9,15 +9,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class BillModel {
 
     private final BatchModel batchModel = new BatchModel();
     private final FreeModel freeModel = new FreeModel();
-    private final ItemDosageModel itemDosageModel = new ItemDosageModel();
 
-    public boolean saveBill(BatchDTO batchDTO, FreeDTO freeDTO, ItemDosageDTO itemDosageDTO, BillDTO billDTO) throws SQLException {
+    public boolean saveBill(BatchDTO batchDTO, FreeDTO freeDTO, BillDTO billDTO) throws SQLException {
 
         Connection conn = DBConnection.getInstance().getConnection();
 
@@ -36,23 +34,16 @@ public class BillModel {
                     billDTO.getReceived_date()
             );
 
-            // Batch
+            // Batch save
             boolean isBatchSave = batchModel.batchSave(batchDTO, billDTO.getBill_id());
             if (!isBatchSave) {
                 conn.rollback();
                 return false;
             }
 
-            // Free
+            // Free save
             boolean isFreeSave = freeModel.freeSaveTemp(freeDTO);
             if (!isFreeSave) {
-                conn.rollback();
-                return false;
-            }
-
-            // Dosage
-            boolean isItemDosageSave = itemDosageModel.itemDosageSave(itemDosageDTO);
-            if (!isItemDosageSave) {
                 conn.rollback();
                 return false;
             }

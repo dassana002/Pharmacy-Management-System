@@ -5,14 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import lk.ijse.pharmacymanagementsystem.Launcher;
 import lk.ijse.pharmacymanagementsystem.dto.item.*;
 
 import javafx.scene.input.KeyEvent;
@@ -64,9 +60,6 @@ public class ItemAddController implements Initializable {
     private TextField des_text;
 
     @FXML
-    private ComboBox<String> dosage_cmb;
-
-    @FXML
     private TextField freeQty_txt;
 
     @FXML
@@ -97,14 +90,12 @@ public class ItemAddController implements Initializable {
     private TextField allTotal_lbl;
 
     private final ItemModel itemModel = new ItemModel();
-    private final DosageModel dosageModel = new DosageModel();
     private final SupplierModel supplierModel = new SupplierModel();
     private final BatchModel batchModel = new  BatchModel();
     private final FreeModel freeModel = new FreeModel();
     private final BillModel billModel = new BillModel();
-    private final ItemDosageModel itemDosageModel = new ItemDosageModel();
     private final ObservableList<AddItemTM> itemTMList = FXCollections.observableArrayList();
-
+    private final ObservableList<String> sizesList = FXCollections.observableArrayList();
     // Regex patterns
     private static final String INT_REGEX = "^[0-9]+$";
     private static final String DOUBLE_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
@@ -116,7 +107,6 @@ public class ItemAddController implements Initializable {
 
         colItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
-        colDosage.setCellValueFactory(new PropertyValueFactory<>("dosage"));
         colUnitCost.setCellValueFactory(new PropertyValueFactory<>("unitCost"));
         colSellPrice.setCellValueFactory(new PropertyValueFactory<>("sellPrice"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
@@ -134,7 +124,6 @@ public class ItemAddController implements Initializable {
         moveToNextOnEnter(receivedDate_text, companyName_cmb);
         moveToNextOnEnter(companyName_cmb, itemCode_text);
 //        moveToNextOnEnter(itemCode_text, dosage_cmb);
-        moveToNextOnEnter(dosage_cmb, unitCost_txt);
         moveToNextOnEnter(unitCost_txt, sellPrice_txt);
         moveToNextOnEnter(sellPrice_txt, qty_txt);
         moveToNextOnEnter(qty_txt, freeQty_txt);
@@ -205,8 +194,9 @@ public class ItemAddController implements Initializable {
     @FXML
     void findManyItems(KeyEvent event) {
         cleanTable();
-        cleanText();
+        halfCleanText();
         allTotal_lbl.clear();
+        todayDate_text.setValue(LocalDate.now());
         try {
             if (event.getCode() == KeyCode.ENTER) {
                 if (isValid(invoice_number_text, INVOICE_REGEX)) {
@@ -234,16 +224,16 @@ public class ItemAddController implements Initializable {
 
                     // batches set To table
                     for (BatchDTO batchDTO : billDTOs.getBatchDtoList()) {
+                        // getItem
                         ItemDTO itemDTO = itemModel.getItem(batchDTO.getItem_code());
-                        ItemDosageDTO itemDosageDTO = itemDosageModel.getDosageIdByBatchId();
-                        DosageDTO dosageDTO =
+                        // calculate AllQty
                         int AllQty = batchDTO.getQty() + freeModel.getFreeQtyById(batchDTO.getBatch_id());
+                        // calculate sub Total
                         double subTotal = batchDTO.getQty() * batchDTO.getCost_price();
 
                         AddItemTM addItemTM = new AddItemTM(
                                 batchDTO.getItem_code(),
                                 itemDTO.getDescription(),
-
                                 batchDTO.getCost_price(),
                                 batchDTO.getSell_price(),
                                 AllQty,
@@ -291,22 +281,6 @@ public class ItemAddController implements Initializable {
         }
     }
 
-    private void loadComboDosages(int itemCode) {
-        try {
-            ArrayList<Integer> dosageIds = itemDosageModel.getItemDosagesByItemCode(itemCode);
-            ArrayList<String> sizes = dosageModel.getDosageIdsBySize(dosageIds);
-
-            if (sizes != null) {
-                ObservableList<String> observableList = FXCollections.observableArrayList(sizes);
-                dosage_cmb.setItems(observableList);
-            }else {
-                dosage_cmb.setItems(null);
-            }
-        } catch (Exception ex) {
-            throw new RuntimeException();
-        }
-    }
-
     @FXML
     void handleFindItem(KeyEvent event) {
         try {
@@ -317,7 +291,6 @@ public class ItemAddController implements Initializable {
                 if (item != null) {
                     des_text.setText(item.getDescription());
                     batchNo_txt.setText(String.valueOf(batchModel.getBatchesCount(itemCode) + 1));
-                    loadComboDosages(itemCode);
                 }else {
                     new Alert(Alert.AlertType.ERROR, "Item Not Found", ButtonType.OK).show();
                     itemCode_text.clear();
@@ -343,8 +316,7 @@ public class ItemAddController implements Initializable {
                 todayDate_text.getValue() == null ||
                 receivedDate_text.getValue() == null ||
                 expireDate_text.getValue() == null ||
-                companyName_cmb.getValue() == null ||
-                dosage_cmb.getValue() == null
+                companyName_cmb.getValue() == null
         ) {
             new Alert(Alert.AlertType.WARNING, "Invalid input detected").show();
             return;
@@ -368,9 +340,6 @@ public class ItemAddController implements Initializable {
         // Item
         String desc = des_text.getText();
         int itemCode = Integer.parseInt(itemCode_text.getText());
-
-        // Dosage
-        String dosage = dosage_cmb.getValue();
 
         // Set to table
         int AllQty = qty + free_qty;
@@ -408,17 +377,9 @@ public class ItemAddController implements Initializable {
                 freeID, batchID, free_qty, free_qty
         );
 
-        // Find dosage Id
-        int dosageId = dosageModel.findSizeById(dosage);
-
-        ItemDosageDTO itemDosageDTO = new  ItemDosageDTO(
-            itemCode,
-            dosageId
-        );
-
         try {
             // save Bill
-            boolean isSave = billModel.saveBill(batchDTO, freeDTO, itemDosageDTO, billDTO);
+            boolean isSave = billModel.saveBill(batchDTO, freeDTO, billDTO);
 
             if (isSave) {
                 System.out.println("Items saved successfully");
@@ -452,7 +413,6 @@ public class ItemAddController implements Initializable {
     private void cleanText() {
         itemCode_text.clear();
         des_text.clear();
-        dosage_cmb.getEditor().clear();
         unitCost_txt.clear();
         sellPrice_txt.clear();
         qty_txt.clear();
@@ -468,7 +428,6 @@ public class ItemAddController implements Initializable {
         companyName_cmb.getEditor().clear();
         itemCode_text.clear();
         des_text.clear();
-        dosage_cmb.getEditor().clear();
         unitCost_txt.clear();
         sellPrice_txt.clear();
         qty_txt.clear();
@@ -478,12 +437,11 @@ public class ItemAddController implements Initializable {
     }
 
     private void halfCleanText() {
-        todayDate_text.getEditor().clear();
+        companyName_cmb.getEditor().clear();
         receivedDate_text.getEditor().clear();
         companyName_cmb.getEditor().clear();
         itemCode_text.clear();
         des_text.clear();
-        dosage_cmb.getEditor().clear();
         unitCost_txt.clear();
         sellPrice_txt.clear();
         qty_txt.clear();

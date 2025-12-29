@@ -15,9 +15,6 @@ public class ProductListController {
     private TableColumn<?, ?> des_col;
 
     @FXML
-    private TableColumn<?, ?> dosage_col;
-
-    @FXML
     private TextField itemCode_txt;
 
     @FXML

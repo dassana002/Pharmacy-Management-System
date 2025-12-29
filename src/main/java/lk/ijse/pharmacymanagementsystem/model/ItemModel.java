@@ -1,7 +1,6 @@
 package lk.ijse.pharmacymanagementsystem.model;
 
 import lk.ijse.pharmacymanagementsystem.dbConnection.DBConnection;
-import lk.ijse.pharmacymanagementsystem.dto.item.DosageDTO;
 import lk.ijse.pharmacymanagementsystem.dto.item.ItemDTO;
 import lk.ijse.pharmacymanagementsystem.utility.CrudUtil;
 
@@ -9,12 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID;
 
 public class ItemModel {
-
-    private final DosageModel dosageModel = new DosageModel();
-
     public ItemDTO getItem(int itemCode) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
         String query = "SELECT * FROM item WHERE item_code = ?";
@@ -33,43 +28,31 @@ public class ItemModel {
         return itemDTO;
     }
 
-    public boolean saveAll(ItemDTO itemDTO, String dosage) throws SQLException {
-        Connection conn = DBConnection.getInstance().getConnection();
+    public boolean save(ItemDTO itemDTO) throws SQLException {
+        String query = "INSERT INTO item VALUES (?,?)";
+        return CrudUtil.execute(query,itemDTO.getItem_code(), itemDTO.getDescription());
+    }
 
+    public boolean saveAll(ItemDTO itemDTO) throws SQLException {
+        Connection con = DBConnection.getInstance().getConnection();
         try {
-            conn.setAutoCommit(false);
+            con.setAutoCommit(false);
 
-            // Item Save
-            String query = "INSERT INTO item (item_code, description) VALUES (?, ?)";
-            boolean isItemSave = CrudUtil.execute(query, itemDTO.getItem_code(), itemDTO.getDescription());
-
-            // Dosage Save
-            if (isItemSave) {
-                int dosage_id = UUID.randomUUID().hashCode();
-                DosageDTO dosageDTO = new DosageDTO(
-                        dosage_id,
-                        dosage
-                );
-                boolean isDosageSave = dosageModel.save(dosageDTO);
-
-                if (!isDosageSave) {
-                    conn.rollback();
-                    throw new SQLException();
-                }
-
-            }else {
-                throw new SQLException();
+            boolean isItemSave = save(itemDTO);
+            if (!isItemSave) {
+                con.rollback();
+                return false;
             }
 
-            conn.commit();
+            con.commit();
             return true;
 
         } catch (Exception e) {
-            conn.rollback();
+            con.rollback();
             throw e;
 
         } finally {
-            conn.setAutoCommit(true);
+            con.setAutoCommit(true);
         }
     }
 }

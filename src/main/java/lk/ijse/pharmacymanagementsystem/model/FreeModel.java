@@ -1,7 +1,6 @@
 package lk.ijse.pharmacymanagementsystem.model;
 
 import lk.ijse.pharmacymanagementsystem.dbConnection.DBConnection;
-import lk.ijse.pharmacymanagementsystem.dto.item.DosageDTO;
 import lk.ijse.pharmacymanagementsystem.dto.item.FreeDTO;
 import lk.ijse.pharmacymanagementsystem.utility.CrudUtil;
 
@@ -11,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class FreeModel {
-
-    private final DosageModel  dosageModel = new  DosageModel();
 
     public boolean freeSaveTemp(FreeDTO freeDTO) throws SQLException {
         String query = "INSERT INTO free (free_id, batch_id, qty, ava_qty) VALUES (?, ?, ?, ?)";

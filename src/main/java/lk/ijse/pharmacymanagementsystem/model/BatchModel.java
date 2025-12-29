@@ -2,9 +2,6 @@ package lk.ijse.pharmacymanagementsystem.model;
 
 import lk.ijse.pharmacymanagementsystem.dbConnection.DBConnection;
 import lk.ijse.pharmacymanagementsystem.dto.item.BatchDTO;
-import lk.ijse.pharmacymanagementsystem.dto.item.BillDTO;
-import lk.ijse.pharmacymanagementsystem.dto.item.DosageDTO;
-import lk.ijse.pharmacymanagementsystem.dto.item.FreeDTO;
 import lk.ijse.pharmacymanagementsystem.utility.CrudUtil;
 
 import java.sql.Connection;
@@ -91,5 +88,16 @@ public class BatchModel {
             );
         }
         return batchDTO;
+    }
+
+    public ArrayList<Integer> getBatchIDsByItemCode(int itemCode) throws SQLException {
+        String query = "SELECT batch_id FROM batch WHERE item_code = ?";
+        ResultSet rs = CrudUtil.execute(query, itemCode);
+
+        ArrayList<Integer> batchIDs = new ArrayList<>();
+        while (rs.next()) {
+            batchIDs.add(rs.getInt("batch_id"));
+        }
+        return batchIDs;
     }
 }

@@ -75,7 +75,7 @@ public class ItemEditController implements Initializable {
     private void loadItem() {
         try {
             int billId = billModel.getBillIdByInvoice(invoice);
-            BatchDTO batchDTO = batchModel.
+//            BatchDTO batchDTO = batchModel.
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
