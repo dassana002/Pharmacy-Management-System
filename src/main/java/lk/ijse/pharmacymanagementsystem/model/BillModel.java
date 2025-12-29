@@ -115,20 +115,30 @@ public class BillModel {
         return 0;
     }
 
-    public boolean changeStatus(String published, String invoice) {
-        try {
-            int billId = isExistsBill(invoice);
-            if (billId != 0) {
-                String query = "UPDATE bill SET status = ? WHERE bill_id = ?";
-                return CrudUtil.execute(query, published, billId);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+    public boolean changeStatus(String published, String invoice) throws SQLException {
+        int billId = isExistsBill(invoice);
+        if (billId != 0) {
+            String query = "UPDATE bill SET status = ? WHERE bill_id = ?";
+            return CrudUtil.execute(query, published, billId);
         }
         return false;
     }
 
-//    public ArrayList<Integer> getAllDraffBills() throws SQLException {
-//
-//    }
+    public ArrayList<BillDTO> getAllBills() throws SQLException {
+        String query = "SELECT * FROM bill WHERE status = 'DRAFF'";
+        ArrayList<BillDTO> billDTOS = new ArrayList<>();
+        ResultSet rs = CrudUtil.execute(query);
+        while (rs.next()) {
+            BillDTO billDTO = new BillDTO(
+                    rs.getInt("bill_id"),
+                    rs.getString("invoice_number"),
+                    Status.valueOf(rs.getString("status")),
+                    rs.getString("company_name"),
+                    rs.getString("today_date"),
+                    rs.getString("received_date")
+            );
+            billDTOS.add(billDTO);
+        }
+        return billDTOS;
+    }
 }

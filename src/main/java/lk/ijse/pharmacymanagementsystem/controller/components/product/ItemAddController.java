@@ -158,6 +158,9 @@ public class ItemAddController implements Initializable {
 
             return row;
         });
+
+        // Load Automate in Hold Bill List
+        setHoldList_bar();
     }
 
     private boolean isValid(TextField field, String regex) {
@@ -175,7 +178,14 @@ public class ItemAddController implements Initializable {
     }
 
     private void setHoldList_bar() {
-
+        try {
+            ArrayList<BillDTO> billDTOS = billModel.getAllBills();
+            for (BillDTO billDTO : billDTOS) {
+                createHoldBillButton(billDTO);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void createHoldBillButton(BillDTO billDTO) {
@@ -200,6 +210,7 @@ public class ItemAddController implements Initializable {
                 // get All Batches by BillId
                 BillDTO billDTOs= billModel.getBillById(billDTO.getBill_id());
 
+                invoice_number_text.setText(billDTOs.getInvoice_number());
                 todayDate_text.setValue(LocalDate.parse(billDTOs.getToday_date()));
                 receivedDate_text.setValue(LocalDate.parse(billDTOs.getReceived_date()));
                 companyName_cmb.setValue(billDTOs.getCompany_name());
@@ -222,8 +233,10 @@ public class ItemAddController implements Initializable {
                             subTotal
                     );
                     itemTMList.add(addItemTM);
+                    calcAllTotal();
                 }
-                calcAllTotal();
+                loadItemTable();
+
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
