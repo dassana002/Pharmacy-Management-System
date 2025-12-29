@@ -82,12 +82,6 @@
                                 </Label>
                                 <TextField fx:id="des_text" maxWidth="Infinity" prefHeight="100.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                                <!-- Dosage -->
-                                <Label text="Dosage" GridPane.columnIndex="0" GridPane.rowIndex="6">
-                                    <font><Font size="16.0" /></font>
-                                </Label>
-                                <ComboBox fx:id="dosage_cmb" maxWidth="Infinity" prefHeight="40.0" promptText="Select Dosage" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-
                                 <!-- Unit Cost -->
                                 <Label text="Unit Cost" GridPane.columnIndex="0" GridPane.rowIndex="7">
                                     <font><Font size="16.0" /></font>
@@ -166,7 +160,7 @@
                             <TableColumn fx:id="colDosage" minWidth="80" prefWidth="115.0" text="dosage" />
                             <TableColumn fx:id="colUnitCost" minWidth="80" prefWidth="97.0" text="unitCost" />
                             <TableColumn fx:id="colSellPrice" minWidth="50.0" prefWidth="107.0" text="sellPrice" />
-                            <TableColumn fx:id="ColQty" minWidth="68.0" prefWidth="68.0" text="qty" />
+                            <TableColumn fx:id="colQty" minWidth="68.0" prefWidth="68.0" text="qty" />
                      <TableColumn fx:id="colSubTotal" minWidth="93.0" prefWidth="112.0" text="subTotal" />
                         </columns>
                     </TableView>

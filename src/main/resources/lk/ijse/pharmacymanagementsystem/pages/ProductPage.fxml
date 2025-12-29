@@ -101,7 +101,12 @@
                                 <Font size="16.0" />
                             </font>
                         </Button>
-                  <Button fx:id="editBatch_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleEditBatch" prefHeight="45.0" prefWidth="179.0" text="Edit Batch">
+                  <Button fx:id="editBatch_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleEditBatch" prefHeight="45.0" prefWidth="179.0" text="Batch">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="dosageAdd_btn" maxWidth="179.0" mnemonicParsing="false" onAction="#handleDosageAdd" prefHeight="45.0" prefWidth="179.0" text="Dosage">
                      <font>
                         <Font size="16.0" />
                      </font>
