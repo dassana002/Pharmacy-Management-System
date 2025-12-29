@@ -184,7 +184,7 @@
                             </HBox>
                         </children>
                     </VBox>
-               <HBox fx:id="holdList_bar" prefHeight="54.0" prefWidth="612.0" />
+               <HBox fx:id="holdList_bar" prefHeight="54.0" prefWidth="612.0"  />
                 </children>
             </VBox>
         </items>

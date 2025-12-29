@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
@@ -177,9 +178,76 @@ public class ItemAddController implements Initializable {
 
     }
 
+    public void createHoldBillButton(BillDTO billDTO) {
+        Button invoiceBtn = new Button(billDTO.getInvoice_number());
+
+        invoiceBtn.setPrefHeight(30);
+        invoiceBtn.setMaxWidth(Double.MAX_VALUE);
+        invoiceBtn.setStyle("""
+        -fx-background-color: #16a34a;
+        -fx-text-fill: white;
+        -fx-font-size: 14;
+        -fx-background-radius: 8;
+    """);
+
+        // Action
+        invoiceBtn.setOnAction(e -> {
+            cleanTable();
+            halfCleanText();
+            allTotal_lbl.clear();
+            todayDate_text.setValue(LocalDate.now());
+            try {
+                // get All Batches by BillId
+                BillDTO billDTOs= billModel.getBillById(billDTO.getBill_id());
+
+                todayDate_text.setValue(LocalDate.parse(billDTOs.getToday_date()));
+                receivedDate_text.setValue(LocalDate.parse(billDTOs.getReceived_date()));
+                companyName_cmb.setValue(billDTOs.getCompany_name());
+
+                // batches set To table
+                for (BatchDTO batchDTO : billDTOs.getBatchDtoList()) {
+                    // getItem
+                    ItemDTO itemDTO = itemModel.getItem(batchDTO.getItem_code());
+                    // calculate AllQty
+                    int AllQty = batchDTO.getQty() + freeModel.getFreeQtyById(batchDTO.getBatch_id());
+                    // calculate sub Total
+                    double subTotal = batchDTO.getQty() * batchDTO.getCost_price();
+
+                    AddItemTM addItemTM = new AddItemTM(
+                            batchDTO.getItem_code(),
+                            itemDTO.getDescription(),
+                            batchDTO.getCost_price(),
+                            batchDTO.getSell_price(),
+                            AllQty,
+                            subTotal
+                    );
+                    itemTMList.add(addItemTM);
+                }
+                calcAllTotal();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        // Button Margin set
+        HBox.setMargin(invoiceBtn, new Insets(0, 10, 0, 10));
+
+        // Add button into Container
+        holdList_bar.getChildren().add(invoiceBtn);
+    }
+
+
     @FXML
     void handleHoldLIst(ActionEvent event) {
-
+        try {
+            // get Bill Id
+            int billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
+            // get Bill Dto
+            BillDTO billDTO = billModel.getBillById(billId);
+            createHoldBillButton(billDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
