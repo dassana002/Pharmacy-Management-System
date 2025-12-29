@@ -36,9 +36,6 @@ public class ItemAddController implements Initializable {
     private TableColumn<AddItemTM, Double> colUnitCost;
 
     @FXML
-    private TableColumn<AddItemTM, String> colDosage;
-
-    @FXML
     private TableColumn<AddItemTM, String> colDesc;
 
     @FXML
@@ -350,44 +347,75 @@ public class ItemAddController implements Initializable {
         // UUID generate
         int batchID = UUID.randomUUID().hashCode();
         int freeID = UUID.randomUUID().hashCode();
-        int billId = UUID.randomUUID().hashCode();
-
-        BatchDTO batchDTO = new BatchDTO(
-                batchID,
-                batchNo,
-                sell_price,
-                unit_cost,
-                expireDate,
-                qty,
-                qty,
-                itemCode,
-                billId
-        );
-
-        BillDTO billDTO = new BillDTO(
-                billId,
-                invoice,
-                status,
-                companyName,
-                todayDate,
-                receivedDate
-        );
-
-        FreeDTO freeDTO = new FreeDTO(
-                freeID, batchID, free_qty, free_qty
-        );
 
         try {
-            // save Bill
-            boolean isSave = billModel.saveBill(batchDTO, freeDTO, billDTO);
+            int bill = billModel.isExistsBill(invoice);
 
-            if (isSave) {
-                System.out.println("Items saved successfully");
-                new Alert(Alert.AlertType.INFORMATION, "Items Saved successfully", ButtonType.OK).show();
-                calcAllTotal();
-            }else {
-                System.out.println("Error while saving items");
-                new Alert(Alert.AlertType.ERROR, "Error while saving items", ButtonType.OK).show();
+            if (bill != 0) {
+                // save Batch
+                BatchDTO batchDTO = new BatchDTO(
+                        batchID,
+                        batchNo,
+                        sell_price,
+                        unit_cost,
+                        expireDate,
+                        qty,
+                        qty,
+                        itemCode,
+                        bill
+                );
+
+                FreeDTO freeDTO = new FreeDTO(
+                        freeID, batchID, free_qty, free_qty
+                );
+
+                boolean isSave = batchModel.saveItem(batchDTO, freeDTO, bill);
+
+                if (isSave) {
+                    System.out.println("Items saved successfully");
+                    new Alert(Alert.AlertType.INFORMATION, "Items Saved successfully", ButtonType.OK).show();
+                    calcAllTotal();
+                }else {
+                    System.out.println("Error while saving items");
+                    new Alert(Alert.AlertType.ERROR, "Error while saving items", ButtonType.OK).show();
+                }
+            } else {
+                int billId = UUID.randomUUID().hashCode();
+                BatchDTO batchDTO = new BatchDTO(
+                        batchID,
+                        batchNo,
+                        sell_price,
+                        unit_cost,
+                        expireDate,
+                        qty,
+                        qty,
+                        itemCode,
+                        billId
+                );
+
+                FreeDTO freeDTO = new FreeDTO(
+                        freeID, batchID, free_qty, free_qty
+                );
+
+                // save bill
+                BillDTO billDTO = new BillDTO(
+                        billId,
+                        invoice,
+                        status,
+                        companyName,
+                        todayDate,
+                        receivedDate
+                );
+                boolean isSave = billModel.saveBill(batchDTO, freeDTO, billDTO);
+
+                if (isSave) {
+                    System.out.println("Items saved successfully");
+                    new Alert(Alert.AlertType.INFORMATION, "Items Saved successfully", ButtonType.OK).show();
+                    calcAllTotal();
+                }else {
+                    System.out.println("Error while saving items");
+                    new Alert(Alert.AlertType.ERROR, "Error while saving items", ButtonType.OK).show();
+                }
             }
 
         } catch (Exception e) {

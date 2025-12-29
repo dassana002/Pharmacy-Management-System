@@ -42,7 +42,7 @@ public class BillModel {
             }
 
             // Free save
-            boolean isFreeSave = freeModel.freeSaveTemp(freeDTO);
+            boolean isFreeSave = freeModel.freeSave(freeDTO, batchDTO.getBatch_id());
             if (!isFreeSave) {
                 conn.rollback();
                 return false;
@@ -104,5 +104,14 @@ public class BillModel {
              status = rs.getString("status");
         }
         return status;
+    }
+
+    public int isExistsBill(String invoice) throws SQLException {
+        String query = "SELECT * FROM bill WHERE invoice_number = ?";
+        ResultSet rs = CrudUtil.execute(query, invoice);
+        if (rs.next()) {
+            return rs.getInt("bill_id");
+        }
+        return 0;
     }
 }

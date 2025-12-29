@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class FreeModel {
 
-    public boolean freeSaveTemp(FreeDTO freeDTO) throws SQLException {
+    public boolean freeSave(FreeDTO freeDTO, int batchId) throws SQLException {
         String query = "INSERT INTO free (free_id, batch_id, qty, ava_qty) VALUES (?, ?, ?, ?)";
         return CrudUtil.execute(
                 query,

@@ -2,6 +2,7 @@ package lk.ijse.pharmacymanagementsystem.model;
 
 import lk.ijse.pharmacymanagementsystem.dbConnection.DBConnection;
 import lk.ijse.pharmacymanagementsystem.dto.item.BatchDTO;
+import lk.ijse.pharmacymanagementsystem.dto.item.FreeDTO;
 import lk.ijse.pharmacymanagementsystem.utility.CrudUtil;
 
 import java.sql.Connection;
@@ -11,6 +12,37 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BatchModel {
+
+    private final FreeModel freeModel = new FreeModel();
+
+    public boolean saveItem(BatchDTO batchDTO, FreeDTO freeDTO, int billId) throws SQLException {
+        Connection conn = DBConnection.getInstance().getConnection();
+
+        try {
+            conn.setAutoCommit(false);
+
+            boolean isBatchSave = batchSave(batchDTO, billId);
+            if (!isBatchSave) {
+                conn.rollback();
+                return false;
+            }
+
+            boolean isFreeSave = freeModel.freeSave(freeDTO, batchDTO.getBatch_id());
+            if (!isFreeSave) {
+                conn.rollback();
+                return false;
+            }
+
+            conn.commit();
+            return true;
+
+        } catch (Exception e) {
+            conn.rollback();
+            throw e;
+        } finally {
+            conn.setAutoCommit(true);
+        }
+    }
 
     public int getBatchesCount(int itemCode) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
