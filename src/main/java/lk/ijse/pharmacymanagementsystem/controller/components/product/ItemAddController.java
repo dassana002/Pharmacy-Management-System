@@ -92,8 +92,7 @@ public class ItemAddController implements Initializable {
     private final FreeModel freeModel = new FreeModel();
     private final BillModel billModel = new BillModel();
     private final ObservableList<AddItemTM> itemTMList = FXCollections.observableArrayList();
-    private final ObservableList<String> sizesList = FXCollections.observableArrayList();
-    // Regex patterns
+
     private static final String INT_REGEX = "^[0-9]+$";
     private static final String DOUBLE_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
     private static final String TEXT_REGEX = "^[A-Za-z0-9 .,-]+$";
@@ -179,7 +178,17 @@ public class ItemAddController implements Initializable {
     }
 
     @FXML
-    void handleCloseBIll(ActionEvent event) {
+    void handleHoldLIst(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handlePayBill(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleCloseBill(ActionEvent event) {
         try {
             String invoice = invoice_number_text.getText();
             References.productController.payDialog(invoice);
@@ -193,11 +202,6 @@ public class ItemAddController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @FXML
-    void handleHoldLIst(ActionEvent event) {
-        cleanTable();
     }
 
     @FXML

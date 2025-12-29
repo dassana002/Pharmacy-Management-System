@@ -127,4 +127,8 @@ public class BillModel {
         }
         return false;
     }
+
+//    public ArrayList<Integer> getAllDraffBills() throws SQLException {
+//
+//    }
 }
