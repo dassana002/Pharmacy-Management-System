@@ -125,4 +125,8 @@ public class ProductController implements Initializable {
     void handleExpireItem(ActionEvent event) {
 
     }
+
+    public void payDialog(String invoice) {
+
+    }
 }

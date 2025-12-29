@@ -114,4 +114,17 @@ public class BillModel {
         }
         return 0;
     }
+
+    public boolean changeStatus(String published, String invoice) {
+        try {
+            int billId = isExistsBill(invoice);
+            if (billId != 0) {
+                String query = "UPDATE bill SET status = ? WHERE bill_id = ?";
+                return CrudUtil.execute(query, published, billId);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
 }

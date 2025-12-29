@@ -180,7 +180,19 @@ public class ItemAddController implements Initializable {
 
     @FXML
     void handleCloseBIll(ActionEvent event) {
-        cleanTable();
+        try {
+            String invoice = invoice_number_text.getText();
+            References.productController.payDialog(invoice);
+            boolean isPublished = billModel.changeStatus("PUBLISHED", invoice);
+
+            if (isPublished) {
+                new Alert(Alert.AlertType.INFORMATION, invoice+" Bill is Closed", ButtonType.OK).show();
+            }else {
+                new Alert(Alert.AlertType.ERROR, invoice+" Bill is Not Closed", ButtonType.OK).show();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

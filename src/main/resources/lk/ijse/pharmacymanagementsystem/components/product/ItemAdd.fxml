@@ -174,7 +174,7 @@
                                     <Button fx:id="addToCart_btn" mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 14px;" text="Add To Cart">
                                     </Button>
 
-                                    <Button fx:id="closeBill_btn" mnemonicParsing="false" onAction="#handleCloseBIll" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 14px;" text="Close Bill">
+                                    <Button fx:id="closeBill_btn" mnemonicParsing="false" onAction="#handleCloseBIll" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 14px;" text="Pay">
                                     </Button>
 
                                     <Button fx:id="hold_btn" mnemonicParsing="false" onAction="#handleHoldLIst" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 14px;" text="Hold">
