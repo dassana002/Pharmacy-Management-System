@@ -21,7 +21,7 @@
 
         <children>
             <!-- Title -->
-            <Label style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Edit Product">
+            <Label style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Product">
                 <font>
                     <Font size="22.0" />
                 </font>

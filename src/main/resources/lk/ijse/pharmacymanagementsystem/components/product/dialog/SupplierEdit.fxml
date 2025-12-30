@@ -23,7 +23,7 @@
 
         <children>
             <!-- Title -->
-            <Label prefHeight="62.0" prefWidth="135.0" style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Add Supplier">
+            <Label alignment="CENTER" prefHeight="62.0" prefWidth="135.0" style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Supplier">
                 <font>
                     <Font size="22.0" />
                 </font>
@@ -49,7 +49,7 @@
                         <Label style="-fx-text-fill: #333333;" text="Company Name" GridPane.columnIndex="0" GridPane.rowIndex="0">
                             <font><Font size="15.0" /></font>
                         </Label>
-                        <TextField fx:id="companyName_text" maxWidth="Infinity" prefHeight="40.0" promptText="Enter company name" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <TextField fx:id="companyName_text" maxWidth="Infinity" onKeyPressed="#findSupplier" prefHeight="40.0" promptText="Enter company name" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                         <!-- Address -->
                         <Label style="-fx-text-fill: #333333;" text="Address" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
@@ -107,11 +107,16 @@
                         </font>
                     </Button>
 
-                    <Button fx:id="close_btn" onAction="#handleClose" prefHeight="45.0" prefWidth="160.0" style="                                 -fx-background-color: #e0e0e0;                                 -fx-text-fill: #333333;                                 -fx-background-radius: 8;                                 -fx-font-weight: bold;                                 -fx-cursor: hand;                             " text="Close">
+                    <Button fx:id="edit_btn" onAction="#handleEditSupplier" prefHeight="45.0" prefWidth="160.0" style="                                 -fx-background-color: #e0e0e0;                                 -fx-text-fill: #333333;                                 -fx-background-radius: 8;                                 -fx-font-weight: bold;                                 -fx-cursor: hand;                             " text="Edit">
                         <font>
                             <Font size="16.0" />
                         </font>
                     </Button>
+               <Button fx:id="close_btn" onAction="#handleClose" prefHeight="45.0" prefWidth="160.0" style="                                 -fx-background-color: #e0e0e0;                                 -fx-text-fill: #333333;                                 -fx-background-radius: 8;                                 -fx-font-weight: bold;                                 -fx-cursor: hand;                             " text="Close">
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Button>
                 </children>
             </HBox>
 

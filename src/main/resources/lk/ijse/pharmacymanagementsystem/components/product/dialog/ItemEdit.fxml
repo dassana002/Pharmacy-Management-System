@@ -24,7 +24,7 @@
 
         <children>
             <!-- Title -->
-            <Label alignment="CENTER" style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Edit Item">
+            <Label alignment="CENTER" style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Item">
                 <font>
                     <Font size="24.0" />
                 </font>
@@ -59,7 +59,7 @@
                                 <Insets top="8.0" />
                             </GridPane.margin>
                         </Label>
-                        <TextField fx:id="des_text" maxWidth="Infinity" editable="false" prefHeight="80.0" promptText="Enter description" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="des_text" editable="false" maxWidth="Infinity" prefHeight="80.0" promptText="Enter description" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                         <!-- Unit Cost -->
                         <Label style="-fx-text-fill: #333333;" text="Unit Cost" GridPane.columnIndex="0" GridPane.rowIndex="3">
