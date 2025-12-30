@@ -1,5 +1,6 @@
 package lk.ijse.pharmacymanagementsystem.controller.components.product;
 
+import com.mysql.cj.xdevapi.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.pharmacymanagementsystem.dto.item.*;
 import lk.ijse.pharmacymanagementsystem.model.BatchModel;
 import lk.ijse.pharmacymanagementsystem.model.BillModel;
-import lk.ijse.pharmacymanagementsystem.model.FreeModel;
 import lk.ijse.pharmacymanagementsystem.model.ItemModel;
 
 import java.net.URL;

@@ -6,6 +6,7 @@ module lk.ijse.pharmacymanagementsystem {
     requires jbcrypt;
     requires java.desktop;
     requires javafx.base;
+    requires mysql.connector.j;
 
     exports lk.ijse.pharmacymanagementsystem;
     opens lk.ijse.pharmacymanagementsystem to javafx.fxml;
