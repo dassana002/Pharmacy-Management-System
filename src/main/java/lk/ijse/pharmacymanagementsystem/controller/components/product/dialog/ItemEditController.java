@@ -52,7 +52,6 @@ public class ItemEditController implements Initializable {
     private TextField unitCost_txt;
 
     private int oldItemCode;
-    private String oldDesc;
     private int oldQty;
     private double oldSellPrice;
     private double oldUnitCost;
@@ -68,6 +67,9 @@ public class ItemEditController implements Initializable {
     private final ItemModel itemModel = new ItemModel();
     private final FreeModel freeModel = new FreeModel();
 
+    private static final String INT_REGEX = "^[0-9]+$";
+    private static final String DOUBLE_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         References.itemEditController = this;
@@ -81,6 +83,11 @@ public class ItemEditController implements Initializable {
             });
         }
     }
+
+    private boolean isValid(TextField field, String regex) {
+        return field.getText() != null && field.getText().matches(regex);
+    }
+
 
     private void loadItem() {
         try {
@@ -109,7 +116,6 @@ public class ItemEditController implements Initializable {
 
             // set Old
             oldItemCode = Integer.parseInt(itemCode_text.getText());
-            oldDesc = des_text.getText();
             oldQty = Integer.parseInt(qty_txt.getText());
             oldSellPrice = Double.parseDouble(sellPrice_txt.getText());
             oldUnitCost = Double.parseDouble(unitCost_txt.getText());
@@ -139,14 +145,15 @@ public class ItemEditController implements Initializable {
             int newFreeQty = Integer.parseInt(freeQty_txt.getText());
             LocalDate newExpireDate = expireDate_text.getValue();
 
-            if (itemCode_text.getText().isEmpty() ||
-                    qty_txt.getText().isEmpty() ||
-                    sellPrice_txt.getText().isEmpty() ||
-                    unitCost_txt.getText().isEmpty() ||
-                    freeQty_txt.getText().isEmpty() ||
+            // Validation
+            if (!isValid(itemCode_text, INT_REGEX) ||
+                    !isValid(qty_txt, INT_REGEX) ||
+                    !isValid(freeQty_txt, INT_REGEX) ||
+                    !isValid(sellPrice_txt, DOUBLE_REGEX) ||
+                    !isValid(unitCost_txt, DOUBLE_REGEX) ||
                     expireDate_text.getValue() == null) {
 
-                new Alert(Alert.AlertType.WARNING, "Please fill all fields", ButtonType.OK).show();
+                new Alert(Alert.AlertType.ERROR,"Invalid data detected while loading item", ButtonType.OK).show();
                 return;
             }
 
