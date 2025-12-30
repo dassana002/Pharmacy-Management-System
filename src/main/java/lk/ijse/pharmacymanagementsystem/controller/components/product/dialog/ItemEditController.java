@@ -176,7 +176,7 @@ public class ItemEditController implements Initializable {
                     newUnitCost,
                     String.valueOf(newExpireDate),
                     newQty,
-                    newQty+newFreeQty,
+                    newQty,
                     newItemCode,
                     billId
             );
