@@ -22,6 +22,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ItemEditController implements Initializable {
@@ -199,6 +200,38 @@ public class ItemEditController implements Initializable {
     @FXML
     void handleDeleteItem(ActionEvent event) {
 
+        // Delete Confirm Alert
+        Alert confirmAlert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to delete this item?",
+                ButtonType.YES,
+                ButtonType.NO
+        );
+
+        confirmAlert.setTitle("Confirm Delete");
+        confirmAlert.setHeaderText("Delete Item");
+
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+
+        if (result.isEmpty() || result.get() != ButtonType.YES) {
+            return;
+        }
+
+        try {
+            billId = billModel.getBillIdByInvoice(invoice);
+            boolean isDeleteItem = batchModel.deleteBatch(batchDTO.getBatch_id(), billId);
+
+            if (isDeleteItem) {
+                new Alert(Alert.AlertType.INFORMATION, "Item Deleted!", ButtonType.OK).show();
+                References.itemAddController.afterUpdate();
+                handleClose(null);
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Item Not Deleted!", ButtonType.OK).show();
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setItemCode(int itemCode, String invoice) throws SQLException, IOException {

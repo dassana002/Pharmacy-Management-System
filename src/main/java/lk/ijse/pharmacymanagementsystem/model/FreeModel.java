@@ -62,4 +62,9 @@ public class FreeModel {
                 newFreeDto.getBatch_id()
         );
     }
+
+    public boolean deleteFree(int batchId) throws SQLException {
+        String query = "DELETE FROM free WHERE batch_id=?";
+        return CrudUtil.execute(query,batchId);
+    }
 }

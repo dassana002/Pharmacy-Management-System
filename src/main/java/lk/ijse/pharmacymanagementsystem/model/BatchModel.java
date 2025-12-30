@@ -173,4 +173,34 @@ public class BatchModel {
             conn.setAutoCommit(true);
         }
     }
+
+    public boolean deleteBatch(int batchId, int billId) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            connection.setAutoCommit(false);
+            String query = "DELETE FROM batch WHERE bill_id = ? AND batch_id = ?";
+
+            boolean isFreeDelete = freeModel.deleteFree(batchId);
+            if (!isFreeDelete) {
+                connection.rollback();
+                return false;
+            }
+            
+            boolean isDelete = CrudUtil.execute(query, billId, batchId);
+            if (!isDelete) {
+                connection.rollback();
+                return false;
+            }
+
+            connection.commit();
+            return true;
+
+        } catch (Exception e) {
+            connection.rollback();
+            throw e;
+
+        } finally {
+            connection.setAutoCommit(true);
+        }
+    }
 }
