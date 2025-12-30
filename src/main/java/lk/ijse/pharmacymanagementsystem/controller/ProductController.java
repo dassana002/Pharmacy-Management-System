@@ -55,7 +55,7 @@ public class ProductController implements Initializable {
     }
 
     @FXML
-    void handleNewItemAdd(ActionEvent event) throws IOException {
+    void handleProduct(ActionEvent event) throws IOException {
         showNewItemDialog("ProductAdd");
     }
 
@@ -65,7 +65,7 @@ public class ProductController implements Initializable {
     }
 
     @FXML
-    void handleAddSupplier(ActionEvent event) throws IOException {
+    void handleSupplier(ActionEvent event) throws IOException {
         showNewItemDialog("SupplierAdd");
     }
 
@@ -118,21 +118,6 @@ public class ProductController implements Initializable {
 
     @FXML
     void handleOutOfStock(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleEditBatch(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleEditItem(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleEditSupplier(ActionEvent event) {
 
     }
 

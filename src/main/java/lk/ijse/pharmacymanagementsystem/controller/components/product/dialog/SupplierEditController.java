@@ -13,7 +13,7 @@ import lk.ijse.pharmacymanagementsystem.utility.References;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SupplierAddController implements Initializable {
+public class SupplierEditController implements Initializable {
     @FXML
     private TextField CompanyContact_txt;
 

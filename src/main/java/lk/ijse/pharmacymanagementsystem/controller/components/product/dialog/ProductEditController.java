@@ -15,11 +15,9 @@ import lk.ijse.pharmacymanagementsystem.utility.References;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.UUID;
 
-public class ProductAddController implements Initializable {
+public class ProductEditController implements Initializable {
 
     @FXML
     private TextField des_text;

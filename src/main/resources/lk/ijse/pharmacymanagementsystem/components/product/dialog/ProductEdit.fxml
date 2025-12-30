@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="mainContent" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.product.dialog.ProductAddController">
+<StackPane fx:id="mainContent" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.product.dialog.ProductEditController">
 
     <VBox fx:id="popupCard" alignment="CENTER" maxHeight="650" maxWidth="600" minHeight="450" minWidth="400" prefHeight="520" prefWidth="480" style="             -fx-background-color: white;             -fx-background-radius: 18;             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 5);           ">
 
