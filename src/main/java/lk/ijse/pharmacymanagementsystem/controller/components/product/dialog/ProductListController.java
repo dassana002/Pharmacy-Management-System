@@ -31,6 +31,6 @@ public class ProductListController {
 
     @FXML
     void handleFindItem(KeyEvent event) {
-
+            
     }
 }

@@ -41,7 +41,7 @@
                         </font>
                     </Label>
 
-                    <TextField fx:id="itemCode_txt" onKeyPressed="#handleFindItem" prefHeight="40.0" promptText="Enter Item Code or Name" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-size: 14px;" HBox.hgrow="ALWAYS">
+                    <TextField fx:id="itemCode_txt" onKeyPressed="#handleFindItem" prefHeight="40.0" promptText="Enter Item Code " style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-size: 14px;" HBox.hgrow="ALWAYS">
                     </TextField>
                 </children>
             </HBox>
