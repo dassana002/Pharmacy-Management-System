@@ -16,7 +16,7 @@
 
 <StackPane fx:id="mainContent" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.product.dialog.ItemEditController">
 
-    <VBox fx:id="popupCard" alignment="TOP_CENTER" maxHeight="850" maxWidth="800" minHeight="650" minWidth="500" prefHeight="750" prefWidth="600" style="             -fx-background-color: white;             -fx-background-radius: 18;             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 5);           ">
+    <VBox fx:id="popupCard" alignment="TOP_CENTER" maxHeight="850" maxWidth="800" minHeight="650" minWidth="500" prefHeight="684.0" prefWidth="600" style="             -fx-background-color: white;             -fx-background-radius: 18;             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 5);           ">
 
         <padding>
             <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
@@ -34,7 +34,7 @@
             </Label>
 
             <!-- Form Fields in ScrollPane -->
-            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+            <ScrollPane fitToWidth="true" prefHeight="461.0" prefWidth="540.0" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
                 <content>
                     <GridPane hgap="15.0" vgap="15.0">
                         <padding>
@@ -50,7 +50,7 @@
                         <Label style="-fx-text-fill: #333333;" text="Item Code" GridPane.columnIndex="0" GridPane.rowIndex="0">
                             <font><Font size="15.0" /></font>
                         </Label>
-                        <TextField fx:id="itemCode_text" maxWidth="Infinity" onKeyPressed="#handleFindItem" prefHeight="40.0" promptText="Enter item code" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <TextField fx:id="itemCode_text" editable="false" maxWidth="Infinity" prefHeight="40.0" promptText="Enter item code" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                         <!-- Description -->
                         <Label style="-fx-text-fill: #333333;" text="Description" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
@@ -59,7 +59,7 @@
                                 <Insets top="8.0" />
                             </GridPane.margin>
                         </Label>
-                        <TextField fx:id="des_text" maxWidth="Infinity" prefHeight="80.0" promptText="Enter description" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="des_text" maxWidth="Infinity" editable="false" prefHeight="80.0" promptText="Enter description" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                         <!-- Unit Cost -->
                         <Label style="-fx-text-fill: #333333;" text="Unit Cost" GridPane.columnIndex="0" GridPane.rowIndex="3">
@@ -106,7 +106,7 @@
             </ScrollPane>
 
             <!-- Action Buttons -->
-            <HBox alignment="CENTER" spacing="15.0">
+            <HBox alignment="CENTER" prefHeight="125.0" prefWidth="540.0" spacing="15.0">
                 <VBox.margin>
                     <Insets top="20.0" />
                 </VBox.margin>

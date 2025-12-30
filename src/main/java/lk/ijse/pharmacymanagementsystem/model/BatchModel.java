@@ -101,12 +101,23 @@ public class BatchModel {
         return batchDTOs;
     }
 
-    public BatchDTO getBatch(int itemCode) throws SQLException {
-        String query = "SELECT * FROM batch WHERE item_code = ?";
+    public ArrayList<Integer> getBatchIDsByItemCode(int itemCode) throws SQLException {
+        String query = "SELECT batch_id FROM batch WHERE item_code = ?";
         ResultSet rs = CrudUtil.execute(query, itemCode);
 
+        ArrayList<Integer> batchIDs = new ArrayList<>();
+        while (rs.next()) {
+            batchIDs.add(rs.getInt("batch_id"));
+        }
+        return batchIDs;
+    }
+
+    public BatchDTO getBatchByItemCodeAndBillId(int itemCode, int billId) throws SQLException {
+        String query = "SELECT * FROM batch WHERE item_code = ? AND bill_id = ?";
+        ResultSet rs = CrudUtil.execute(query, itemCode, billId);
+
         BatchDTO batchDTO = null;
-        if (rs.next()) {
+        if(rs.next()) {
             batchDTO = new BatchDTO(
                     rs.getInt("batch_id"),
                     rs.getInt("batch_number"),
@@ -120,16 +131,5 @@ public class BatchModel {
             );
         }
         return batchDTO;
-    }
-
-    public ArrayList<Integer> getBatchIDsByItemCode(int itemCode) throws SQLException {
-        String query = "SELECT batch_id FROM batch WHERE item_code = ?";
-        ResultSet rs = CrudUtil.execute(query, itemCode);
-
-        ArrayList<Integer> batchIDs = new ArrayList<>();
-        while (rs.next()) {
-            batchIDs.add(rs.getInt("batch_id"));
-        }
-        return batchIDs;
     }
 }

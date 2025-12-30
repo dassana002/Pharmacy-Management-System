@@ -176,7 +176,9 @@ public class ItemAddController implements Initializable {
 
 
     private void editItem(int itemCode, String invoice) throws SQLException, IOException {
+        // Load Edit Product
         References.productController.editItemDialog();
+        // the Edit product passed
         References.itemEditController.setItemCode(itemCode, invoice);
     }
 

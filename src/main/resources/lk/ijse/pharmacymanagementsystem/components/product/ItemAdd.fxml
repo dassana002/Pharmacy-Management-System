@@ -47,7 +47,7 @@
                                 <Label text="Date" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <DatePicker fx:id="todayDate_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <DatePicker fx:id="todayDate_text" maxWidth="Infinity" editable="false" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                                 <!-- Due Date -->
                                 <Label text="Received Date" GridPane.columnIndex="0" GridPane.rowIndex="2">
@@ -74,7 +74,7 @@
                                         <Insets top="5.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <TextField fx:id="des_text" maxWidth="Infinity" prefHeight="100.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <TextField fx:id="des_text" maxWidth="Infinity" editable="false" prefHeight="100.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
                                 <!-- Unit Cost -->
                                 <Label text="Unit Cost" GridPane.columnIndex="0" GridPane.rowIndex="6">
@@ -104,7 +104,7 @@
                                 <Label text="Batch No" GridPane.columnIndex="0" GridPane.rowIndex="10">
                                     <font><Font size="16.0" /></font>
                                 </Label>
-                                <TextField fx:id="batchNo_txt" maxWidth="Infinity" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                <TextField fx:id="batchNo_txt" maxWidth="Infinity" editable="false" prefHeight="40.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
 
                                 <!-- Expire Date -->
                                 <Label text="Expire Date" GridPane.columnIndex="0" GridPane.rowIndex="11">
