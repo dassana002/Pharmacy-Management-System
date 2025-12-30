@@ -52,7 +52,7 @@ public class SupplierAddController implements Initializable {
 //            moveToNextOnEnter(des_text, dosage_txt);
 //        }
 
-        // Close dialog when clicking outside the popup card
+        // Close dialog
         if (mainContent != null) {
             mainContent.setOnMouseClicked(event -> {
                 if (event.getTarget() == mainContent) {

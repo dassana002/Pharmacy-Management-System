@@ -1,15 +1,23 @@
 package lk.ijse.pharmacymanagementsystem.dto.item;
 
 public class NewItemTM {
-    private int item_code;
+    private int itemCode;
     private String description;
 
     public NewItemTM() {
     }
 
-    public NewItemTM(int item_code, String description) {
-        this.item_code = item_code;
+    public NewItemTM(int itemCode, String description) {
+        this.itemCode = itemCode;
         this.description = description;
+    }
+
+    public int getItemCode() {
+        return itemCode;
+    }
+
+    public void setItemCode(int itemCode) {
+        this.itemCode = itemCode;
     }
 
     public String getDescription() {
@@ -20,19 +28,10 @@ public class NewItemTM {
         this.description = description;
     }
 
-    public int getItem_code() {
-        return item_code;
-    }
-
-    public void setItem_code(int item_code) {
-        this.item_code = item_code;
-    }
-
-
     @Override
     public String toString() {
         return "NewItemTM{" +
-                "item_code=" + item_code +
+                "item_code=" + itemCode +
                 ", description='" + description + '\'' +
                 '}';
     }

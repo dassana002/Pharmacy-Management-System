@@ -102,6 +102,8 @@ public class ItemAddController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        References.itemAddController = this;
+
         colItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
         colUnitCost.setCellValueFactory(new PropertyValueFactory<>("unitCost"));
@@ -161,6 +163,11 @@ public class ItemAddController implements Initializable {
 
         // Load Automate in Hold Bill List
         setHoldList_bar();
+    }
+
+    public void setItem(int itemCode, String desc) {
+        itemCode_text.setText(String.valueOf(itemCode));
+        des_text.setText(desc);
     }
 
     private boolean isValid(TextField field, String regex) {

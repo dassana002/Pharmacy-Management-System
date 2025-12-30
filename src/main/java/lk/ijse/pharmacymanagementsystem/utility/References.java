@@ -12,4 +12,5 @@ public class References {
     public static ProductController productController;
     public static DashLayoutController dashLayoutController;
     public static ItemEditController itemEditController;
+    public static ItemAddController itemAddController;
 }

@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lk.ijse.pharmacymanagementsystem.Launcher;
+import lk.ijse.pharmacymanagementsystem.controller.components.product.dialog.ProductListController;
 import lk.ijse.pharmacymanagementsystem.utility.References;
 
 import java.io.IOException;
@@ -95,6 +96,13 @@ public class ProductController implements Initializable {
     }
 
     public void closeSupplierAddDialog() {
+        // Remove the last child (which should be the overlay)
+        if (ItemMain_Content.getChildren().size() > 1) {
+            ItemMain_Content.getChildren().remove(ItemMain_Content.getChildren().size() - 1);
+        }
+    }
+
+    public void closeItemListDialog() {
         // Remove the last child (which should be the overlay)
         if (ItemMain_Content.getChildren().size() > 1) {
             ItemMain_Content.getChildren().remove(ItemMain_Content.getChildren().size() - 1);

@@ -1,5 +1,6 @@
 package lk.ijse.pharmacymanagementsystem.model;
 
+import javafx.scene.control.TextField;
 import lk.ijse.pharmacymanagementsystem.dbConnection.DBConnection;
 import lk.ijse.pharmacymanagementsystem.dto.item.ItemDTO;
 import lk.ijse.pharmacymanagementsystem.utility.CrudUtil;
@@ -8,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ItemModel {
     public ItemDTO getItem(int itemCode) throws SQLException {
@@ -55,4 +57,19 @@ public class ItemModel {
             con.setAutoCommit(true);
         }
     }
+
+    public ArrayList<ItemDTO> getAllItems() throws SQLException {
+        String query = "SELECT * FROM item";
+        ResultSet rs = CrudUtil.execute(query);
+        ArrayList<ItemDTO> itemDTOS = new ArrayList<>();
+        while (rs.next()) {
+            ItemDTO itemDTO = new ItemDTO(
+                    rs.getInt("item_code"),
+                    rs.getString("description")
+            );
+            itemDTOS.add(itemDTO);
+        }
+        return itemDTOS;
+    }
+
 }
