@@ -25,4 +25,16 @@ public class CrudUtil {
             return (T)(Boolean)rs;
         }
     }
+
+    public static ResultSet executeQuery(String sql, Object... params) throws SQLException {
+        Connection con = DBConnection.getInstance().getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        for (int i = 0; i < params.length; i++) {
+            ps.setObject(i + 1, params[i]);
+        }
+
+        return ps.executeQuery();
+    }
+
 }

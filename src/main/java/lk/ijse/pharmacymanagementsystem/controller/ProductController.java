@@ -117,8 +117,9 @@ public class ProductController implements Initializable {
     }
 
     @FXML
-    void handleOutOfStock(ActionEvent event) {
-
+    void handleOutOfStock(ActionEvent event) throws IOException {
+        Parent addItemUI = Launcher.loadFXML("components/product/OutOfStock");
+        ItemMain_Content.getChildren().setAll(addItemUI);
     }
 
     @FXML

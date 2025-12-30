@@ -203,4 +203,45 @@ public class BatchModel {
             connection.setAutoCommit(true);
         }
     }
+
+    public ArrayList<BatchDTO> getOutOfStocks() throws SQLException {
+
+        String query = """
+        SELECT 
+            b.batch_id,
+            b.batch_number,
+            b.item_code,
+            b.bill_id,
+            (b.available_qty + IFNULL(f.ava_qty, 0)) AS total_available_qty
+        FROM batch b
+        LEFT JOIN free f ON b.batch_id = f.batch_id
+        GROUP BY 
+            b.batch_id,
+            b.batch_number,
+            b.item_code,
+            b.bill_id,
+            b.available_qty,
+            f.ava_qty
+        HAVING total_available_qty < 10
+    """;
+
+        ResultSet rs = CrudUtil.executeQuery(query);
+        ArrayList<BatchDTO> outOfStocks = new ArrayList<>();
+
+        while (rs.next()) {
+            BatchDTO batchDTO = new BatchDTO(
+                    rs.getInt("batch_id"),
+                    rs.getInt("batch_number"),
+                    0,
+                    rs.getInt("item_code"),
+                    rs.getInt("bill_id")
+            );
+
+            batchDTO.setAvailable_qty(rs.getInt("total_available_qty"));
+
+            outOfStocks.add(batchDTO);
+        }
+        return outOfStocks;
+    }
+
 }
