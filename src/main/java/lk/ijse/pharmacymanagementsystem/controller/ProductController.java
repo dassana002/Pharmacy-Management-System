@@ -66,8 +66,7 @@ public class ProductController implements Initializable {
 
     @FXML
     void handleSupplier(ActionEvent event) throws IOException {
-        showNewItemDialog("SupplierEd" +
-                "");
+        showNewItemDialog("SupplierEdit");
     }
 
     private void showNewItemDialog(String root) throws IOException {
