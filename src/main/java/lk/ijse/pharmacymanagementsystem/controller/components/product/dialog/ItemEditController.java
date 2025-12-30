@@ -4,11 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import lk.ijse.pharmacymanagementsystem.dto.item.BatchDTO;
 import lk.ijse.pharmacymanagementsystem.model.BatchModel;
 import lk.ijse.pharmacymanagementsystem.model.BillModel;
 import lk.ijse.pharmacymanagementsystem.utility.References;
@@ -18,7 +20,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ProductEditController implements Initializable {
+public class ItemEditController implements Initializable {
 
     @FXML
     private Button close_btn;
@@ -60,7 +62,7 @@ public class ProductEditController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        References.productEditController = this;
+        References.itemEditController = this;
         loadItem();
     }
 
