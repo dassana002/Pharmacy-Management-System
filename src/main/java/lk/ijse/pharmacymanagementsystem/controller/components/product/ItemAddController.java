@@ -177,7 +177,7 @@ public class ItemAddController implements Initializable {
 
     private void editItem(int itemCode, String invoice) throws SQLException, IOException {
         References.productController.editItemDialog();
-        References.itemEditController.setItemCode(itemCode, invoice);
+        References.productEditController.setItemCode(itemCode, invoice);
     }
 
     private void setHoldList_bar() {
