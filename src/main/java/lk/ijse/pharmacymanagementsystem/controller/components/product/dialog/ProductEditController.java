@@ -1,7 +1,5 @@
 package lk.ijse.pharmacymanagementsystem.controller.components.product.dialog;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +13,7 @@ import lk.ijse.pharmacymanagementsystem.utility.References;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ProductEditController implements Initializable {
@@ -23,22 +22,16 @@ public class ProductEditController implements Initializable {
     private TextField des_text;
 
     @FXML
-    private ComboBox<String> dosage_cmb;
-
-    @FXML
     private TextField itemCode_text;
 
     @FXML
     private StackPane mainContent;
 
-    @FXML
-    private Label dosageID;
-
+    private String oldDescription;
     private static final String ITEM_CODE_REGEX = "^[0-9]+$";
     private static final String DESCRIPTION_REGEX = "^[A-Za-z ]{5,}$";
 
     private final ItemModel itemModel = new ItemModel();
-    ObservableList<String> sizesList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -93,7 +86,7 @@ public class ProductEditController implements Initializable {
                         ItemDTO dbItem = itemModel.getItem(itemCode);
                         des_text.setText(dbItem.getDescription());
                     }else {
-                        new Alert(Alert.AlertType.WARNING, "Item Not Found..").show();
+                        new Alert(Alert.AlertType.WARNING, "Product Not Found..").show();
                     }
                 }else {
                     new Alert(Alert.AlertType.ERROR, "Invalid Item Code..Try again..").show();
@@ -126,14 +119,14 @@ public class ProductEditController implements Initializable {
                 boolean isSave = itemModel.saveAll(itemDTO);
 
                 if (isSave) {
-                    new Alert(Alert.AlertType.INFORMATION, "Items Saved successfully", ButtonType.OK).show();
+                    new Alert(Alert.AlertType.INFORMATION, "Product Saved successfully", ButtonType.OK).show();
                     cleanText();
                 }else {
-                    new Alert(Alert.AlertType.ERROR, "Item Not Saved ? Please Try again..", ButtonType.OK).show();
+                    new Alert(Alert.AlertType.ERROR, "Product Not Saved ? Please Try again..", ButtonType.OK).show();
                     cleanText();
                 }
             } else {
-                new Alert(Alert.AlertType.WARNING, "This Item Already Added", ButtonType.OK).show();
+                new Alert(Alert.AlertType.WARNING, "This Product Already Added", ButtonType.OK).show();
                 cleanText();
             }
 
@@ -143,9 +136,36 @@ public class ProductEditController implements Initializable {
         }
     }
 
+    @FXML
+    void handleEdit(ActionEvent event) {
+        try {
+            ItemDTO item = itemModel.getItem(Integer.parseInt(itemCode_text.getText()));
+
+            if (item != null) {
+                boolean isChange = !Objects.equals(des_text.getText(), item.getDescription());
+                if (isChange) {
+                    boolean isUpdated = itemModel.updateDesc(item.getItem_code(), des_text.getText());
+                    if (isUpdated) {
+                        new Alert(Alert.AlertType.INFORMATION, "Product Saved successfully", ButtonType.OK).show();
+                        cleanText();
+                    }else {
+                        new Alert(Alert.AlertType.ERROR, "Product Saved successfully", ButtonType.OK).show();
+                    }
+                }else {
+                    new Alert(Alert.AlertType.ERROR, "This Product Already Not Change..", ButtonType.OK).show();
+                }
+
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Product Not Found..Please first Save to Product", ButtonType.OK).show();
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void cleanText() {
         itemCode_text.clear();
         des_text.clear();
-        dosage_cmb.getEditor().clear();
     }
 }

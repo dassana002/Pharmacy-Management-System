@@ -21,7 +21,7 @@
 
         <children>
             <!-- Title -->
-            <Label style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Add Item">
+            <Label style="-fx-text-fill: #333333; -fx-font-weight: bold;" text="Edit Product">
                 <font>
                     <Font size="22.0" />
                 </font>
@@ -70,11 +70,16 @@
                         </font>
                     </Button>
 
-                    <Button fx:id="close_btn" maxWidth="300.0" minWidth="200.0" onAction="#handleClose" prefHeight="45.0" style="                                 -fx-background-color: #e0e0e0;                                 -fx-text-fill: #333333;                                 -fx-background-radius: 8;                                 -fx-font-weight: bold;                                 -fx-cursor: hand;                             " text="Close">
+                    <Button fx:id="edit_btn" maxWidth="300.0" minWidth="200.0" onAction="#handleEdit" prefHeight="45.0" style="                                 -fx-background-color: #e0e0e0;                                 -fx-text-fill: #333333;                                 -fx-background-radius: 8;                                 -fx-font-weight: bold;                                 -fx-cursor: hand;                             " text="Edit">
                         <font>
                             <Font size="16.0" />
                         </font>
                     </Button>
+               <Button fx:id="close_btn" maxWidth="300.0" minWidth="200.0" onAction="#handleClose" prefHeight="45.0" style="                                 -fx-background-color: #e0e0e0;                                 -fx-text-fill: #333333;                                 -fx-background-radius: 8;                                 -fx-font-weight: bold;                                 -fx-cursor: hand;                             " text="Close">
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Button>
                 </children>
             </VBox>
 

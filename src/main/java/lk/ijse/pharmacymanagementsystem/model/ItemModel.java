@@ -72,4 +72,8 @@ public class ItemModel {
         return itemDTOS;
     }
 
+    public boolean updateDesc(int itemCode, String desText) throws SQLException {
+        String query = "UPDATE item SET description = ? WHERE item_code = ?";
+        return CrudUtil.execute(query,desText, itemCode);
+    }
 }
