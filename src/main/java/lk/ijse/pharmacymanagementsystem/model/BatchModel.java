@@ -185,7 +185,7 @@ public class BatchModel {
                 connection.rollback();
                 return false;
             }
-            
+
             boolean isDelete = CrudUtil.execute(query, billId, batchId);
             if (!isDelete) {
                 connection.rollback();
