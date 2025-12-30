@@ -1,6 +1,5 @@
 package lk.ijse.pharmacymanagementsystem.dto.item;
 
-import java.util.Date;
 
 public class BatchDTO {
     private int batch_id;

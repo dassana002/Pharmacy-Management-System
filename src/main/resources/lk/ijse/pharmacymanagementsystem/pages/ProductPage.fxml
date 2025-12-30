@@ -33,7 +33,7 @@
                             </font>
                         </Button>
 
-                        <Button fx:id="itemAdd_btn" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleItemsAddToInvetory" prefHeight="45.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5;" text="Item Add">
+                        <Button fx:id="itemAdd_btn" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleItemsAddToInvetory" prefHeight="45.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5;" text="Add">
                             <font>
                                 <Font size="16.0" />
                             </font>

@@ -87,6 +87,8 @@ public class ItemAddController implements Initializable {
     @FXML
     private TextField allTotal_lbl;
 
+    private String currentInvoice;
+
     private final ItemModel itemModel = new ItemModel();
     private final SupplierModel supplierModel = new SupplierModel();
     private final BatchModel batchModel = new  BatchModel();
@@ -140,9 +142,8 @@ public class ItemAddController implements Initializable {
 
             edit.setOnAction(event -> {
                 AddItemTM selectedItem = row.getItem();
-                System.out.println("Edit : " + selectedItem.getDescription());
                 try {
-                    editItem(selectedItem.getItemId(), String.valueOf(invoice_number_text));
+                    editItem(selectedItem.getItemId());
                 } catch (SQLException | IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -175,11 +176,11 @@ public class ItemAddController implements Initializable {
     }
 
 
-    private void editItem(int itemCode, String invoice) throws SQLException, IOException {
+    private void editItem(int itemCode) throws SQLException, IOException {
         // Load Edit Product
         References.productController.editItemDialog();
         // the Edit product passed
-        References.itemEditController.setItemCode(itemCode, invoice);
+        References.itemEditController.setItemCode(itemCode, currentInvoice);
     }
 
     private void setHoldList_bar() {
@@ -301,6 +302,7 @@ public class ItemAddController implements Initializable {
                 if (isValid(invoice_number_text, INVOICE_REGEX)) {
                     int billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
 
+                    currentInvoice = invoice_number_text.getText();
                     if (billId == 0) {
                         new Alert(Alert.AlertType.WARNING, "Invoice Not Found", ButtonType.OK).show();
                         return;

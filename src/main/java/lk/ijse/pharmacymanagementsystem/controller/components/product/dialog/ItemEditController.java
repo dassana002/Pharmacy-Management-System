@@ -67,7 +67,6 @@ public class ItemEditController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         References.itemEditController = this;
-        loadItem();
     }
 
     private void loadItem() {
@@ -76,7 +75,7 @@ public class ItemEditController implements Initializable {
             BatchDTO batchDTO = batchModel.getBatchByItemCodeAndBillId(itemCode, billId);
 
             if (batchDTO == null) {
-                new Alert(Alert.AlertType.ERROR, "Item Not Found !", ButtonType.OK).show();
+                new Alert(Alert.AlertType.ERROR,"Batch not found for selected item", ButtonType.OK).show();
                 return;
             }
 
@@ -118,5 +117,7 @@ public class ItemEditController implements Initializable {
     public void setItemCode(int itemCode, String invoice) throws SQLException, IOException {
         this.itemCode = itemCode;
         this.invoice = invoice;
+
+        loadItem();
     }
 }
