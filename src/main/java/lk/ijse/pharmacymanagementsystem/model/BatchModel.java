@@ -132,4 +132,45 @@ public class BatchModel {
         }
         return batchDTO;
     }
+
+    public boolean updateBatchAndFree(BatchDTO newbatchDTO, FreeDTO newFreeDto) throws SQLException {
+        Connection conn = DBConnection.getInstance().getConnection();
+        try {
+            conn.setAutoCommit(false);
+
+            String query = "UPDATE batch SET batch_number = ?, sell_price = ?, cost_price = ?, expired_date = ?, qty = ?, available_qty = ?, item_code = ?, bill_id = ? WHERE batch_id = ?";
+            boolean isBatchUpdate = CrudUtil.execute(
+                    query,
+                    newbatchDTO.getBatch_number(),
+                    newbatchDTO.getSell_price(),
+                    newbatchDTO.getCost_price(),
+                    newbatchDTO.getExpired_date(),
+                    newbatchDTO.getQty(),
+                    newbatchDTO.getAvailable_qty(),
+                    newbatchDTO.getItem_code(),
+                    newbatchDTO.getBill_id(),
+                    newbatchDTO.getBatch_id()
+            );
+
+            if (!isBatchUpdate) {
+                conn.rollback();
+                return false;
+            }
+
+            boolean isUpdateFree = freeModel.updateFree(newFreeDto);
+            if (!isUpdateFree) {
+                conn.rollback();
+                return false;
+            }
+
+            conn.commit();
+            return true;
+
+        } catch (Exception e) {
+            conn.rollback();
+            throw new RuntimeException(e);
+        } finally {
+            conn.setAutoCommit(true);
+        }
+    }
 }

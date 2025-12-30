@@ -534,6 +534,57 @@ public class ItemAddController implements Initializable {
         itemAddView_tbl.setItems(itemTMList);
     }
 
+    public void afterUpdate() {
+        cleanTable();
+        try {
+            int billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
+
+            currentInvoice = invoice_number_text.getText();
+            if (billId == 0) {
+                new Alert(Alert.AlertType.WARNING, "Invoice Not Found", ButtonType.OK).show();
+                return;
+            }
+
+            // Check current status
+            Status status = Status.valueOf(billModel.searchStatusById(billId));
+
+            if (status != Status.DRAFF) {
+                new Alert(Alert.AlertType.WARNING, "This Invoice is Already Closed", ButtonType.OK).show();
+                return;
+            }
+
+            // get All Batches by BillId
+            BillDTO billDTOs= billModel.getBillById(billId);
+
+            todayDate_text.setValue(LocalDate.parse(billDTOs.getToday_date()));
+            receivedDate_text.setValue(LocalDate.parse(billDTOs.getReceived_date()));
+            companyName_cmb.setValue(billDTOs.getCompany_name());
+
+            // batches set To table
+            for (BatchDTO batchDTO : billDTOs.getBatchDtoList()) {
+                // getItem
+                ItemDTO itemDTO = itemModel.getItem(batchDTO.getItem_code());
+                // calculate AllQty
+                int AllQty = batchDTO.getQty() + freeModel.getFreeQtyById(batchDTO.getBatch_id());
+                // calculate sub Total
+                double subTotal = batchDTO.getQty() * batchDTO.getCost_price();
+
+                AddItemTM addItemTM = new AddItemTM(
+                        batchDTO.getItem_code(),
+                        itemDTO.getDescription(),
+                        batchDTO.getCost_price(),
+                        batchDTO.getSell_price(),
+                        AllQty,
+                        subTotal
+                );
+                itemTMList.add(addItemTM);
+            }
+            calcAllTotal();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void calcAllTotal() {
         double total = 0.0;
         for (AddItemTM addItemTM : itemTMList) {

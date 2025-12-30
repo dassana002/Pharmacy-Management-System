@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import lk.ijse.pharmacymanagementsystem.dto.item.BatchDTO;
+import lk.ijse.pharmacymanagementsystem.dto.item.FreeDTO;
 import lk.ijse.pharmacymanagementsystem.dto.item.ItemDTO;
 import lk.ijse.pharmacymanagementsystem.model.BatchModel;
 import lk.ijse.pharmacymanagementsystem.model.BillModel;
@@ -20,12 +21,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ItemEditController implements Initializable {
-
-    @FXML
-    private Button close_btn;
 
     @FXML
     private TextField des_text;
@@ -43,13 +42,7 @@ public class ItemEditController implements Initializable {
     private StackPane mainContent;
 
     @FXML
-    private VBox popupCard;
-
-    @FXML
     private TextField qty_txt;
-
-    @FXML
-    private Button save_btn;
 
     @FXML
     private TextField sellPrice_txt;
@@ -57,8 +50,18 @@ public class ItemEditController implements Initializable {
     @FXML
     private TextField unitCost_txt;
 
+    private int oldItemCode;
+    private String oldDesc;
+    private int oldQty;
+    private double oldSellPrice;
+    private double oldUnitCost;
+    private LocalDate oldExpireDate;
+    private int oldFreeQty;
+
     private int itemCode;
     private String invoice;
+    private int billId;
+    private BatchDTO batchDTO = new BatchDTO();
     private final BillModel billModel = new BillModel();
     private final BatchModel batchModel = new BatchModel();
     private final ItemModel itemModel = new ItemModel();
@@ -67,12 +70,21 @@ public class ItemEditController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         References.itemEditController = this;
+
+        // Click background and Close dialog
+        if (mainContent != null) {
+            mainContent.setOnMouseClicked(event -> {
+                if (event.getTarget() == mainContent) {
+                    handleClose(null);
+                }
+            });
+        }
     }
 
     private void loadItem() {
         try {
-            int billId = billModel.getBillIdByInvoice(invoice);
-            BatchDTO batchDTO = batchModel.getBatchByItemCodeAndBillId(itemCode, billId);
+            billId = billModel.getBillIdByInvoice(invoice);
+            batchDTO = batchModel.getBatchByItemCodeAndBillId(itemCode, billId);
 
             if (batchDTO == null) {
                 new Alert(Alert.AlertType.ERROR,"Batch not found for selected item", ButtonType.OK).show();
@@ -94,6 +106,15 @@ public class ItemEditController implements Initializable {
 
             expireDate_text.setValue(LocalDate.parse(batchDTO.getExpired_date()));
 
+            // set Old
+            oldItemCode = Integer.parseInt(itemCode_text.getText());
+            oldDesc = des_text.getText();
+            oldQty = Integer.parseInt(qty_txt.getText());
+            oldSellPrice = Double.parseDouble(sellPrice_txt.getText());
+            oldUnitCost = Double.parseDouble(unitCost_txt.getText());
+            oldExpireDate = expireDate_text.getValue();
+            oldFreeQty = freeQTY;
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -101,12 +122,78 @@ public class ItemEditController implements Initializable {
 
     @FXML
     void handleClose(ActionEvent event) {
-
+        // Close the dialog through ItemController
+        if (References.productController != null) {
+            References.productController.closeItemEditDialog();
+        }
     }
 
     @FXML
     void handleUpdateItem(ActionEvent event) {
+        try {
+            int newItemCode = Integer.parseInt(itemCode_text.getText());
+            double newUnitCost = Double.parseDouble(unitCost_txt.getText());
+            double newSellPrice = Double.parseDouble(sellPrice_txt.getText());
+            int newQty = Integer.parseInt(qty_txt.getText());
+            int newFreeQty = Integer.parseInt(freeQty_txt.getText());
+            LocalDate newExpireDate = expireDate_text.getValue();
 
+            if (itemCode_text.getText().isEmpty() ||
+                    qty_txt.getText().isEmpty() ||
+                    sellPrice_txt.getText().isEmpty() ||
+                    unitCost_txt.getText().isEmpty() ||
+                    freeQty_txt.getText().isEmpty() ||
+                    expireDate_text.getValue() == null) {
+
+                new Alert(Alert.AlertType.WARNING, "Please fill all fields", ButtonType.OK).show();
+                return;
+            }
+
+            boolean isChanged = oldItemCode != newItemCode ||
+                                Double.compare(oldUnitCost, newUnitCost) != 0 ||
+                                Double.compare(oldSellPrice, newSellPrice) != 0 ||
+                                oldQty != newQty ||
+                                oldFreeQty != newFreeQty ||
+                                !Objects.equals(oldExpireDate, newExpireDate);
+
+            if (!isChanged) {
+                new Alert(Alert.AlertType.INFORMATION, "No changes detected!", ButtonType.OK).show();
+                return;
+            }
+
+            BatchDTO newBatchDTO = new BatchDTO(
+                    batchDTO.getBatch_id(),
+                    batchDTO.getBatch_number(),
+                    newSellPrice,
+                    newUnitCost,
+                    String.valueOf(newExpireDate),
+                    newQty,
+                    newQty+newFreeQty,
+                    newItemCode,
+                    billId
+            );
+
+            FreeDTO freeDTO = freeModel.getFreeById(batchDTO.getBatch_id());
+            FreeDTO newFreeDTO = new FreeDTO(
+                    freeDTO.getFree_id(),
+                    batchDTO.getBatch_id(),
+                    newFreeQty,
+                    newFreeQty
+            );
+
+            boolean isUpdated = batchModel.updateBatchAndFree(newBatchDTO, newFreeDTO);
+
+            if (isUpdated) {
+                new Alert(Alert.AlertType.INFORMATION, "Item Updated!", ButtonType.OK).show();
+                References.itemAddController.afterUpdate();
+                handleClose(null);
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Item Not Updated!", ButtonType.OK).show();
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

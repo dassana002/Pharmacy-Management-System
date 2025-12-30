@@ -37,4 +37,29 @@ public class FreeModel {
 
         return qty;
     }
+
+    public FreeDTO getFreeById(int batchId) throws SQLException {
+        String query = "SELECT * FROM free WHERE batch_id=?";
+        ResultSet rs = CrudUtil.execute(query, batchId);
+        FreeDTO freeDTO = null;
+        if (rs.next()) {
+            freeDTO = new FreeDTO(
+                    rs.getInt("free_id"),
+                    rs.getInt("batch_id"),
+                    rs.getInt("qty"),
+                    rs.getInt("ava_qty")
+            );
+        }
+        return freeDTO;
+    }
+
+    public boolean updateFree(FreeDTO newFreeDto) throws SQLException {
+        String query = "UPDATE free SET qty = ?, ava_qty = ? WHERE batch_id = ?";
+        return CrudUtil.execute(
+                query,
+                newFreeDto.getQty(),
+                newFreeDto.getAva_qty(),
+                newFreeDto.getBatch_id()
+        );
+    }
 }

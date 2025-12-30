@@ -109,6 +109,13 @@ public class ProductController implements Initializable {
         }
     }
 
+    public void closeItemEditDialog() {
+        // Remove the last child (which should be the overlay)
+        if (ItemMain_Content.getChildren().size() > 1) {
+            ItemMain_Content.getChildren().remove(ItemMain_Content.getChildren().size() - 1);
+        }
+    }
+
     @FXML
     void handleOutOfStock(ActionEvent event) {
 
