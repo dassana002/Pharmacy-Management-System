@@ -7,6 +7,8 @@ module lk.ijse.pharmacymanagementsystem {
     requires java.desktop;
     requires javafx.base;
     requires mysql.connector.j;
+    requires itextpdf;
+    requires org.json;
 
     exports lk.ijse.pharmacymanagementsystem;
     opens lk.ijse.pharmacymanagementsystem to javafx.fxml;
