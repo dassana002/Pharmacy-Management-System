@@ -244,4 +244,32 @@ public class BatchModel {
         return outOfStocks;
     }
 
+    public ArrayList<BatchDTO> getExpireBatches() throws SQLException {
+        String query = "SELECT\n" +
+                "    b.batch_id,\n" +
+                "    b.batch_number,\n" +
+                "    b.item_code,\n" +
+                "    b.bill_id,\n" +
+                "    b.expired_date,\n" +
+                "    (b.available_qty + IFNULL(f.ava_qty, 0)) AS total_available_qty\n" +
+                "FROM batch b\n" +
+                "LEFT JOIN free f ON b.batch_id = f.batch_id\n" +
+                "WHERE b.expired_date < CURDATE()\n";
+        ResultSet rs = CrudUtil.executeQuery(query);
+
+        ArrayList<BatchDTO> expireBatches = new ArrayList<>();
+        while (rs.next()) {
+            BatchDTO batchDTO = new BatchDTO(
+                    rs.getInt("batch_id"),
+                    rs.getInt("batch_number"),
+                    0,
+                    rs.getInt("item_code"),
+                    rs.getInt("bill_id"),
+                    rs.getString("expired_date")
+            );
+            batchDTO.setAvailable_qty(rs.getInt("total_available_qty"));
+            expireBatches.add(batchDTO);
+        }
+        return expireBatches;
+    }
 }

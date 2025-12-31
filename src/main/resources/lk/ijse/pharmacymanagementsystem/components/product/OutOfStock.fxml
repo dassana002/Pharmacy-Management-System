@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="877.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.product.OutOfStockController">
+<AnchorPane prefHeight="832.0" prefWidth="1057.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pharmacymanagementsystem.controller.components.product.OutOfStockController">
    <children>
       <BorderPane layoutX="-2.0" prefHeight="877.0" prefWidth="1073.0">
          <top>

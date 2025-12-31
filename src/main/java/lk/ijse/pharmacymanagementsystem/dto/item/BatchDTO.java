@@ -23,6 +23,15 @@ public class BatchDTO {
         this.bill_id = bill_id;
     }
 
+    public BatchDTO(int batch_id, int batch_number, int available_qty, int item_code, int bill_id, String expired_date) {
+        this.batch_id = batch_id;
+        this.batch_number = batch_number;
+        this.available_qty = available_qty;
+        this.item_code = item_code;
+        this.bill_id = bill_id;
+        this.expired_date = expired_date;
+    }
+
     public BatchDTO(int batch_id, int batch_number, double sell_price, double cost_price, String expired_date, int qty, int available_qty, int item_code, int bill_id) {
         this.batch_id = batch_id;
         this.batch_number = batch_number;

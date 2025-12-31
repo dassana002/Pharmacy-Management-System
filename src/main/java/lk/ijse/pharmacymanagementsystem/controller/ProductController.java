@@ -123,8 +123,9 @@ public class ProductController implements Initializable {
     }
 
     @FXML
-    void handleExpireItem(ActionEvent event) {
-
+    void handleExpireItem(ActionEvent event) throws IOException {
+        Parent addItemUI = Launcher.loadFXML("components/product/ExpireDate");
+        ItemMain_Content.getChildren().setAll(addItemUI);
     }
 
     public void payDialog(String invoice) {
