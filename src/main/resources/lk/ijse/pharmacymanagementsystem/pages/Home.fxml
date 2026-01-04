@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane"
+            styleClass="home-root"
+            stylesheets="@../CSS/Home.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lk.ijse.pharmacymanagementsystem.controller.HomeController"
+            AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+    <children>
+        <ScrollPane fitToHeight="true"
+                    fitToWidth="true"
+                    styleClass="scroll-pane"
+                    style="-fx-background-color: transparent; -fx-background: transparent;"
+                    AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
+            <content>
+                <VBox fx:id="mainContainer"
+                      spacing="25.0"
+                      styleClass="main-container"
+                      minWidth="300">
+                    <padding>
+                        <Insets top="30.0" bottom="30.0" left="25.0" right="25.0" />
+                    </padding>
+
+                    <children>
+                        <!-- Welcome Section -->
+                        <VBox spacing="12.0" styleClass="welcome-section">
+                            <children>
+                                <Label fx:id="welcomeTitle"
+                                       styleClass="welcome-title"
+                                       text="Welcome to PharmaCare"
+                                       wrapText="true"
+                                       maxWidth="Infinity">
+                                    <font>
+                                        <Font name="System Bold" size="32.0" />
+                                    </font>
+                                </Label>
+
+                                <Label fx:id="welcomeSubtitle"
+                                       styleClass="welcome-subtitle"
+                                       text="Your complete pharmacy management solution"
+                                       wrapText="true"
+                                       maxWidth="Infinity">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+
+                                <Line fx:id="dividerLine"
+                                      endX="100.0"
+                                      styleClass="divider"
+                                      style="-fx-stroke: #e0e0e0; -fx-stroke-width: 2;">
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </Line>
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="15.0" />
+                            </VBox.margin>
+                        </VBox>
+
+                        <!-- Statistics Cards Row -->
+                        <FlowPane fx:id="statsContainer"
+                                  hgap="20.0"
+                                  vgap="20.0"
+                                  styleClass="stats-flow"
+                                  alignment="CENTER">
+
+                            <!-- Total Orders Card -->
+                            <VBox fx:id="ordersCard"
+                                  alignment="CENTER"
+                                  minWidth="220.0"
+                                  prefWidth="300.0"
+                                  maxWidth="350.0"
+                                  spacing="10.0"
+                                  styleClass="stat-card, order-card"
+                                  style="-fx-background-color: #ffffff; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2); -fx-border-color: #e3f2fd; -fx-border-width: 2; -fx-border-radius: 15;">
+                                <padding>
+                                    <Insets top="25.0" bottom="25.0" left="20.0" right="20.0" />
+                                </padding>
+                                <children>
+                                    <Label styleClass="card-icon"
+                                           text="📦"
+                                           style="-fx-text-fill: #2196F3;">
+                                        <font>
+                                            <Font size="45.0" />
+                                        </font>
+                                    </Label>
+
+                                    <Label fx:id="totalOrdersLabel"
+                                           styleClass="stat-number"
+                                           text="0"
+                                           style="-fx-text-fill: #2196F3;">
+                                        <font>
+                                            <Font name="System Bold" size="38.0" />
+                                        </font>
+                                    </Label>
+
+                                    <Label styleClass="stat-label"
+                                           text="Total Orders"
+                                           style="-fx-text-fill: #555555;">
+                                        <font>
+                                            <Font size="14.0" />
+                                        </font>
+                                    </Label>
+                                </children>
+                            </VBox>
+
+                            <!-- Total Employees Card -->
+                            <VBox fx:id="employeesCard"
+                                  alignment="CENTER"
+                                  minWidth="220.0"
+                                  prefWidth="300.0"
+                                  maxWidth="350.0"
+                                  spacing="10.0"
+                                  styleClass="stat-card, employee-card"
+                                  style="-fx-background-color: #ffffff; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2); -fx-border-color: #e8f5e9; -fx-border-width: 2; -fx-border-radius: 15;">
+                                <padding>
+                                    <Insets top="25.0" bottom="25.0" left="20.0" right="20.0" />
+                                </padding>
+                                <children>
+                                    <Label styleClass="card-icon"
+                                           text="👥"
+                                           style="-fx-text-fill: #4CAF50;">
+                                        <font>
+                                            <Font size="45.0" />
+                                        </font>
+                                    </Label>
+
+                                    <Label fx:id="totalEmployeesLabel"
+                                           styleClass="stat-number"
+                                           text="0"
+                                           style="-fx-text-fill: #4CAF50;">
+                                        <font>
+                                            <Font name="System Bold" size="38.0" />
+                                        </font>
+                                    </Label>
+
+                                    <Label styleClass="stat-label"
+                                           text="Active Employees"
+                                           style="-fx-text-fill: #555555;">
+                                        <font>
+                                            <Font size="14.0" />
+                                        </font>
+                                    </Label>
+                                </children>
+                            </VBox>
+
+                            <!-- Total Medicines Card -->
+                            <VBox fx:id="medicinesCard"
+                                  alignment="CENTER"
+                                  minWidth="220.0"
+                                  prefWidth="300.0"
+                                  maxWidth="350.0"
+                                  spacing="10.0"
+                                  styleClass="stat-card, medicine-card"
+                                  style="-fx-background-color: #ffffff; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2); -fx-border-color: #f3e5f5; -fx-border-width: 2; -fx-border-radius: 15;">
+                                <padding>
+                                    <Insets top="25.0" bottom="25.0" left="20.0" right="20.0" />
+                                </padding>
+                                <children>
+                                    <Label styleClass="card-icon"
+                                           text="💊"
+                                           style="-fx-text-fill: #9C27B0;">
+                                        <font>
+                                            <Font size="45.0" />
+                                        </font>
+                                    </Label>
+
+                                    <Label fx:id="totalMedicinesLabel"
+                                           styleClass="stat-number"
+                                           text="0"
+                                           style="-fx-text-fill: #9C27B0;">
+                                        <font>
+                                            <Font name="System Bold" size="38.0" />
+                                        </font>
+                                    </Label>
+
+                                    <Label styleClass="stat-label"
+                                           text="Medicine Stock"
+                                           style="-fx-text-fill: #555555;">
+                                        <font>
+                                            <Font size="14.0" />
+                                        </font>
+                                    </Label>
+                                </children>
+                            </VBox>
+                        </FlowPane>
+
+                        <!-- Quick Actions Section -->
+                        <VBox spacing="20.0">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin>
+                            <children>
+                                <Label styleClass="section-title"
+                                       text="Quick Actions"
+                                       style="-fx-text-fill: #333333;">
+                                    <font>
+                                        <Font name="System Bold" size="22.0" />
+                                    </font>
+                                </Label>
+
+                                <FlowPane fx:id="quickActionsContainer"
+                                          hgap="20.0"
+                                          vgap="20.0"
+                                          styleClass="actions-flow"
+                                          alignment="CENTER_LEFT">
+
+                                    <!-- Recent Orders -->
+                                    <VBox fx:id="recentOrdersCard"
+                                          minWidth="280.0"
+                                          prefWidth="460.0"
+                                          maxWidth="550.0"
+                                          spacing="10.0"
+                                          styleClass="info-card"
+                                          style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2); -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 12;">
+                                        <padding>
+                                            <Insets top="18.0" bottom="18.0" left="20.0" right="20.0" />
+                                        </padding>
+                                        <children>
+                                            <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                                <children>
+                                                    <Label styleClass="info-icon"
+                                                           text="🔄"
+                                                           style="-fx-text-fill: #2196F3;">
+                                                        <font>
+                                                            <Font size="28.0" />
+                                                        </font>
+                                                    </Label>
+                                                    <Label styleClass="info-title"
+                                                           text="Recent Orders"
+                                                           style="-fx-text-fill: #333333;">
+                                                        <font>
+                                                            <Font name="System Bold" size="17.0" />
+                                                        </font>
+                                                    </Label>
+                                                </children>
+                                            </HBox>
+                                            <Label fx:id="recentOrdersLabel"
+                                                   styleClass="info-value"
+                                                   text="Last 24 hours: 0"
+                                                   wrapText="true"
+                                                   style="-fx-text-fill: #666666;">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </Label>
+                                        </children>
+                                    </VBox>
+
+                                    <!-- Low Stock Alert -->
+                                    <VBox fx:id="lowStockCard"
+                                          minWidth="280.0"
+                                          prefWidth="460.0"
+                                          maxWidth="550.0"
+                                          spacing="10.0"
+                                          styleClass="info-card, alert-card"
+                                          style="-fx-background-color: #fff3e0; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2); -fx-border-color: #ffb74d; -fx-border-width: 1; -fx-border-radius: 12;">
+                                        <padding>
+                                            <Insets top="18.0" bottom="18.0" left="20.0" right="20.0" />
+                                        </padding>
+                                        <children>
+                                            <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                                <children>
+                                                    <Label styleClass="info-icon"
+                                                           text="⚠️"
+                                                           style="-fx-text-fill: #FF9800;">
+                                                        <font>
+                                                            <Font size="28.0" />
+                                                        </font>
+                                                    </Label>
+                                                    <Label styleClass="info-title"
+                                                           text="Low Stock Alert"
+                                                           style="-fx-text-fill: #e65100;">
+                                                        <font>
+                                                            <Font name="System Bold" size="17.0" />
+                                                        </font>
+                                                    </Label>
+                                                </children>
+                                            </HBox>
+                                            <Label fx:id="lowStockLabel"
+                                                   styleClass="info-value"
+                                                   text="Items below threshold: 0"
+                                                   wrapText="true"
+                                                   style="-fx-text-fill: #bf360c;">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </Label>
+                                        </children>
+                                    </VBox>
+
+                                    <!-- Revenue Today -->
+                                    <VBox fx:id="revenueCard"
+                                          minWidth="280.0"
+                                          prefWidth="460.0"
+                                          maxWidth="550.0"
+                                          spacing="10.0"
+                                          styleClass="info-card"
+                                          style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2); -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 12;">
+                                        <padding>
+                                            <Insets top="18.0" bottom="18.0" left="20.0" right="20.0" />
+                                        </padding>
+                                        <children>
+                                            <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                                <children>
+                                                    <Label styleClass="info-icon"
+                                                           text="💰"
+                                                           style="-fx-text-fill: #4CAF50;">
+                                                        <font>
+                                                            <Font size="28.0" />
+                                                        </font>
+                                                    </Label>
+                                                    <Label styleClass="info-title"
+                                                           text="Today's Revenue"
+                                                           style="-fx-text-fill: #333333;">
+                                                        <font>
+                                                            <Font name="System Bold" size="17.0" />
+                                                        </font>
+                                                    </Label>
+                                                </children>
+                                            </HBox>
+                                            <Label fx:id="revenueLabel"
+                                                   styleClass="info-value"
+                                                   text="Rs. 0.00"
+                                                   wrapText="true"
+                                                   style="-fx-text-fill: #666666;">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </Label>
+                                        </children>
+                                    </VBox>
+
+                                    <!-- System Status -->
+                                    <VBox fx:id="systemStatusCard"
+                                          minWidth="280.0"
+                                          prefWidth="460.0"
+                                          maxWidth="550.0"
+                                          spacing="10.0"
+                                          styleClass="info-card"
+                                          style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2); -fx-border-color: #e0e0e0; -fx-border-width: 1; -fx-border-radius: 12;">
+                                        <padding>
+                                            <Insets top="18.0" bottom="18.0" left="20.0" right="20.0" />
+                                        </padding>
+                                        <children>
+                                            <HBox alignment="CENTER_LEFT" spacing="12.0">
+                                                <children>
+                                                    <Label styleClass="info-icon"
+                                                           text="✅"
+                                                           style="-fx-text-fill: #4CAF50;">
+                                                        <font>
+                                                            <Font size="28.0" />
+                                                        </font>
+                                                    </Label>
+                                                    <Label styleClass="info-title"
+                                                           text="System Status"
+                                                           style="-fx-text-fill: #333333;">
+                                                        <font>
+                                                            <Font name="System Bold" size="17.0" />
+                                                        </font>
+                                                    </Label>
+                                                </children>
+                                            </HBox>
+                                            <Label fx:id="systemStatusLabel"
+                                                   styleClass="info-value"
+                                                   text="All systems operational"
+                                                   wrapText="true"
+                                                   style="-fx-text-fill: #666666;">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </Label>
+                                        </children>
+                                    </VBox>
+                                </FlowPane>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

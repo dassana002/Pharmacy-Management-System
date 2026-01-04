@@ -1,0 +1,234 @@
+/* Root Background */
+.home-root {
+    -fx-background-color: #f0f7f4;
+}
+
+/* Welcome Section */
+.welcome-title {
+    -fx-text-fill: #1b5e20;
+    -fx-font-weight: bold;
+}
+
+.welcome-subtitle {
+    -fx-text-fill: #388e3c;
+}
+
+.divider {
+    -fx-stroke: #81c784;
+    -fx-stroke-width: 2;
+}
+
+/* Statistics Cards */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(27, 94, 32, 0.15), 15, 0, 0, 5);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(27, 94, 32, 0.25), 20, 0, 0, 8);
+    -fx-translate-y: -5;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+/* Individual Card Colors - Green Theme */
+.order-card {
+    -fx-border-color: #4CAF50;
+    -fx-border-width: 0 0 5 0;
+    -fx-border-radius: 15;
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #f1f8f4);
+}
+
+.order-card:hover {
+    -fx-background-color: linear-gradient(to bottom right, #f1f8f4, #e8f5e9);
+}
+
+.employee-card {
+    -fx-border-color: #66BB6A;
+    -fx-border-width: 0 0 5 0;
+    -fx-border-radius: 15;
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #f1f8f4);
+}
+
+.employee-card:hover {
+    -fx-background-color: linear-gradient(to bottom right, #f1f8f4, #e8f5e9);
+}
+
+.medicine-card {
+    -fx-border-color: #81C784;
+    -fx-border-width: 0 0 5 0;
+    -fx-border-radius: 15;
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #f1f8f4);
+}
+
+.medicine-card:hover {
+    -fx-background-color: linear-gradient(to bottom right, #f1f8f4, #e8f5e9);
+}
+
+/* Card Content */
+.card-icon {
+    -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.3), 10, 0, 0, 3);
+}
+
+.stat-number {
+    -fx-text-fill: #2e7d32;
+    -fx-font-weight: bold;
+}
+
+.stat-label {
+    -fx-text-fill: #558b2f;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* Section Title */
+.section-title {
+    -fx-text-fill: #1b5e20;
+    -fx-font-weight: bold;
+}
+
+/* Info Cards */
+.info-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(27, 94, 32, 0.1), 10, 0, 0, 3);
+    -fx-border-color: #c8e6c9;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(27, 94, 32, 0.2), 15, 0, 0, 5);
+    -fx-border-color: #81c784;
+    -fx-border-width: 2;
+    -fx-translate-y: -3;
+}
+
+/* Alert Card Special Styling */
+.alert-card {
+    -fx-background-color: linear-gradient(to bottom, #fff9e6, white);
+    -fx-border-color: #ffcc80;
+}
+
+.alert-card:hover {
+    -fx-border-color: #ffa726;
+    -fx-background-color: linear-gradient(to bottom, #fff3e0, white);
+}
+
+/* Info Card Content */
+.info-icon {
+    -fx-font-size: 24;
+    -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.2), 5, 0, 0, 2);
+}
+
+.info-title {
+    -fx-text-fill: #2e7d32;
+    -fx-font-weight: bold;
+}
+
+.info-value {
+    -fx-text-fill: #43a047;
+    -fx-padding: 5 0 0 34;
+    -fx-font-size: 13px;
+}
+
+/* Special styling for different info cards */
+.info-card-1 .info-title {
+    -fx-text-fill: #2e7d32;
+}
+
+.info-card-2 .info-title {
+    -fx-text-fill: #f57c00;
+}
+
+.info-card-3 .info-title {
+    -fx-text-fill: #388e3c;
+}
+
+.info-card-4 .info-title {
+    -fx-text-fill: #43a047;
+}
+
+
+/* Pulse animation for cards */
+@keyframes pulse {
+    0% {
+        -fx-scale-x: 1;
+        -fx-scale-y: 1;
+    }
+    50% {
+        -fx-scale-x: 1.05;
+        -fx-scale-y: 1.05;
+    }
+    100% {
+        -fx-scale-x: 1;
+        -fx-scale-y: 1;
+    }
+}
+
+/* Smooth transitions for all interactive elements */
+.stat-card,
+.info-card {
+    -fx-transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Custom scrollbar for green theme */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(76, 175, 80, 0.3);
+    -fx-background-radius: 5;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: rgba(76, 175, 80, 0.5);
+}
+
+.scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: rgba(76, 175, 80, 0.1);
+    -fx-background-radius: 5;
+}
+
+/* Add subtle gradient overlay for stat cards on hover */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+}
+
+.stat-card:hover {
+    -fx-background-color: linear-gradient(
+            from 0% 0% to 100% 100%,
+            #4CAF50,
+            #FFFFFF,
+            #81C784
+    );
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    .welcome-title {
+        -fx-font-size: 24px;
+    }
+
+    .stat-number {
+        -fx-font-size: 28px;
+    }
+
+    .section-title {
+        -fx-font-size: 18px;
+    }
+}
