@@ -38,7 +38,13 @@ public class DashLayoutController implements Initializable {
 
     // Load Order Page
     public void loadOrderPage() {
-
+        Parent dashBoard = null;
+        try {
+            dashBoard = Launcher.loadFXML("pages/OrderPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        mainContent.getChildren().setAll(dashBoard);
     }
 
     // Load Employee Page

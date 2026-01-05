@@ -28,6 +28,8 @@ module lk.ijse.pharmacymanagementsystem {
     opens lk.ijse.pharmacymanagementsystem.dto.employee to java.base;
     exports lk.ijse.pharmacymanagementsystem.controller.components.employee;
     opens lk.ijse.pharmacymanagementsystem.controller.components.employee to javafx.fxml;
+    exports lk.ijse.pharmacymanagementsystem.controller.components.order;
+    opens lk.ijse.pharmacymanagementsystem.controller.components.order to javafx.fxml;
     exports lk.ijse.pharmacymanagementsystem.controller.components.product.dialog;
     opens lk.ijse.pharmacymanagementsystem.controller.components.product.dialog to javafx.fxml;
 }

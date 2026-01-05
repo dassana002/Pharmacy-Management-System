@@ -131,14 +131,4 @@ public class ProductController implements Initializable {
     public void payDialog(String invoice) {
 
     }
-
-    @FXML
-    void handleBillHistory(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleBillDiscount(ActionEvent event) {
-
-    }
 }

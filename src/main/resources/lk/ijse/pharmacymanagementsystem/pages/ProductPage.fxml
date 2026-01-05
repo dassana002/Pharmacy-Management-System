@@ -88,7 +88,6 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-
                         <Button fx:id="back_btn" maxWidth="Infinity" mnemonicParsing="false" onAction="#backToDashBoard" prefHeight="45.0" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-background-radius: 5;" text="← Back">
                             <font>
                                 <Font size="16.0" />

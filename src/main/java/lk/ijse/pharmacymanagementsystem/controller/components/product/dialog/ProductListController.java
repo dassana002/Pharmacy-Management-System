@@ -74,8 +74,7 @@ public class ProductListController implements Initializable {
             //    If the TextField is empty → show all items
             //    Otherwise → show only items whose itemCode contains the entered value
             filteredItems.setPredicate(item ->
-                    newVal.isEmpty() ||
-                            String.valueOf(item.getItemCode()).contains(newVal)
+                    newVal.isEmpty() || String.valueOf(item.getItemCode()).contains(newVal)
             );
         });
 
@@ -116,6 +115,9 @@ public class ProductListController implements Initializable {
         // Close the dialog through ItemController
         if (References.productController != null) {
             References.productController.closeItemListDialog();
+        }
+        if (References.orderController != null) {
+            References.orderController.closeItemListDialog();
         }
     }
 
