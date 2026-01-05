@@ -83,8 +83,10 @@ public class OutOfStockController implements Initializable {
                         billDTO.getCompany_name()
                 );
                 outOfStockList.add(outOfStockTM);
+
             }
             outOfStock_tbl.setItems(outOfStockList);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -107,8 +109,7 @@ public class OutOfStockController implements Initializable {
             // Step 3: Send WhatsApp message with PDF
             sendWhatsAppWithPDF(mediaId);
 
-            showAlert(Alert.AlertType.INFORMATION, "Success",
-                    "Out of stock report sent to WhatsApp (+94 777883956) successfully!");
+            showAlert(Alert.AlertType.INFORMATION, "Success","Out of stock report sent to WhatsApp (+94 777883956) successfully!");
 
         } catch (Exception e) {
             e.printStackTrace();

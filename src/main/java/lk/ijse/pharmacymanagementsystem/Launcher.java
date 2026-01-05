@@ -14,7 +14,7 @@ public class Launcher extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // create a scene Object
-        scene = new Scene(loadFXML("layouts/DashLayout"));
+        scene = new Scene(loadFXML("LogInPage"));
         //scene object set to stage
         stage.setScene(scene);
         // scene object pop up

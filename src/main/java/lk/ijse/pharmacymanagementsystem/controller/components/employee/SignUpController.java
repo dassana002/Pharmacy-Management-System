@@ -16,9 +16,6 @@ import java.util.ResourceBundle;
 public class SignUpController implements Initializable {
 
     @FXML
-    private TextField employeeID_Col;
-
-    @FXML
     private TextField name_Col;
 
     @FXML
@@ -44,14 +41,13 @@ public class SignUpController implements Initializable {
 
     @FXML
     void saveEmployee(ActionEvent event) {
-        int id = Integer.parseInt(employeeID_Col.getText());
         String name = name_Col.getText();
         String password = password_Col.getText();
         String userName = userName_Col.getText();
         String role = comboBOX.getValue();
 
         try {
-            EmployeeDTO employeeDTO = new EmployeeDTO(id, userName, name,  password, role);
+            EmployeeDTO employeeDTO = new EmployeeDTO(userName, name,  password, role);
             boolean isSaved = empModel.save(employeeDTO);
 
             if (isSaved) {
@@ -68,7 +64,6 @@ public class SignUpController implements Initializable {
     }
 
     public void cleanFields() {
-        employeeID_Col.clear();
         name_Col.clear();
         password_Col.clear();
         userName_Col.clear();

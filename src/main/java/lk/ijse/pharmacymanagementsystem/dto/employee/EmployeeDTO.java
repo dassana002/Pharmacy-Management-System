@@ -18,6 +18,13 @@ public class EmployeeDTO {
         this.role = role;
     }
 
+    public EmployeeDTO(String userName, String name, String password, String role) {
+        this.userName = userName;
+        this.name = name;
+        this.password = password;
+        this.role = role;
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }

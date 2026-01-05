@@ -2,6 +2,7 @@ package lk.ijse.pharmacymanagementsystem.model;
 
 import lk.ijse.pharmacymanagementsystem.dbConnection.DBConnection;
 import lk.ijse.pharmacymanagementsystem.dto.employee.EmployeeDTO;
+import lk.ijse.pharmacymanagementsystem.utility.CrudUtil;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
@@ -12,22 +13,10 @@ import java.sql.SQLException;
 public class EmployeeModel {
 
     public boolean save(EmployeeDTO employeeDTO) throws SQLException {
-
         // Password convert to BCrypt hashing
         String hashedPassword = BCrypt.hashpw(employeeDTO.getPassword(), BCrypt.gensalt());
-
-        Connection con = DBConnection.getInstance().getConnection();
-        String query = "INSERT INTO employee (username, name, password, role)VALUES (?,?,?,?)";
-        PreparedStatement ps = con.prepareStatement(query);
-
-        ps.setString(1, employeeDTO.getUserName());
-        ps.setString(2, employeeDTO.getName());
-        ps.setString(3, hashedPassword);
-        ps.setString(4, employeeDTO.getRole());
-
-        int result = ps.executeUpdate();
-
-        return result > 0;
+        String query = "INSERT INTO employee (user_name, name, password, role)VALUES (?,?,?,?)";
+        return CrudUtil.execute(query,employeeDTO.getUserName(), employeeDTO.getName(), hashedPassword, employeeDTO.getRole());
     }
 
     public boolean checkValidation(String userName, String password) throws SQLException {
@@ -35,7 +24,7 @@ public class EmployeeModel {
         if (userName != null || password != null) {
 
             Connection con = DBConnection.getInstance().getConnection();
-            String query = "SELECT * FROM employee WHERE username = ?";
+            String query = "SELECT * FROM employee WHERE user_name = ?";
 
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, userName);
@@ -46,8 +35,8 @@ public class EmployeeModel {
 
             if (rs.next()) {
                 employeeDTO = new EmployeeDTO(
-                        rs.getInt("employeeId"),
-                        rs.getString("username"),
+                        rs.getInt("employee_id"),
+                        rs.getString("user_name"),
                         rs.getString("name"),
                         rs.getString("password"),
                         rs.getString("role")
