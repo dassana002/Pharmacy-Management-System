@@ -43,6 +43,7 @@ public class ProductListController implements Initializable {
     @FXML
     private VBox popupCard;
 
+    private Object controller;
 
     private final ItemModel itemModel = new  ItemModel();
     private final ObservableList<NewItemTM> items = FXCollections.observableArrayList();
@@ -93,7 +94,7 @@ public class ProductListController implements Initializable {
 
                     // Add to Item Add Controller TextFields
                     References.itemAddController.setItem(itemCode,description);
-
+//                    References.orderAddController.setItem(itemCode,description);
                     handleClose(null);
                 }
             });

@@ -4,12 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import lk.ijse.pharmacymanagementsystem.Launcher;
+import lk.ijse.pharmacymanagementsystem.controller.OrderController;
 import lk.ijse.pharmacymanagementsystem.utility.References;
 
 import java.io.IOException;
@@ -25,10 +23,10 @@ public class OrderAddController implements Initializable {
     private TextField allTotal_lbl;
 
     @FXML
-    private Button closeBill_btn;
+    private TextField avaQty_text;
 
     @FXML
-    private Button close_btn;
+    private Button closeBill_btn;
 
     @FXML
     private TableColumn<?, ?> colDesc;
@@ -49,13 +47,40 @@ public class OrderAddController implements Initializable {
     private TableColumn<?, ?> colUnitCost;
 
     @FXML
+    private DatePicker date_txt;
+
+    @FXML
+    private TextField desc_txt;
+
+    @FXML
+    private ComboBox<?> discount_combo;
+
+    @FXML
+    private TextField discount_txt;
+
+    @FXML
     private HBox holdList_bar;
 
     @FXML
     private Button hold_btn;
 
     @FXML
+    private TextField invoice_txt;
+
+    @FXML
     private TableView<?> itemAddView_tbl;
+
+    @FXML
+    private TextField itemCode_txt;
+
+    @FXML
+    private TextField qty_txt;
+
+    @FXML
+    private TextField totalQty_txt;
+
+    @FXML
+    private TextField unitPrice_txt;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -68,11 +93,6 @@ public class OrderAddController implements Initializable {
     }
 
     @FXML
-    void handleCloseBill(ActionEvent event) {
-
-    }
-
-    @FXML
     void handleHoldLIst(ActionEvent event) {
 
     }
@@ -80,5 +100,10 @@ public class OrderAddController implements Initializable {
     @FXML
     void handlePayBill(ActionEvent event) {
 
+    }
+
+    public void setItem(int itemCode, String description) {
+        itemCode_txt.setText(String.valueOf(itemCode));
+        desc_txt.setText(description);
     }
 }

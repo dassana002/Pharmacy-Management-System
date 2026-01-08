@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import lk.ijse.pharmacymanagementsystem.Launcher;
+import lk.ijse.pharmacymanagementsystem.controller.components.order.OrderAddController;
 import lk.ijse.pharmacymanagementsystem.controller.components.product.dialog.ProductListController;
 import lk.ijse.pharmacymanagementsystem.utility.References;
 
@@ -130,5 +131,9 @@ public class ProductController implements Initializable {
 
     public void payDialog(String invoice) {
 
+    }
+
+    public ProductController getCurrentClass() {
+        return this;
     }
 }

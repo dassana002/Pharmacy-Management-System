@@ -73,4 +73,8 @@ public class OrderController implements Initializable {
             mainContent.getChildren().remove(mainContent.getChildren().size() - 1);
         }
     }
+
+    public OrderController getCurrentClass() {
+        return this;
+    }
 }
