@@ -90,6 +90,15 @@ public class OrderAddController implements Initializable {
     @FXML
     private TextField customer_id;
 
+    private static final String ORDER_ID_REGEX = "^[1-9][0-9]*$";
+    private static final String DATE_REGEX = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
+    private static final String NIC_REGEX = "^([0-9]{9}[VvXx]|[0-9]{12})$";
+    private static final String ID_REGEX = "^[1-9][0-9]*$";
+    private static final String QTY_REGEX = "^[1-9][0-9]*$";
+    private static final String PRICE_REGEX = "^\\d+(\\.\\d{1,2})?$";
+    private static final String INT_REGEX = "^[0-9]+$";
+    private static final String DOUBLE_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
+
     private final BatchModel batchModel = new BatchModel();
     private final BillModel billModel = new BillModel();
     private final ItemModel itemModel = new ItemModel();
@@ -102,6 +111,10 @@ public class OrderAddController implements Initializable {
         date_txt.setValue(LocalDate.now());
     }
 
+    public static boolean isValid(String value, String regex) {
+        return value != null && value.matches(regex);
+    }
+
     @FXML
     void handleFindItem(KeyEvent event) {
        halfClean();
@@ -109,20 +122,25 @@ public class OrderAddController implements Initializable {
            int itemCode = Integer.parseInt(itemCode_txt.getText());
 
            try {
-               BatchDTO latestBatch = batchModel.getLatestQTYBatchByItemCode(itemCode);
+               if (!isValid(itemCode_txt.getText(), INT_REGEX)) {
+                   new Alert(Alert.AlertType.ERROR, "Invalid item code", ButtonType.OK).show();
+                   return;
+               }
 
+               ItemDTO item = itemModel.getItem(itemCode);
+               if (item == null) {
+                   new Alert(Alert.AlertType.WARNING, itemCode +" is not found.", ButtonType.OK).show();
+                   return;
+               }
+
+               BatchDTO latestBatch = batchModel.getLatestQTYBatchByItemCode(itemCode);
                if (latestBatch == null) {
-                   new Alert(Alert.AlertType.WARNING, itemCode +" is Not on stock.", ButtonType.OK).show();
+                   new Alert(Alert.AlertType.WARNING, itemCode +" is not on stock.", ButtonType.OK).show();
                    return;
                }
 
                String invoice = billModel.getInvoiceByBillId(latestBatch.getBill_id());
                ItemDTO itemDTO = itemModel.getItem(itemCode);
-
-               if (itemDTO == null) {
-                   new Alert(Alert.AlertType.WARNING, itemCode +" is Not on stock.", ButtonType.OK).show();
-                   return;
-               }
 
                invoice_txt.setText(invoice);
                desc_txt.setText(itemDTO.getDescription());
@@ -159,6 +177,7 @@ public class OrderAddController implements Initializable {
         unitPrice_txt.clear();
         qty_txt.clear();
         avaQty_text.clear();
+        totalQty_txt.clear();
     }
 
     private void fullClean() {
