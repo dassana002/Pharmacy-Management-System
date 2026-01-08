@@ -10,9 +10,21 @@ public class BillDTO {
     private String company_name;
     private String today_date;
     private String received_date;
+    private int payment_id;
     private ArrayList<BatchDTO> BatchDtoList;
 
     public BillDTO() {
+    }
+
+    public BillDTO(int bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date, int payment_id, ArrayList<BatchDTO> batchDtoList) {
+        this.bill_id = bill_id;
+        this.invoice_number = invoice_number;
+        this.status = status;
+        this.company_name = company_name;
+        this.today_date = today_date;
+        this.received_date = received_date;
+        this.payment_id = payment_id;
+        BatchDtoList = batchDtoList;
     }
 
     public BillDTO(int bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date, ArrayList<BatchDTO> batchDtoList) {
@@ -32,6 +44,16 @@ public class BillDTO {
         this.company_name = company_name;
         this.today_date = today_date;
         this.received_date = received_date;
+    }
+
+    public BillDTO(int bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date, int payment_id) {
+        this.bill_id = bill_id;
+        this.invoice_number = invoice_number;
+        this.status = status;
+        this.company_name = company_name;
+        this.today_date = today_date;
+        this.received_date = received_date;
+        this.payment_id = payment_id;
     }
 
     public int getBill_id() {
@@ -90,6 +112,14 @@ public class BillDTO {
         BatchDtoList = batchDtoList;
     }
 
+    public int getPayment_id() {
+        return payment_id;
+    }
+
+    public void setPayment_id(int payment_id) {
+        this.payment_id = payment_id;
+    }
+
     @Override
     public String toString() {
         return "BillDTO{" +
@@ -99,6 +129,7 @@ public class BillDTO {
                 ", company_name='" + company_name + '\'' +
                 ", today_date=" + today_date +
                 ", received_date=" + received_date +
+                ", payment_id=" + payment_id +
                 ", BatchDtoList=" + BatchDtoList +
                 '}';
     }
