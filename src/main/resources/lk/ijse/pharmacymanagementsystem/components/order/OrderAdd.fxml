@@ -52,29 +52,35 @@
                                     </Label>
                                     <TextField fx:id="itemCode_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                                    <!-- Description 2 -->
-                                    <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                    <!-- Item -->
+                                    <Label text="customer_id" GridPane.columnIndex="0" GridPane.rowIndex="3">
                                         <font><Font size="16.0" /></font>
                                     </Label>
-                                    <TextField fx:id="desc_txt" maxWidth="Infinity" prefHeight="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="customer_id" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                                    <!-- Description 2 -->
+                                    <Label text="Description" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                                        <font><Font size="16.0" /></font>
+                                    </Label>
+                                    <TextField fx:id="desc_txt" maxWidth="Infinity" prefHeight="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
                                     <!-- Unit Price -->
-                                    <Label text="Unit Price" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                                    <Label text="Unit Price" GridPane.columnIndex="0" GridPane.rowIndex="5">
                                         <font><Font size="16.0" /></font>
                                     </Label>
-                                    <TextField fx:id="unitPrice_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="unitPrice_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
                                     <!-- Quantity -->
-                                    <Label text="Quantity" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                                    <Label text="Quantity" GridPane.columnIndex="0" GridPane.rowIndex="6">
                                         <font><Font size="16.0" /></font>
                                     </Label>
-                                    <TextField fx:id="qty_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="qty_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
                                     <!-- Discount -->
-                                    <Label text="Discount" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                                    <Label text="Discount" GridPane.columnIndex="0" GridPane.rowIndex="7">
                                         <font><Font size="16.0" /></font>
                                     </Label>
-                                    <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                    <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                         <children>
                                             <ComboBox fx:id="discount_combo" maxWidth="Infinity" prefHeight="40.0" promptText="0" HBox.hgrow="ALWAYS" />
                                             <TextField fx:id="discount_txt" maxWidth="Infinity" prefHeight="40.0" promptText="0" HBox.hgrow="ALWAYS" />
@@ -82,16 +88,16 @@
                                     </HBox>
 
                                     <!-- Qty Available 2 -->
-                                    <Label text="Qty Available" GridPane.columnIndex="0" GridPane.rowIndex="7">
+                                    <Label text="Qty Available" GridPane.columnIndex="0" GridPane.rowIndex="8">
                                         <font><Font size="16.0" /></font>
                                     </Label>
-                                    <TextField fx:id="avaQty_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <TextField fx:id="avaQty_text" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
                                     <!-- Qty Total -->
-                                    <Label text="Qty Total" GridPane.columnIndex="0" GridPane.rowIndex="8">
+                                    <Label text="Qty Total" GridPane.columnIndex="0" GridPane.rowIndex="9">
                                         <font><Font size="16.0" /></font>
                                     </Label>
-                                    <TextField fx:id="totalQty_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <TextField fx:id="totalQty_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                         <DatePicker fx:id="date_txt" prefHeight="38.0" prefWidth="228.0" GridPane.columnIndex="1" />
                                     <rowConstraints>
                                         <RowConstraints />
@@ -120,11 +126,10 @@
                         <TableView fx:id="itemAddView_tbl" VBox.vgrow="ALWAYS">
                             <columns>
                                 <TableColumn fx:id="colItemId" minWidth="40.0" prefWidth="58.0" text="Id" />
-                                <TableColumn fx:id="colDesc" minWidth="114.0" prefWidth="200.0" text="description" />
-                                <TableColumn fx:id="colUnitCost" minWidth="80" prefWidth="86.0" text="unitCost" />
-                                <TableColumn fx:id="colSellPrice" minWidth="50.0" prefWidth="95.0" text="sellPrice" />
-                                <TableColumn fx:id="colQty" minWidth="57.0" prefWidth="79.0" text="qty" />
-                                <TableColumn fx:id="colSubTotal" minWidth="93.0" prefWidth="111.0" text="subTotal" />
+                                <TableColumn fx:id="colDesc" minWidth="114.0" prefWidth="252.0" text="description" />
+                                <TableColumn fx:id="colSellPrice" minWidth="50.0" prefWidth="106.0" text="sellPrice" />
+                                <TableColumn fx:id="colQty" minWidth="57.0" prefWidth="83.0" text="qty" />
+                                <TableColumn fx:id="colSubTotal" minWidth="93.0" prefWidth="131.0" text="subTotal" />
                             </columns>
                         </TableView>
 
