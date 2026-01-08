@@ -87,6 +87,9 @@ public class OrderAddController implements Initializable {
     @FXML
     private TextField unitPrice_txt;
 
+    @FXML
+    private TextField customer_id;
+
     private final BatchModel batchModel = new BatchModel();
     private final BillModel billModel = new BillModel();
     private final ItemModel itemModel = new ItemModel();
@@ -156,5 +159,28 @@ public class OrderAddController implements Initializable {
         unitPrice_txt.clear();
         qty_txt.clear();
         avaQty_text.clear();
+    }
+
+    private void fullClean() {
+        date_txt.getEditor().clear();
+        invoice_txt.clear();
+        itemCode_txt.clear();
+        customer_id.clear();
+        desc_txt.clear();
+        unitPrice_txt.clear();
+        qty_txt.clear();
+        avaQty_text.clear();
+        totalQty_txt.clear();
+    }
+
+    private void clean() {
+        invoice_txt.clear();
+        itemCode_txt.clear();
+        customer_id.clear();
+        desc_txt.clear();
+        unitPrice_txt.clear();
+        qty_txt.clear();
+        avaQty_text.clear();
+        totalQty_txt.clear();
     }
 }

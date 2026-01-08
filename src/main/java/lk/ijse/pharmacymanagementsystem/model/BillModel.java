@@ -23,7 +23,7 @@ public class BillModel {
             conn.setAutoCommit(false);
 
             // Bill
-            String billQuery = "INSERT INTO bill (bill_id, invoice_number, status, company_name, today_date, received_date) VALUES (?, ?, ?, ?,?,?)";
+            String billQuery = "INSERT INTO bill (bill_id, invoice_number, status, company_name, today_date, received_date) VALUES (?, ?, ?, ?, ?, ?)";
             CrudUtil.execute(
                     billQuery,
                     billDTO.getBill_id(),
