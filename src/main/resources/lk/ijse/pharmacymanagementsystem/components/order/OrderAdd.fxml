@@ -50,7 +50,7 @@
                                     <Label text="Item" GridPane.columnIndex="0" GridPane.rowIndex="2">
                                         <font><Font size="16.0" /></font>
                                     </Label>
-                                    <TextField fx:id="itemCode_txt" maxWidth="Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="itemCode_txt" maxWidth="Infinity" onKeyPressed="#handleFindItem" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                                     <!-- Item -->
                                     <Label text="customer_id" GridPane.columnIndex="0" GridPane.rowIndex="3">

@@ -5,13 +5,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import lk.ijse.pharmacymanagementsystem.Launcher;
 import lk.ijse.pharmacymanagementsystem.controller.OrderController;
+import lk.ijse.pharmacymanagementsystem.dto.item.BatchDTO;
+import lk.ijse.pharmacymanagementsystem.dto.item.ItemDTO;
+import lk.ijse.pharmacymanagementsystem.model.BatchModel;
+import lk.ijse.pharmacymanagementsystem.model.BillModel;
+import lk.ijse.pharmacymanagementsystem.model.ItemModel;
 import lk.ijse.pharmacymanagementsystem.utility.References;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class OrderAddController implements Initializable {
@@ -42,9 +50,6 @@ public class OrderAddController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> colSubTotal;
-
-    @FXML
-    private TableColumn<?, ?> colUnitCost;
 
     @FXML
     private DatePicker date_txt;
@@ -82,9 +87,52 @@ public class OrderAddController implements Initializable {
     @FXML
     private TextField unitPrice_txt;
 
+    private final BatchModel batchModel = new BatchModel();
+    private final BillModel billModel = new BillModel();
+    private final ItemModel itemModel = new ItemModel();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         References.orderAddController =this;
+
+        //Today date set
+        date_txt.setValue(LocalDate.now());
+    }
+
+    @FXML
+    void handleFindItem(KeyEvent event) {
+       halfClean();
+       if (event.getCode() == KeyCode.ENTER) {
+           int itemCode = Integer.parseInt(itemCode_txt.getText());
+
+           try {
+               BatchDTO latestBatch = batchModel.getLatestQTYBatchByItemCode(itemCode);
+
+               if (latestBatch == null) {
+                   new Alert(Alert.AlertType.WARNING, itemCode +" is Not on stock.", ButtonType.OK).show();
+                   return;
+               }
+
+               String invoice = billModel.getInvoiceByBillId(latestBatch.getBill_id());
+               ItemDTO itemDTO = itemModel.getItem(itemCode);
+
+               if (itemDTO == null) {
+                   new Alert(Alert.AlertType.WARNING, itemCode +" is Not on stock.", ButtonType.OK).show();
+                   return;
+               }
+
+               invoice_txt.setText(invoice);
+               desc_txt.setText(itemDTO.getDescription());
+               unitPrice_txt.setText(String.valueOf(latestBatch.getSell_price()));
+               avaQty_text.setText(String.valueOf(latestBatch.getQty()));
+               totalQty_txt.setText(String.valueOf(latestBatch.getQty()));
+
+           } catch (Exception e) {
+               throw new RuntimeException(e);
+           }
+       }else {
+           return;
+       }
     }
 
     @FXML
@@ -102,8 +150,11 @@ public class OrderAddController implements Initializable {
 
     }
 
-    public void setItem(int itemCode, String description) {
-        itemCode_txt.setText(String.valueOf(itemCode));
-        desc_txt.setText(description);
+    private void halfClean() {
+        invoice_txt.clear();
+        desc_txt.clear();
+        unitPrice_txt.clear();
+        qty_txt.clear();
+        avaQty_text.clear();
     }
 }

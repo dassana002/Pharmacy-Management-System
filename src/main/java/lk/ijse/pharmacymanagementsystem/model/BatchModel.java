@@ -272,4 +272,30 @@ public class BatchModel {
         }
         return expireBatches;
     }
+
+    public BatchDTO getLatestQTYBatchByItemCode(int itemCode) throws SQLException {
+        String query = "SELECT *\n" +
+                "FROM batch\n" +
+                "WHERE item_code = ?\n" +
+                "  AND available_qty > 0\n" +
+                "ORDER BY available_qty ASC, expired_date ASC\n" +
+                "LIMIT 1;\n";
+        ResultSet rs = CrudUtil.executeQuery(query, itemCode);
+
+        BatchDTO batchDTO = null;
+        if (rs.next()) {
+                batchDTO = new BatchDTO(
+                        rs.getInt("batch_id"),
+                        rs.getInt("batch_number"),
+                        rs.getDouble("sell_price"),
+                        rs.getDouble("cost_price"),
+                        rs.getString("expired_date"),
+                        rs.getInt("qty"),
+                        rs.getInt("available_qty"),
+                        rs.getInt("item_code"),
+                        rs.getInt("bill_id")
+                );
+        }
+        return batchDTO;
+    }
 }

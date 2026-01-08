@@ -141,4 +141,14 @@ public class BillModel {
         }
         return billDTOS;
     }
+
+    public String getInvoiceByBillId(int billId) throws SQLException {
+        String query = "SELECT invoice_number FROM bill WHERE bill_id = ?";
+        ResultSet rs = CrudUtil.executeQuery(query, billId);
+        String invoiceNumber = null;
+        if (rs.next()) {
+            invoiceNumber = rs.getString("invoice_number");
+        }
+        return invoiceNumber;
+    }
 }
