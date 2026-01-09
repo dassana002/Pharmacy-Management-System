@@ -173,9 +173,8 @@ public class ItemAddController implements Initializable {
     }
 
     private boolean isValid(TextField field, String regex) {
-        return field.getText() != null && field.getText().matches(regex);
+        return field.getText() != null && !field.getText().isEmpty() && field.getText().matches(regex);
     }
-
 
     private void editItem(int itemCode) throws SQLException, IOException {
         // Load Edit Product

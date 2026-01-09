@@ -22,6 +22,14 @@ public class OrderDTO {
         this.payment_id = payment_id;
     }
 
+    public OrderDTO(int order_id, String date, Status status, String customer_NIC, int employee_id) {
+        this.order_id = order_id;
+        this.date = date;
+        this.status = status;
+        this.customer_NIC = customer_NIC;
+        this.employee_id = employee_id;
+    }
+
     public int getOrder_id() {
         return order_id;
     }
