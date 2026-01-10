@@ -9,20 +9,25 @@ import java.sql.SQLException;
 
 public class CrudUtil {
     public static <T> T execute(String sql, Object... obj) throws SQLException {
+
         Connection conn = DBConnection.getInstance().getConnection();
         PreparedStatement ptsm = conn.prepareStatement(sql);
 
-        for(int i = 0; i < obj.length; i++){
-            ptsm.setObject(i+1, obj[i]);
+        for (int i = 0; i < obj.length; i++) {
+
+            if (obj[i] == null) {
+                ptsm.setNull(i + 1, java.sql.Types.INTEGER);
+            } else {
+                ptsm.setObject(i + 1, obj[i]);
+            }
         }
 
-        if(sql.startsWith("select") || sql.startsWith("SELECT")) {
+        if (sql.trim().toUpperCase().startsWith("SELECT")) {
             ResultSet rs = ptsm.executeQuery();
-            return (T)rs;
-        }else {
-            int result = ptsm.executeUpdate();
-            boolean rs = result>0;
-            return (T)(Boolean)rs;
+            return (T) rs;
+        } else {
+            boolean result = ptsm.executeUpdate() > 0;
+            return (T) Boolean.valueOf(result);
         }
     }
 

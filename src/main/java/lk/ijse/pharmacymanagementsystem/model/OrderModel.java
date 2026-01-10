@@ -25,14 +25,16 @@ public class OrderModel {
                     "    status,\n" +
                     "    customer_NIC,\n" +
                     "    employee_id,\n" +
-                    ") VALUES (?, ?, ?, ?, ?)";
+                    "    payment_id,\n" +
+                    ") VALUES (?, ?, ?, ?, ?, ?)";
             boolean isOrder = CrudUtil.execute(
                     query,
                     orderDTO.getOrder_id(),
                     orderDTO.getDate(),
                     orderDTO.getStatus().toString(),
                     orderDTO.getCustomer_NIC(),
-                    orderDTO.getEmployee_id()
+                    orderDTO.getEmployee_id(),
+                    null
                     );
             if (!isOrder) {
                 conn.rollback();

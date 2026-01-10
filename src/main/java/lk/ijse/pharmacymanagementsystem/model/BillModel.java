@@ -23,7 +23,7 @@ public class BillModel {
             conn.setAutoCommit(false);
 
             // Bill
-            String billQuery = "INSERT INTO bill (bill_id, invoice_number, status, company_name, today_date, received_date) VALUES (?, ?, ?, ?, ?, ?)";
+            String billQuery = "INSERT INTO bill (bill_id, invoice_number, status, company_name, today_date, received_date, payment_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
             CrudUtil.execute(
                     billQuery,
                     billDTO.getBill_id(),
@@ -31,7 +31,8 @@ public class BillModel {
                     billDTO.getStatus().name(),
                     billDTO.getCompany_name(),
                     billDTO.getToday_date(),
-                    billDTO.getReceived_date()
+                    billDTO.getReceived_date(),
+                    null
             );
 
             // Batch save
