@@ -202,7 +202,7 @@ public class OrderAddController implements Initializable {
             orderTMList.add(orderTM);
 
             // Order Save
-            int orderId = UUID.randomUUID().hashCode();
+            String orderId = UUID.randomUUID().toString();
             OrderDTO orderDTO = new OrderDTO(
                     orderId,
                     date,
@@ -219,7 +219,7 @@ public class OrderAddController implements Initializable {
             }
 
             // Order Detail Save
-            int orderDetailId = UUID.randomUUID().hashCode();
+            String orderDetailId = UUID.randomUUID().toString();
             OrderDetailDTO orderDetailDTO = new OrderDetailDTO(
                     orderDetailId,
                     orderId,

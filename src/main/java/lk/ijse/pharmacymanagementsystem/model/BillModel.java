@@ -59,22 +59,22 @@ public class BillModel {
         }
     }
 
-    public int getBillIdByInvoice(String invoiceNumber) throws SQLException {
+    public String getBillIdByInvoice(String invoiceNumber) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
         String query = "SELECT bill_id FROM bill WHERE invoice_number = ?";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, invoiceNumber);
         ResultSet rs = ps.executeQuery();
 
-        int id = 0;
+        String id = null;
         if (rs.next()) {
-             id = rs.getInt("bill_id");
+             id = rs.getString("bill_id");
              return id;
         }
         return id;
     }
 
-    public BillDTO getBillById(int billId) throws SQLException {
+    public BillDTO getBillById(String billId) throws SQLException {
         String query = "SELECT * FROM bill WHERE bill_id = ?";
         ResultSet rs = CrudUtil.execute(query, billId);
 
@@ -83,7 +83,7 @@ public class BillModel {
 
         if (rs.next()) {
             billDTO = new BillDTO(
-                    rs.getInt("bill_id"),
+                    rs.getString("bill_id"),
                     rs.getString("invoice_number"),
                     Status.valueOf(rs.getString("status")),
                     rs.getString("company_name"),
@@ -95,7 +95,7 @@ public class BillModel {
         return billDTO;
     }
 
-    public String searchStatusById(int billId) throws SQLException {
+    public String searchStatusById(String billId) throws SQLException {
         String query = "SELECT status FROM bill WHERE bill_id = ?";
         ResultSet rs =  CrudUtil.execute(query, billId);
 
@@ -106,18 +106,18 @@ public class BillModel {
         return status;
     }
 
-    public int isExistsBill(String invoice) throws SQLException {
+    public String isExistsBill(String invoice) throws SQLException {
         String query = "SELECT * FROM bill WHERE invoice_number = ?";
         ResultSet rs = CrudUtil.execute(query, invoice);
         if (rs.next()) {
-            return rs.getInt("bill_id");
+            return rs.getString("bill_id");
         }
-        return 0;
+        return null;
     }
 
     public boolean changeStatus(String published, String invoice) throws SQLException {
-        int billId = isExistsBill(invoice);
-        if (billId != 0) {
+        String billId = isExistsBill(invoice);
+        if (billId != null) {
             String query = "UPDATE bill SET status = ? WHERE bill_id = ?";
             return CrudUtil.execute(query, published, billId);
         }
@@ -130,7 +130,7 @@ public class BillModel {
         ResultSet rs = CrudUtil.execute(query);
         while (rs.next()) {
             BillDTO billDTO = new BillDTO(
-                    rs.getInt("bill_id"),
+                    rs.getString("bill_id"),
                     rs.getString("invoice_number"),
                     Status.valueOf(rs.getString("status")),
                     rs.getString("company_name"),
@@ -142,7 +142,7 @@ public class BillModel {
         return billDTOS;
     }
 
-    public String getInvoiceByBillId(int billId) throws SQLException {
+    public String getInvoiceByBillId(String billId) throws SQLException {
         String query = "SELECT invoice_number FROM bill WHERE bill_id = ?";
         ResultSet rs = CrudUtil.executeQuery(query, billId);
         String invoiceNumber = null;

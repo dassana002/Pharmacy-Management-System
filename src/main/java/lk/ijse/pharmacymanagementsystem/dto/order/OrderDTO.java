@@ -3,7 +3,7 @@ package lk.ijse.pharmacymanagementsystem.dto.order;
 import lk.ijse.pharmacymanagementsystem.model.Status;
 
 public class OrderDTO {
-    private int order_id;
+    private String order_id;
     private String date;
     private Status status;
     private String customer_NIC;
@@ -13,7 +13,7 @@ public class OrderDTO {
     public OrderDTO() {
     }
 
-    public OrderDTO(int order_id, String date, Status status, String customer_NIC, int employee_id, int payment_id) {
+    public OrderDTO(String order_id, String date, Status status, String customer_NIC, int employee_id, int payment_id) {
         this.order_id = order_id;
         this.date = date;
         this.status = status;
@@ -22,7 +22,7 @@ public class OrderDTO {
         this.payment_id = payment_id;
     }
 
-    public OrderDTO(int order_id, String date, Status status, String customer_NIC, int employee_id) {
+    public OrderDTO(String order_id, String date, Status status, String customer_NIC, int employee_id) {
         this.order_id = order_id;
         this.date = date;
         this.status = status;
@@ -30,11 +30,11 @@ public class OrderDTO {
         this.employee_id = employee_id;
     }
 
-    public int getOrder_id() {
+    public String getOrder_id() {
         return order_id;
     }
 
-    public void setOrder_id(int order_id) {
+    public void setOrder_id(String order_id) {
         this.order_id = order_id;
     }
 

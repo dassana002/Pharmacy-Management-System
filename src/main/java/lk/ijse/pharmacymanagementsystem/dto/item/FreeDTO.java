@@ -1,40 +1,40 @@
 package lk.ijse.pharmacymanagementsystem.dto.item;
 
 public class FreeDTO {
-    private int free_id;
-    private int batch_id;
+    private String free_id;
+    private String batch_id;
     private int qty;
     private int ava_qty;
 
     public FreeDTO() {
     }
 
-    public FreeDTO(int free_id, int batch_id, int qty, int ava_qty) {
+    public FreeDTO(String free_id, String batch_id, int qty, int ava_qty) {
         this.free_id = free_id;
         this.batch_id = batch_id;
         this.qty = qty;
         this.ava_qty = ava_qty;
     }
 
-    public FreeDTO(int batch_id, int qty, int ava_qty) {
+    public FreeDTO(String batch_id, int qty, int ava_qty) {
         this.batch_id = batch_id;
         this.qty = qty;
         this.ava_qty = ava_qty;
     }
 
-    public int getFree_id() {
+    public String getFree_id() {
         return free_id;
     }
 
-    public void setFree_id(int free_id) {
+    public void setFree_id(String free_id) {
         this.free_id = free_id;
     }
 
-    public int getBatch_id() {
+    public String getBatch_id() {
         return batch_id;
     }
 
-    public void setBatch_id(int batch_id) {
+    public void setBatch_id(String batch_id) {
         this.batch_id = batch_id;
     }
 

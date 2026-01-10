@@ -60,7 +60,7 @@ public class ItemEditController implements Initializable {
 
     private int itemCode;
     private String invoice;
-    private int billId;
+    private String billId;
     private BatchDTO batchDTO = new BatchDTO();
     private final BillModel billModel = new BillModel();
     private final BatchModel batchModel = new BatchModel();

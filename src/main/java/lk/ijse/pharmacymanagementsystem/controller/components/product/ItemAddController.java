@@ -260,7 +260,7 @@ public class ItemAddController implements Initializable {
     void handleHoldLIst(ActionEvent event) {
         try {
             // get Bill Id
-            int billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
+            String billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
             // get Bill Dto
             BillDTO billDTO = billModel.getBillById(billId);
             createHoldBillButton(billDTO);
@@ -300,10 +300,10 @@ public class ItemAddController implements Initializable {
         try {
             if (event.getCode() == KeyCode.ENTER) {
                 if (isValid(invoice_number_text, INVOICE_REGEX)) {
-                    int billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
+                    String billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
 
                     currentInvoice = invoice_number_text.getText();
-                    if (billId == 0) {
+                    if (billId == null) {
                         new Alert(Alert.AlertType.WARNING, "Invoice Not Found", ButtonType.OK).show();
                         return;
                     }
@@ -449,13 +449,11 @@ public class ItemAddController implements Initializable {
         itemTMList.add(addItemTM);
 
         // UUID generate
-        int batchID = UUID.randomUUID().hashCode();
-        int freeID = UUID.randomUUID().hashCode();
 
         try {
-            int bill = billModel.isExistsBill(invoice);
-
-            if (bill != 0) {
+            String bill = billModel.isExistsBill(invoice);
+            String batchID = UUID.randomUUID().toString();
+            if (bill != null) {
                 // save Batch
                 BatchDTO batchDTO = new BatchDTO(
                         batchID,
@@ -469,6 +467,7 @@ public class ItemAddController implements Initializable {
                         bill
                 );
 
+                String freeID = UUID.randomUUID().toString();
                 FreeDTO freeDTO = new FreeDTO(
                         freeID, batchID, free_qty, free_qty
                 );
@@ -484,7 +483,7 @@ public class ItemAddController implements Initializable {
                     new Alert(Alert.AlertType.ERROR, "Error while saving items", ButtonType.OK).show();
                 }
             } else {
-                int billId = UUID.randomUUID().hashCode();
+                String billId = UUID.randomUUID().toString();
                 BatchDTO batchDTO = new BatchDTO(
                         batchID,
                         batchNo,
@@ -497,6 +496,7 @@ public class ItemAddController implements Initializable {
                         billId
                 );
 
+                String freeID = UUID.randomUUID().toString();
                 FreeDTO freeDTO = new FreeDTO(
                         freeID, batchID, free_qty, free_qty
                 );
@@ -537,10 +537,10 @@ public class ItemAddController implements Initializable {
     public void afterUpdate() {
         cleanTable();
         try {
-            int billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
+            String billId = billModel.getBillIdByInvoice(invoice_number_text.getText());
 
             currentInvoice = invoice_number_text.getText();
-            if (billId == 0) {
+            if (billId == null) {
                 new Alert(Alert.AlertType.WARNING, "Invoice Not Found", ButtonType.OK).show();
                 return;
             }

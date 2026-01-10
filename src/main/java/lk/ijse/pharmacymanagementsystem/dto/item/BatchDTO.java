@@ -2,7 +2,7 @@ package lk.ijse.pharmacymanagementsystem.dto.item;
 
 
 public class BatchDTO {
-    private int batch_id;
+    private String batch_id;
     private int batch_number;
     private double sell_price;
     private double cost_price;
@@ -10,12 +10,12 @@ public class BatchDTO {
     private int qty;
     private int available_qty;
     private int item_code;
-    private int bill_id;
+    private String bill_id;
 
     public BatchDTO() {
     }
 
-    public BatchDTO(int batch_id, int batch_number, int available_qty, int item_code, int bill_id) {
+    public BatchDTO(String batch_id, int batch_number, int available_qty, int item_code, String bill_id) {
         this.batch_id = batch_id;
         this.batch_number = batch_number;
         this.available_qty = available_qty;
@@ -23,7 +23,7 @@ public class BatchDTO {
         this.bill_id = bill_id;
     }
 
-    public BatchDTO(int batch_id, int batch_number, int available_qty, int item_code, int bill_id, String expired_date) {
+    public BatchDTO(String batch_id, int batch_number, int available_qty, int item_code, String bill_id, String expired_date) {
         this.batch_id = batch_id;
         this.batch_number = batch_number;
         this.available_qty = available_qty;
@@ -32,7 +32,7 @@ public class BatchDTO {
         this.expired_date = expired_date;
     }
 
-    public BatchDTO(int batch_id, int batch_number, double sell_price, double cost_price, String expired_date, int qty, int available_qty, int item_code, int bill_id) {
+    public BatchDTO(String batch_id, int batch_number, double sell_price, double cost_price, String expired_date, int qty, int available_qty, int item_code, String bill_id) {
         this.batch_id = batch_id;
         this.batch_number = batch_number;
         this.sell_price = sell_price;
@@ -44,11 +44,11 @@ public class BatchDTO {
         this.bill_id = bill_id;
     }
 
-    public int getBatch_id() {
+    public String getBatch_id() {
         return batch_id;
     }
 
-    public void setBatch_id(int batch_id) {
+    public void setBatch_id(String batch_id) {
         this.batch_id = batch_id;
     }
 
@@ -108,11 +108,11 @@ public class BatchDTO {
         this.item_code = item_code;
     }
 
-    public int getBill_id() {
+    public String getBill_id() {
         return bill_id;
     }
 
-    public void setBill_id(int bill_id) {
+    public void setBill_id(String bill_id) {
         this.bill_id = bill_id;
     }
 

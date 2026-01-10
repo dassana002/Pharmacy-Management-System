@@ -15,7 +15,7 @@ public class BatchModel {
 
     private final FreeModel freeModel = new FreeModel();
 
-    public boolean saveItem(BatchDTO batchDTO, FreeDTO freeDTO, int billId) throws SQLException {
+    public boolean saveItem(BatchDTO batchDTO, FreeDTO freeDTO , String billId) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
 
         try {
@@ -57,7 +57,7 @@ public class BatchModel {
         return count;
     }
 
-    public boolean batchSave(BatchDTO batchDTO, int billId) throws SQLException {
+    public boolean batchSave(BatchDTO batchDTO, String billId) throws SQLException {
 
         String query = "INSERT INTO batch (batch_id, batch_number, sell_price, cost_price, expired_date, qty, available_qty, item_code, bill_id) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -76,17 +76,17 @@ public class BatchModel {
     }
 
 
-    public ArrayList<BatchDTO> getBatchesByBillId(int billId) throws SQLException {
+    public ArrayList<BatchDTO> getBatchesByBillId(String billId) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
         String query = "SELECT * FROM batch WHERE bill_id = ?";
         PreparedStatement ps = conn.prepareStatement(query);
-        ps.setInt(1, billId);
+        ps.setString(1, billId);
         ResultSet rs = ps.executeQuery();
 
         ArrayList<BatchDTO> batchDTOs = new ArrayList<>();
         while (rs.next()) {
             BatchDTO batchDTO = new BatchDTO(
-                   rs.getInt("batch_id"),
+                   rs.getString("batch_id"),
                    rs.getInt("batch_number"),
                    rs.getDouble("sell_price"),
                    rs.getDouble("cost_price"),
@@ -94,7 +94,7 @@ public class BatchModel {
                    rs.getInt("qty"),
                    rs.getInt("available_qty"),
                    rs.getInt("item_code"),
-                    rs.getInt("bill_id")
+                    rs.getString("bill_id")
             );
             batchDTOs.add(batchDTO);
         }
@@ -112,14 +112,14 @@ public class BatchModel {
         return batchIDs;
     }
 
-    public BatchDTO getBatchByItemCodeAndBillId(int itemCode, int billId) throws SQLException {
+    public BatchDTO getBatchByItemCodeAndBillId(int itemCode, String billId) throws SQLException {
         String query = "SELECT * FROM batch WHERE item_code = ? AND bill_id = ?";
         ResultSet rs = CrudUtil.execute(query, itemCode, billId);
 
         BatchDTO batchDTO = null;
         if(rs.next()) {
             batchDTO = new BatchDTO(
-                    rs.getInt("batch_id"),
+                    rs.getString("batch_id"),
                     rs.getInt("batch_number"),
                     rs.getDouble("sell_price"),
                     rs.getDouble("cost_price"),
@@ -127,7 +127,7 @@ public class BatchModel {
                     rs.getInt("qty"),
                     rs.getInt("available_qty"),
                     rs.getInt("item_code"),
-                    rs.getInt("bill_id")
+                    rs.getString("bill_id")
             );
         }
         return batchDTO;
@@ -174,7 +174,7 @@ public class BatchModel {
         }
     }
 
-    public boolean deleteBatch(int batchId, int billId) throws SQLException {
+    public boolean deleteBatch(String batchId, String billId) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
         try {
             connection.setAutoCommit(false);
@@ -230,11 +230,11 @@ public class BatchModel {
 
         while (rs.next()) {
             BatchDTO batchDTO = new BatchDTO(
-                    rs.getInt("batch_id"),
+                    rs.getString("batch_id"),
                     rs.getInt("batch_number"),
                     0,
                     rs.getInt("item_code"),
-                    rs.getInt("bill_id")
+                    rs.getString("bill_id")
             );
 
             batchDTO.setAvailable_qty(rs.getInt("total_available_qty"));
@@ -260,11 +260,11 @@ public class BatchModel {
         ArrayList<BatchDTO> expireBatches = new ArrayList<>();
         while (rs.next()) {
             BatchDTO batchDTO = new BatchDTO(
-                    rs.getInt("batch_id"),
+                    rs.getString("batch_id"),
                     rs.getInt("batch_number"),
                     0,
                     rs.getInt("item_code"),
-                    rs.getInt("bill_id"),
+                    rs.getString("bill_id"),
                     rs.getString("expired_date")
             );
             batchDTO.setAvailable_qty(rs.getInt("total_available_qty"));
@@ -285,7 +285,7 @@ public class BatchModel {
         BatchDTO batchDTO = null;
         if (rs.next()) {
                 batchDTO = new BatchDTO(
-                        rs.getInt("batch_id"),
+                        rs.getString("batch_id"),
                         rs.getInt("batch_number"),
                         rs.getDouble("sell_price"),
                         rs.getDouble("cost_price"),
@@ -293,9 +293,21 @@ public class BatchModel {
                         rs.getInt("qty"),
                         rs.getInt("available_qty"),
                         rs.getInt("item_code"),
-                        rs.getInt("bill_id")
+                        rs.getString("bill_id")
                 );
         }
         return batchDTO;
+    }
+
+    public boolean decrementBatch(String batchId , int qty) throws SQLException {
+        String query = "UPDATE batch\n" +
+                "SET available_qty = available_qty - ?\n" +
+                "WHERE batch_id = ?\n" +
+                "  AND available_qty >= ?;\n";
+        return CrudUtil.execute(
+                query,
+                qty,
+                batchId,
+                qty);
     }
 }

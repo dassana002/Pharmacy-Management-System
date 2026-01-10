@@ -11,22 +11,22 @@ import java.sql.SQLException;
 
 public class FreeModel {
 
-    public boolean freeSave(FreeDTO freeDTO, int batchId) throws SQLException {
+    public boolean freeSave(FreeDTO freeDTO, String batchId) throws SQLException {
         String query = "INSERT INTO free (free_id, batch_id, qty, ava_qty) VALUES (?, ?, ?, ?)";
         return CrudUtil.execute(
                 query,
                 freeDTO.getFree_id(),
-                freeDTO.getBatch_id(),
+                batchId,
                 freeDTO.getQty(),
                 freeDTO.getAva_qty()
         );
     }
 
-    public int getFreeQtyById(int batchId) throws SQLException {
+    public int getFreeQtyById(String batchId) throws SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
         String query = "SELECT qty FROM free WHERE batch_id=?";
         PreparedStatement preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setInt(1,batchId);
+        preparedStatement.setString(1,batchId);
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -38,14 +38,14 @@ public class FreeModel {
         return qty;
     }
 
-    public FreeDTO getFreeById(int batchId) throws SQLException {
+    public FreeDTO getFreeById(String batchId) throws SQLException {
         String query = "SELECT * FROM free WHERE batch_id=?";
         ResultSet rs = CrudUtil.execute(query, batchId);
         FreeDTO freeDTO = null;
         if (rs.next()) {
             freeDTO = new FreeDTO(
-                    rs.getInt("free_id"),
-                    rs.getInt("batch_id"),
+                    rs.getString("free_id"),
+                    rs.getString("batch_id"),
                     rs.getInt("qty"),
                     rs.getInt("ava_qty")
             );
@@ -63,7 +63,7 @@ public class FreeModel {
         );
     }
 
-    public boolean deleteFree(int batchId) throws SQLException {
+    public boolean deleteFree(String batchId) throws SQLException {
         String query = "DELETE FROM free WHERE batch_id=?";
         return CrudUtil.execute(query,batchId);
     }

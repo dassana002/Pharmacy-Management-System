@@ -4,7 +4,7 @@ import lk.ijse.pharmacymanagementsystem.model.Status;
 import java.util.ArrayList;
 
 public class BillDTO {
-    private int bill_id;
+    private String bill_id;
     private String invoice_number;
     private Status status;
     private String company_name;
@@ -16,7 +16,7 @@ public class BillDTO {
     public BillDTO() {
     }
 
-    public BillDTO(int bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date, int payment_id, ArrayList<BatchDTO> batchDtoList) {
+    public BillDTO(String bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date, int payment_id, ArrayList<BatchDTO> batchDtoList) {
         this.bill_id = bill_id;
         this.invoice_number = invoice_number;
         this.status = status;
@@ -27,7 +27,7 @@ public class BillDTO {
         BatchDtoList = batchDtoList;
     }
 
-    public BillDTO(int bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date, ArrayList<BatchDTO> batchDtoList) {
+    public BillDTO(String bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date, ArrayList<BatchDTO> batchDtoList) {
         this.bill_id = bill_id;
         this.invoice_number = invoice_number;
         this.status = status;
@@ -37,7 +37,7 @@ public class BillDTO {
         BatchDtoList = batchDtoList;
     }
 
-    public BillDTO(int bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date) {
+    public BillDTO(String bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date) {
         this.bill_id = bill_id;
         this.invoice_number = invoice_number;
         this.status = status;
@@ -46,7 +46,7 @@ public class BillDTO {
         this.received_date = received_date;
     }
 
-    public BillDTO(int bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date, int payment_id) {
+    public BillDTO(String bill_id, String invoice_number, Status status, String company_name, String today_date, String received_date, int payment_id) {
         this.bill_id = bill_id;
         this.invoice_number = invoice_number;
         this.status = status;
@@ -56,11 +56,11 @@ public class BillDTO {
         this.payment_id = payment_id;
     }
 
-    public int getBill_id() {
+    public String getBill_id() {
         return bill_id;
     }
 
-    public void setBill_id(int bill_id) {
+    public void setBill_id(String bill_id) {
         this.bill_id = bill_id;
     }
 
