@@ -25,7 +25,7 @@ public class OrderModel {
                     "    status,\n" +
                     "    customer_NIC,\n" +
                     "    employee_id,\n" +
-                    "    payment_id,\n" +
+                    "    payment_id\n" +
                     ") VALUES (?, ?, ?, ?, ?, ?)";
             boolean isOrder = CrudUtil.execute(
                     query,

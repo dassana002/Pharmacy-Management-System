@@ -174,13 +174,11 @@ public class OrderAddController implements Initializable {
         }
 
         String date = date_txt.getText();
-        String invoice = invoice_txt.getText();
         int itemCode = Integer.parseInt(itemCode_txt.getText());
         String customerId = customer_id.getText();
         String description = desc_txt.getText();
         double unitPrice = Double.parseDouble(unitPrice_txt.getText());
         int qty  = Integer.parseInt(qty_txt.getText());
-        int avaQty = Integer.parseInt(avaQty_text.getText());
         int qtyTotal = Integer.parseInt(totalQty_txt.getText());
 
         try {

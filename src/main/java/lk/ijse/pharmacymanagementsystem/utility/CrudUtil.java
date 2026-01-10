@@ -9,7 +9,6 @@ import java.sql.SQLException;
 
 public class CrudUtil {
     public static <T> T execute(String sql, Object... obj) throws SQLException {
-
         Connection conn = DBConnection.getInstance().getConnection();
         PreparedStatement ptsm = conn.prepareStatement(sql);
 
