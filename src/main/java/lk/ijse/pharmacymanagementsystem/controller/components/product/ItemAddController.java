@@ -264,6 +264,8 @@ public class ItemAddController implements Initializable {
             // get Bill Dto
             BillDTO billDTO = billModel.getBillById(billId);
             createHoldBillButton(billDTO);
+            cleanTable();
+            fullCleanText();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -606,7 +608,6 @@ public class ItemAddController implements Initializable {
 
     private void fullCleanText() {
         invoice_number_text.clear();
-        todayDate_text.getEditor().clear();
         receivedDate_text.getEditor().clear();
         companyName_cmb.getEditor().clear();
         itemCode_text.clear();
